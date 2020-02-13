@@ -7,7 +7,7 @@ module.exports = {
 
     //add customer
     addCustomerForm: (req, res, next) => {
-        res.render('backend/customers/customer')
+        res.render('backend/customers/addCustomer')
     },
     addCustomer: async (req, res, next) => {
         let{

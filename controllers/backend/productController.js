@@ -2,6 +2,11 @@ const Product = require('../../models/product.model')
 
 module.exports = {
 
+    //add product form
+    addProductForm: (req, res, next) => {
+        res.render('backend/products/addProduct')
+    },
+
     // insert new products to the database
     addProduct: async (req, res, next) => {
         let {

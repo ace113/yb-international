@@ -42,7 +42,6 @@ app.use(methodOverride('_method'))
 app.use('/', require('./routes/frontend/index'))
 
 // admin route
-app.use('/admin', require('./routes/backend/index'))
 
 app.use('/admin', require('./routes/backend/admin.route'))
 
