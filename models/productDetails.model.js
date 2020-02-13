@@ -9,7 +9,12 @@ const productDetailSchema = new mongoose.Schema({
         type: String
     },
     gallery: {
-        type: Buffer
+        type: String
+    },
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true
     }
 })
 

@@ -12,16 +12,16 @@ dotenv.config();
 
 // connect mongodb
 const URL = 'mongodb://localhost:27017/herbshop';
-mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:true })
-.then(()=> console.log('Database is ready'))
-.catch(err => console.log(err))
+mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Database is ready'))
+    .catch(err => console.log(err))
 
 
 const app = express()
 
 
 // set static folder
-app.use('/public/',express.static('public'))
+app.use('/public/', express.static('public'))
 
 // ejs
 app.set('view engine', 'ejs')
@@ -39,7 +39,10 @@ app.use(methodOverride('_method'))
 
 // ROUTES
 // index route
-app.get('/',(req, res)=> res.send('index'))
+app.use('/', require('./routes/frontend/index'))
+
+// admin route
+app.use('/admin', require('./routes/backend/index'))
 
 app.use('/admin', require('./routes/backend/admin.route'))
 
@@ -52,4 +55,4 @@ app.get('*', (req, res) => {
 // Start the server
 const port = process.env.PORT || 3000;
 
-app.listen(port, ()=> console.log(`Server is running on ${port}`))
+app.listen(port, () => console.log(`Server is running on ${port}`))
