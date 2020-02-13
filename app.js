@@ -25,6 +25,7 @@ app.use('/public/',express.static('public'))
 
 // ejs
 app.set('view engine', 'ejs')
+
 app.use(expressLayouts)
 
 

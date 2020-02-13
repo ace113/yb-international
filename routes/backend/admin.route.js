@@ -1,11 +1,12 @@
-const express = require('express')
-const route = express.Router()
+const router = require('express-promise-router')()
 
-const Admin = require('../controller/adminController')
+const adminController = require('../../controller/backend/adminController')
 
 router.route('/')
 .get(adminController.admin)
 
-router.route('/addcustomer')
+router.route('/addCustomer')
 .get(adminController.addCustomerForm)
 .post(adminController.addCustomer)
+
+module.exports = router
