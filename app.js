@@ -43,6 +43,8 @@ app.use('/', require('./routes/frontend/index'))
 // admin route
 app.use('/admin', require('./routes/backend/index'))
 
+app.use('/admin', require('./routes/backend/admin.route'))
+
 
 // non existing routes
 app.get('*', (req, res) => {
