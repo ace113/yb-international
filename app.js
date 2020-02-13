@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
+const expressLayouts = require('express-ejs-layouts')
 
 
 // env config
 dotenv.config();
-
 
 
 // connect mongodb
@@ -25,6 +25,7 @@ app.use('/public/',express.static('public'))
 
 // ejs
 app.set('view engine', 'ejs')
+app.use(expressLayouts)
 
 
 // Middlewares
