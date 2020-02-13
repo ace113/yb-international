@@ -40,6 +40,8 @@ app.use(methodOverride('_method'))
 // index route
 app.get('/',(req, res)=> res.send('index'))
 
+app.use('/admin', require('./routes/backend/admin.route'))
+
 
 // non existing routes
 app.get('*', (req, res) => {
