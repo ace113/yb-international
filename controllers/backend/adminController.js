@@ -5,6 +5,14 @@ module.exports = {
         res.render('backend/dashboard')
     },
 
+    //customers list
+    customerForm: async (req, res, next) => {
+        const customers = await Customer.find({})
+        res.render('backend/customers/customerList',{
+            customers: customers
+        })
+    },
+
     //add customer
     addCustomerForm: (req, res, next) => {
         res.render('backend/customers/addCustomer')
@@ -23,11 +31,6 @@ module.exports = {
             password
         } = req.body
 
-        const customer = await Customer.find({})
-        if(customer){
-            res.json({message: "Customer is already made."})
-        }
-
         const newCustomer = await new Customer({
             fname,
             lname,
@@ -42,6 +45,10 @@ module.exports = {
         })
 
         const saveCustomer = await newCustomer.save()
+
+        if(saveCustomer){
+            res.redirect('/admin/customers')
+        }
 
     }
 

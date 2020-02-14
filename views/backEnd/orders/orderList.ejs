@@ -1,0 +1,37 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/orders">Orders</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All Orders</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <h4 class="my-auto">Orders</h4>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <table class="table table-sm table-hover table-bordered">
+            <thead>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Date</th>
+                <th> &nbsp; </th>
+            </thead>
+            <tbody>
+                <% orders.forEach(order => { %>
+                <tr>
+                    <td><%= order.customerId %></td>
+                    <td><%= order.productId %></td>
+                    <td><%= order.quantity %></td>
+                    <td><%= order.date %></td>   
+                    <td><form action="/admin/orders/editOrder/<%= order._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
+                        <a class="btn btn-primary btn-sm" href="/admin/orders/editOrder/<%= order._id%>"><i class="fas fa-edit"></i></a>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/customers">Products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All Products</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <h4 class="my-auto">Products</h4>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <table class="table table-sm table-hover table-bordered">
+            <thead>
+                <th>Avatar</th>
+                <th>Local Name</th>
+                <th>Scientific Name</th>
+                <th>Nepali Name</th>
+                <th>Available</th>
+                <th>Product Code</th>
+                <th>Category</th>
+                <th> &nbsp; </th>
+            </thead>
+            <tbody>
+                <% products.forEach(product => { %>
+                <tr>
+                    <td><%= product.avatar %></td>
+                    <td><%= product.localName %></td>
+                    <td><%= product.scientificName %></td>
+                    <td><%= product.nepaliName %></td>
+                    <td><%= product.available %></td>
+                    <td><%= product.productCode %></td>
+                    <td><%= product.category %></td>
+                    <td><form action="/admin/products/editProduct/<%= product._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
+                        <a class="btn btn-primary btn-sm" href="/admin/products/editProduct/<%= product._id %>"><i class="fas fa-edit"></i></a>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

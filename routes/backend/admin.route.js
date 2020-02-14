@@ -6,11 +6,14 @@ const productController = require('../../controllers/backend/productController')
 router.route('/')
     .get(adminController.admin)
 
-router.route('/addCustomer')
+router.route('/customers')
+    .get(adminController.customerForm)
+
+router.route('/customers/add')
     .get(adminController.addCustomerForm)
     .post(adminController.addCustomer)
 
-router.route('/product')
+router.route('/products')
     .get(productController.getProducts)
 
 router.route('/product/:id')

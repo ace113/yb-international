@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const Category = require('./category.model')
+
 const productSchema  = new mongoose.Schema({
     avatar: {
         type: Buffer
@@ -20,8 +22,9 @@ const productSchema  = new mongoose.Schema({
     productCode: {
         type: String,
     },
-    catagory: {
-        type: String
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
     }
 }, {
     timestamps: true

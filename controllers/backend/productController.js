@@ -16,7 +16,7 @@ module.exports = {
             nepaliName,
             available,
             productCode,
-            catagory
+            category
         } = req.body
 
         const newProduct = new Product({
@@ -26,13 +26,13 @@ module.exports = {
             nepaliName,
             available,
             productCode,
-            catagory
+            category
         })
         const productAdded = await newProduct.save()
         if (!productAdded) {
             return res.status(400).json({ message: 'Add new product failed!' })
         }
-        res.status(200).json({ 'product': productAdded })
+        res.redirect('/admin/products')
 
     },
 
@@ -52,12 +52,14 @@ module.exports = {
 
     // get product list
     getProducts: async (req, res, next) => {
-        const productsFound = await Product.find({})
+        const products = await Product.find({})
 
-        if (!productsFound) {
+        if (!products) {
             return res.status(400).json({ message: 'product get request failed' })
         }
-        res.status(200).json(productsFound)
+        res.render('backend/products/productsList',{
+            products: products
+        })
     },
 
     // edit product information
@@ -70,7 +72,7 @@ module.exports = {
             nepaliName,
             available,
             productCode,
-            catagory
+            category
         } = req.body
         console.log(id)
 
@@ -84,7 +86,7 @@ module.exports = {
             nepaliName,
             available,
             productCode,
-            catagory
+            category
         })
 
         if (!editProduct) {

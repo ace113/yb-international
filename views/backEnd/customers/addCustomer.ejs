@@ -1,16 +1,16 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/admin/customers">Customer</a></li>
+        <li class="breadcrumb-item"><a href="/admin/customers">Customers</a></li>
         <li class="breadcrumb-item active" aria-current="page">Add Customer</li>
     </ol>
 </nav>
 <div class="card">
-    <div class="card-header bg-primary text-light">
-        <h4 class="my-auto">Customer</h4>
+    <div class="card-header bg-primary text-dark">
+        <h4 class="my-auto">Add Customer</h4>
     </div>
 
     <div class="card-body bg-light text-dark">
-        <form action="" method="post">
+        <form action="/admin/customers/add" method="POST">
             <div class="form-group row">
                 <label for="fname" class="col-sm-2 col-form-label col-form-label-sm">First Name</label>
                 <div class="col-sm-4">
@@ -34,13 +34,13 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="address1" class="col-sm-2 col-form-label col-form-label-sm">Address 1</label>
+                <label for="address1" class="col-sm-2 col-form-label col-form-label-sm">Primary Address</label>
                 <div class="col-sm-8">
                     <input type="text" name="address1" class="form-control form-control-sm">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="address2" class="col-sm-2 col-form-label col-form-label-sm">Address 2</label>
+                <label for="address2" class="col-sm-2 col-form-label col-form-label-sm">Secondary Address</label>
                 <div class="col-sm-8">
                     <input type="text" name="address2" class="form-control form-control-sm">
                 </div>
