@@ -12,10 +12,6 @@ const orderSchema = new mongoose.Schema({
         ref: 'Product',
         required: true
     },
-    date: {
-        type: Date,
-        required: true
-    },
     customerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Customer'

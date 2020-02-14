@@ -1,0 +1,36 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/product/productDetail">Product Details</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All Product Details</li>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <h4 class="my-auto">All Product Details</h4>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <table class="table table-sm table-hover table-bordered table-responsive">
+            <thead>
+                <th>S. No.</th>
+                <th>Product Title</th>
+                <th>Product ID</th>
+                <th> &nbsp; </th>
+            </thead>
+            <tbody>
+                <% productDetails.forEach((productDetail, sn=1 )=> { %>
+                <tr>
+                    <td><%= sn+1 %></td>
+                    <td><a href="/admin/product/productDetail/<%= productDetail._id %>"><%= productDetail.productTitle %></a></td>
+                    <td><%= productDetail.product %></td>
+                    <td><form action="/admin/product/productDetail/edit/<%= productDetail._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
+                        <a class="btn btn-primary btn-sm" href="/admin/product/productDetail/edit/<%= productDetail._id %>"><i class="fas fa-edit"></i></a>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

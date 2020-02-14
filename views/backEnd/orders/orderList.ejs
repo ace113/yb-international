@@ -9,8 +9,9 @@
         <h4 class="my-auto">Orders</h4>
     </div>
     <div class="card-body bg-light text-dark">
-        <table class="table table-sm table-hover table-bordered">
+        <table class="table table-sm table-hover table-bordered table-responsive">
             <thead>
+                <th>S. No.</th>
                 <th>Customer</th>
                 <th>Product</th>
                 <th>Quantity</th>
@@ -18,8 +19,9 @@
                 <th> &nbsp; </th>
             </thead>
             <tbody>
-                <% orders.forEach(order => { %>
+                <% orders.forEach((order, sn=1 )=> { %>
                 <tr>
+                    <td><%= sn+1 %></td>
                     <td><%= order.customerId %></td>
                     <td><%= order.productId %></td>
                     <td><%= order.quantity %></td>
