@@ -1,12 +1,12 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin/orders">Orders</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add Order</li>
+        <li class="breadcrumb-item active" aria-current="page">Edit Order</li>
     </ol>
 </nav>
 <div class="card">
     <div class="card-header bg-primary text-light">
-        <h2 class="my-auto">Add Order</h2>
+        <h2 class="my-auto">Edit Order</h2>
     </div>
 
     <div class="card-body bg-light text-dark">
@@ -20,21 +20,19 @@
             <div class="form-group row">
                 <label for="productId" class="col-sm-2 col-form-label col-form-label-sm">Product Id</label>
                 <div class="col-sm-4">
-                    <select name="productId" class="form-control form-control-sm">
-                        <% products.forEach(product => { %>
-                        <option value="<%= product._id %>"><%= product.localName %></option>
-                        <% }) %>
-                    </select>
+                    <input type="text" name="productId" class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="date" class="col-sm-2 col-form-label col-form-label-sm">Date</label>
+                <div class="col-sm-4">
+                    <input type="date" name="date" class="form-control form-control-sm">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="customerId" class="col-sm-2 col-form-label col-form-label-sm">Customerm Id</label>
                 <div class="col-sm-4">
-                    <select name="customerId" class="form-control form-control-sm">
-                        <% customers.forEach(customer => { %>
-                        <option value="<%= customer._id %>"><%= customer.fName %><%= customer.lname %></option>
-                        <% }) %>
-                    </select>
+                    <input type="text" name="customerId" class="form-control form-control-sm">
                 </div>
             </div>
             <div class="form-group row">

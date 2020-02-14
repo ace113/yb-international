@@ -1,42 +1,39 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/admin/customers">Products</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Product Info</li>
+        <li class="breadcrumb-item"><a href="/admin/product/productDetail">Product Details</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Product Detail Info</li>
     </ol>
 </nav>
 <div class="card">
     <div class="card-header bg-primary text-light">
         <div class="row">
             <div class="col-md-4">
-                <h4 class="my-auto">Product Info</h4>
+                <h4 class="my-auto">Product Detail Info</h4>
             </div>
             <div class="col-md-4 ml-auto">
-                <form action="/admin/product/edit/<%= product._id %>?_method=DELETE" method="POST">
+                <form action="/admin/product/productDetail/edit/<%= productDetail._id %>?_method=DELETE" method="POST">
                     <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
-                    <a class="btn btn-primary btn-sm" href="/admin/product/edit/<%= product._id %>"><i class="fas fa-edit"></i></a>
-                    </form>
+                    <a class="btn btn-primary btn-sm" href="/admin/product/productDetail/edit/<%= productDetail._id %>"><i class="fas fa-edit"></i></a>
+                </form>
             </div>
         </div>
     </div>
     <div class="card-body bg-light text-dark">
         <div class="list-group">
             <div class="list-group-item list-group-item-action py-1">
-                <h6>ID: <%= product._id %></h6>
+                <h6>ID: <%= productDetail._id %></h6>
             </div>
             <div class="list-group-item list-group-item-action py-1">
-                <h6>Local Name: <%= product.localName %></h6>
+                <h6>Product Title: <%= productDetail.productTitle %></h6>
             </div>
             <div class="list-group-item list-group-item-action py-1">
-                <h6>Scientific Name: <%= product.scientificName %></h6>
+                <h6>Description: <%= productDetail.description %></h6>
             </div>
             <div class="list-group-item list-group-item-action py-1">
-                <h6>Nepali Name: <%= product.nepaliName %></h6>
+                <h6>Gallery: <%= productDetail.gallery %></h6>
             </div>
             <div class="list-group-item list-group-item-action py-1">
-                <h6>Available: <%= product.vailable %></h6>
-            </div>
-            <div class="list-group-item list-group-item-action py-1">
-                <h6>Category: <%= product.category %></h6>
+                <h6>Product: <%= productDetail.product %></h6>
             </div>
         </div>
     </div>

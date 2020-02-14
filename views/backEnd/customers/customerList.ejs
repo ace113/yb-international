@@ -9,8 +9,9 @@
         <h4 class="my-auto">Customers</h4>
     </div>
     <div class="card-body bg-light text-dark">
-        <table class="table table-sm table-hover table-bordered">
+        <table class="table table-sm table-hover table-bordered table-responsive">
             <thead>
+                <th>S. No.</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -21,8 +22,9 @@
                 <th> &nbsp; </th>
             </thead>
             <tbody>
-                <% customers.forEach(customer => { %>
+                <% customers.forEach((customer, sn=1)=> { %>
                 <tr>
+                    <td><%= sn+1 %></td>
                     <td><a href="/admin/customer/<%= customer._id %>"><%= customer.fname %></a></td>
                     <td><%= customer.lname %></td>
                     <td><%= customer.email %></td>

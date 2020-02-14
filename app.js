@@ -4,6 +4,9 @@ const dotenv = require('dotenv')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
 const expressLayouts = require('express-ejs-layouts')
+const favicon = require('serve-favicon')
+const path = require('path')
+
 
 
 // env config
@@ -19,6 +22,8 @@ mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const app = express()
 
+// serve favicon
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 // set static folder
 app.use('/public/', express.static('public'))

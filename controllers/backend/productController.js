@@ -1,10 +1,14 @@
 const Product = require('../../models/product.model')
+const Category = require('../../models/category.model')
 
 module.exports = {
 
     //add product form
-    addProductForm: (req, res, next) => {
-        res.render('backend/products/addProduct')
+    addProductForm: async (req, res, next) => {
+        const categorys = await Category.find()
+        res.render('backend/products/addProduct',{
+            categorys: categorys
+        })
     },
 
     // insert new products to the database
@@ -45,7 +49,9 @@ module.exports = {
         if (!productsFound) {
             return res.status(400).json({ message: 'product get request failed' })
         }
-        res.status(200).json(productsFound)
+        res.render('backend/products/productInfo', {
+            product: productsFound
+        })
     },
 
 
@@ -119,7 +125,7 @@ module.exports = {
         if (!delProduct) {
             return res.status(400).json({ message: 'product delete failed' })
         }
-        res.status(200).json({success: 'delete successful'})
+        res.redirect('/admin/products')
     }
 
 }

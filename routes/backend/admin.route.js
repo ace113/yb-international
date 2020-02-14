@@ -4,6 +4,7 @@ const adminController = require('../../controllers/backend/adminController')
 const customerController = require('../../controllers/backend/customerController')
 const productController = require('../../controllers/backend/productController')
 const categoryController = require('../../controllers/backend/categoryController')
+const productDetailController = require('../../controllers/backend/productDetailController')
 
 // admin auth routes start
 router.route('/')
@@ -23,9 +24,7 @@ router.route('/reset-password/:id')
 router.route('/dashboard')
     .get(adminController.admin)
 
-// admin auth routes end
-
-// Customer Routes start 
+// Customer Routes starts 
 router.route('/customers')
     .get(customerController.getCustomerList)
 
@@ -56,12 +55,31 @@ router.route('/product/category/add')
 router.route('/product/category/:id')
     .get(categoryController.getCategory)
 
-router.route('/customer/edit/:id')
+router.route('/product/category/edit/:id')
     .get(categoryController.editCategoryForm)
     .put(categoryController.editCategory)
     .delete(categoryController.deleteCategory)
 
 // product category route ends
+
+//product detail route starts
+
+router.route('/product/productDetail')
+.get(productDetailController.productDetail)
+
+router.route('/product/productDetail/add')
+.get(productDetailController.addProductDetailFrom)
+.post(productDetailController.addProductDetail)
+
+router.route('/product/productDetail/:id')
+.get(productDetailController.getProductDetail)
+
+router.route('/product/productDetail/edit/:id')
+.get(productDetailController.editProductDetailForm)
+.put(productDetailController.editProductDetail)
+.delete(productDetailController.deleteProductDetail)
+
+//product detail route ends
 
 // product route starts
 
@@ -79,5 +97,12 @@ router.route('/product/edit/:id')
     .get(productController.editProductForm)
     .put(productController.editProduct)
     .delete(productController.deleteProduct)
+
+//product route ends
+
+//order route starts
+
+//order route ends
+
 
 module.exports = router

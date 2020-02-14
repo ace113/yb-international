@@ -5,6 +5,7 @@ module.exports = {
     // add category form
     getCategoryForm: (req, res, next) => {
         // render add category form here
+        res.render('backend/products/categorys/addCategory')
     },
 
     // post add category function
@@ -19,7 +20,7 @@ module.exports = {
         if(!category){
             res.status(400).json({message: 'new category not added'})
         }
-        res.status(200).json({success: 'new category added'})
+        res.redirect('/admin/product/categorys')
     },
 
 
@@ -32,6 +33,9 @@ module.exports = {
             return res.status(400).json({message: 'category not found'})
         }
         // render the found category values to the edit form 
+        res.render('backend/products/categorys/editCategory',{
+            category: categoryFound
+        })
     },
 
     // edit category function 
@@ -48,7 +52,7 @@ module.exports = {
         if(!updateCategory) {
             return res.status(400).json({message: 'category edit failed'})
         }
-        res.status(200).json({success: 'edit category success'})
+        res.redirect('/admin/product/categorys')
     },
 
     // delete category function
@@ -61,7 +65,7 @@ module.exports = {
         if(!deleteCategory){
             return res.status(400).json({message: 'delete category failed'})            
         }
-        res.status(200).json({success: 'delete category success'})
+        res.redirect('/admin/product/categorys')
     },
 
     // list category function
@@ -71,6 +75,9 @@ module.exports = {
             return res.status(400).json({message: 'category list not found'})
         }
         // render categorylist to the category list page
+        res.render('backend/products/categorys/categoryList',{
+            categorys: categorylist
+        })
     },
 
     getCategory: async (req, res, next) => {
