@@ -29,12 +29,12 @@ router.route('/customer/edit/:id')
 
 // product category route starts
 
-router.route('/product/category')
-.get(categoryController.getCategoryList)
+router.route('/product/categorys')
+    .get(categoryController.getCategoryList)
 
 router.route('/product/category/add')
-.get(categoryController.getCategoryForm)
-.post(categoryController.addCategory)
+    .get(categoryController.getCategoryForm)
+    .post(categoryController.addCategory)
 
 router.route('/product/category/:id')
     .get(customerController.getCategory)
@@ -51,13 +51,18 @@ router.route('/customer/edit/:id')
 router.route('/products')
     .get(productController.getProducts)
 
-router.route('/product/:id')
-    .get(productController.getProduct)
-    .put(productController.editProduct)
-    .delete(productController.deleteProduct)
-
 router.route('/products/add')
     .get(productController.addProductForm)
     .post(productController.addProduct)
+
+router.route('/product/:id')
+    .get(productController.getProduct)
+
+router.route('/product/edit/:id')
+    .get(productController.editProductForm)
+    .put(productController.editProduct)
+    .delete(productController.deleteProduct)
+
+// product route ends
 
 module.exports = router

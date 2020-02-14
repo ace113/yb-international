@@ -60,6 +60,17 @@ module.exports = {
         res.status(200).json(productsFound)
     },
 
+    // edit product form render
+    editProductForm: async( req, res, next) => {
+        const id = req.params.id
+
+        const productFound = await Product.findOne({_id: id})
+        if(!productFound){
+            return res.status(400).json({message: 'product not found'})
+        }
+        // render the found product values to the edit form 
+    },
+
     // edit product information
     editProduct: async (req, res, next) => {
         const id = req.params.id
