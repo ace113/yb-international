@@ -1,19 +1,25 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/admin/product/categorys">Category</a></li>
-        <li class="breadcrumb-item active" aria-current="page">All Category</li>
+        <li class="breadcrumb-item"><a href="/admin/product/categorys">Product Category</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All Product Category</li>
     </ol>
 </nav>
 
 <div class="card">
     <div class="card-header bg-primary text-light">
-        <h4 class="my-auto">All Category</h4>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="my-auto">All Product Category</h4>
+            </div>
+            <div class="col-md-4 ml-auto">
+                <a href="/admin/product/category/add" class="btn btn-info">Add New</a>
+            </div>
+        </div>
     </div>
     <div class="card-body bg-light text-dark">
         <table class="table table-sm table-hover table-bordered table-responsive">
             <thead>
                 <th>S. No.</th>
-                <th>Category ID</th>
                 <th>Category Name</th>
                 <th> &nbsp; </th>
             </thead>
@@ -21,7 +27,6 @@
                 <% categorys.forEach((category, sn=1 )=> { %>
                 <tr>
                     <td><%= sn+1 %></td>
-                    <td><%= category.id %></td>
                     <td><%= category.categoryName %></td>
                     <td><form action="/admin/product/category/edit/<%= category._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>

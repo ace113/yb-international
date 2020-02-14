@@ -112,7 +112,7 @@ module.exports = {
         if (!editProduct) {
             return res.status(400).json({ message: 'product edit failed' })
         }
-        res.status(200).json({success: 'edit successful'})
+        res.redirect('/admin/products')
     },
 
     // deleteProduct

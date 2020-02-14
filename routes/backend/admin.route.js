@@ -3,6 +3,7 @@ const router = require('express-promise-router')()
 const adminController = require('../../controllers/backend/adminController')
 const customerController = require('../../controllers/backend/customerController')
 const productController = require('../../controllers/backend/productController')
+const orderController = require('../../controllers/backend/orderController')
 const categoryController = require('../../controllers/backend/categoryController')
 const productDetailController = require('../../controllers/backend/productDetailController')
 
@@ -86,6 +87,20 @@ router.route('/product/edit/:id')
 //product route ends
 
 //order route starts
+
+router.route('/orders')
+.get(orderController.orderList)
+
+router.route('/order/add')
+.get(orderController.addOrderForm)
+.post(orderController.addOrder)
+
+router.route('/order/:id')
+
+router.route('/order/edit/:id')
+.get(orderController.editOrderForm)
+.put(orderController.editOrder)
+.delete(orderController.deleteOrder)
 
 //order route ends
 
