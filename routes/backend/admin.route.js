@@ -7,7 +7,22 @@ const orderController = require('../../controllers/backend/orderController')
 const categoryController = require('../../controllers/backend/categoryController')
 const productDetailController = require('../../controllers/backend/productDetailController')
 
+// admin auth routes start
 router.route('/')
+    .get(adminController.adminLoginForm)
+    .post(adminController.adminLogin)
+
+router.route('/register')
+    .post(adminController.adminRegister)
+
+router.route('/edit/:id')
+    .put(adminController.editAdmin)
+
+router.route('/reset-password/:id')
+    .put(adminController.resetPassword)
+    // #### note: add nodemailer function to recover the password if lost
+
+router.route('/dashboard')
     .get(adminController.admin)
 
 // Customer Routes starts 
