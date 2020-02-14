@@ -62,6 +62,20 @@ module.exports = {
         })
     },
 
+    // edit product form render
+    editProductForm: async( req, res, next) => {
+        const id = req.params.id
+
+        const productFound = await Product.findOne({_id: id})
+        if(!productFound){
+            return res.status(400).json({message: 'product not found'})
+        }
+        res.render('backend/products/editProduct',{
+            product: productFound
+        })
+        // render the found product values to the edit form 
+    },
+
     // edit product information
     editProduct: async (req, res, next) => {
         const id = req.params.id

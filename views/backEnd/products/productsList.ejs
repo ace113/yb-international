@@ -24,7 +24,7 @@
                 <% products.forEach(product => { %>
                 <tr>
                     <td><%= product.avatar %></td>
-                    <td><%= product.localName %></td>
+                    <td><a href=""><%= product.localName %></a></td>
                     <td><%= product.scientificName %></td>
                     <td><%= product.nepaliName %></td>
                     <td><%= product.available %></td>
@@ -32,7 +32,7 @@
                     <td><%= product.category %></td>
                     <td><form action="/admin/products/edit/<%= product._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
-                        <a class="btn btn-primary btn-sm" href="/admin/products/edit/<%= product._id %>"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-primary btn-sm" href="/admin/product/edit/<%= product._id %>"><i class="fas fa-edit"></i></a>
                         </form>
                     </td>
                 </tr>
