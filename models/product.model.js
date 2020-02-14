@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const productSchema  = new mongoose.Schema({
     avatar: {
-        type: Buffer
+        type: String
     },
     localName: {
         type: String

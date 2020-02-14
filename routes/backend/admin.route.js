@@ -1,16 +1,28 @@
 const router = require('express-promise-router')()
 
 const adminController = require('../../controllers/backend/adminController')
+const customerController = require('../../controllers/backend/customerController')
 const productController = require('../../controllers/backend/productController')
 
 router.route('/')
     .get(adminController.admin)
 
-router.route('/addCustomer')
-    .get(adminController.addCustomerForm)
-    .post(adminController.addCustomer)
+router.route('/customers')
+    .get(customerCntroller.getCustomerList)
 
-router.route('/product')
+router.route('/customer/add')
+    .get(customerCntroller.addCustomerForm)
+    .post(customerCntroller.addCustomer)
+
+router.route('/customer/:id')
+    .get(customerCntroller.getCustomer)
+
+router.route('/customer/edit/:id')
+    .get(customerCntroller.editCustomerForm)
+    .put(customerCntroller.editCustomer)
+    .delete(acustomerCtroller.deleteCustomer)
+
+router.route('/products')
     .get(productController.getProducts)
 
 router.route('/product/:id')

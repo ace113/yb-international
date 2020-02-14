@@ -1,0 +1,136 @@
+const Customer = require('../../models/customer.model')
+
+module.exports = {
+    //add customer form 
+    addCustomerForm: (req, res, next) => {
+        res.render('backend/customers/addCustomer')
+    },
+
+    // edit customer form 
+    editCustomerForm: async (req, res, next) => {
+        const id = req.params.id
+
+        const customerFound = await Customer.findOne({_id: id})
+        
+    /* use this to render the values to the edit customer form */
+
+  
+    },
+
+    // function to add customer
+    addCustomer: async (req, res, next) => {
+        let{
+            fname,
+            lname,
+            email,
+            phone,
+            address1,
+            address2,
+            city,
+            state,
+            country,
+            password
+        } = req.body
+
+        const customer = await Customer.findOne({ email })
+        if(customer){
+           return res.json({message: "Customer is already made."})
+        }
+
+        const newCustomer = new Customer({
+            fname,
+            lname,
+            email,
+            phone,
+            address1,
+            address2,
+            city,
+            state,
+            country,
+            password
+        })
+
+        const saveCustomer = await newCustomer.save()
+
+        if(!saveCustomer){
+            return res.status(400).json({message: "new cusomer not saved!"})
+        }
+        res.status(200).json({success: "new customer saved!"})
+    },
+
+    // function to delete customer
+    editCustomer: async (req, res, next) => {
+        const id = req.params.id
+
+        let{
+            fname,
+            lname,
+            email,
+            phone,
+            address1,
+            address2,
+            city,
+            state,
+            country,
+            password
+        } = req.body
+
+        const editedCustomer = await Customer.updateOne({
+            _id: id
+        }, {
+            fname,
+            lname,
+            email,
+            phone,
+            address1,
+            address2,
+            city,
+            state,
+            country,
+            password
+        })
+
+        if(!editedCustomer) {
+            return res.status(400).json({message: 'edit customer failed'})
+        }
+        res.status(200).json({success: 'customer updated!'})
+    },
+
+    // function to delete customer
+    deleteCustomer: async (req, res, next) => {
+        const id = req.params.id
+
+        const deletedCustomer = await Customer.deleteOne({
+            _id: id
+        })
+        if(!deletedCustomer){
+            return res.status(400).json({message: 'delete customer failed'})
+        }
+        res.status(200).json({success: 'Customer Deleted!'})
+    },
+
+    // function to get the list of customer
+    getCustomerList: async (req, res, next) => {
+
+        const customerlist = await Customer.find()
+        
+        if(!customerFound){
+            return res.status(400).json({message: 'getting customer list failed'})
+        }
+
+        res.status(200).json({success: 'render customer list'})
+
+    },
+
+    // function to get the specific customer
+    getCustomer: async (req, res, next ) => {
+        const id = req.params.id
+         
+        const customerFound = await Customer.findOne({_id: id})
+
+        // render found customer to the customer info page
+    }
+
+
+
+}
