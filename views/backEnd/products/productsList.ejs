@@ -30,9 +30,9 @@
                     <td><%= product.available %></td>
                     <td><%= product.productCode %></td>
                     <td><%= product.category %></td>
-                    <td><form action="/admin/products/editProduct/<%= product._id %>?_method=DELETE" method="POST">
+                    <td><form action="/admin/products/edit/<%= product._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
-                        <a class="btn btn-primary btn-sm" href="/admin/products/editProduct/<%= product._id %>"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-primary btn-sm" href="/admin/products/edit/<%= product._id %>"><i class="fas fa-edit"></i></a>
                         </form>
                     </td>
                 </tr>

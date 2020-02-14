@@ -4,7 +4,7 @@ const Category = require('./category.model')
 
 const productSchema  = new mongoose.Schema({
     avatar: {
-        type: Buffer
+        type: String
     },
     localName: {
         type: String

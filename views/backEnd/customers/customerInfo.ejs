@@ -1,0 +1,55 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/customers">Customers</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Customer Info</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-dark">
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="my-auto">Customer Info</h4>
+            </div>
+            <div class="col-md-4 ml-auto">
+                <form action="/admin//customer/edit/<%= customer._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-dark btn-sm" type="submit"><i class="fas fa-trash"></i></button>
+                    <a class="btn btn-dark btn-sm" href="/admin//customer/edit/<%= customer._id %>"><i class="fas fa-edit"></i></a>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <div class="list-group">
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>ID: <%= customer._id %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>First Name: <%= customer.fname %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Last Name: <%= customer.lname %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Email: <%= customer.email %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Phone: <%= customer.phone %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Primary Address: <%= customer.address1 %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Secondary Address: <%= customer.address2 %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>City: <%= customer.city %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>State/Region: <%= customer.state %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Country: <%= customer.country %></h6>
+            </div>
+        </div>
+    </div>
+</div>

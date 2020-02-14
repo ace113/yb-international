@@ -23,16 +23,16 @@
             <tbody>
                 <% customers.forEach(customer => { %>
                 <tr>
-                    <td><%= customer.fname %></td>
+                    <td><a href="/admin/customer/<%= customer._id %>"><%= customer.fname %></a></td>
                     <td><%= customer.lname %></td>
                     <td><%= customer.email %></td>
                     <td><%= customer.phone %></td>
                     <td><%= customer.address1 %></td>
                     <td><%= customer.city %></td>
                     <td><%= customer.country %></td>
-                    <td><form action="/admin/customers/editCustomer/<%= customer._id %>?_method=DELETE" method="POST">
+                    <td><form action="/admin//customer/edit/<%= customer._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
-                        <a class="btn btn-primary btn-sm" href="/admin/customers/editCustomer/<%= customer._id %>"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-primary btn-sm" href="/admin//customer/edit/<%= customer._id %>"><i class="fas fa-edit"></i></a>
                         </form>
                     </td>
                 </tr>
