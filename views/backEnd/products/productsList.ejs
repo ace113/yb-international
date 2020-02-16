@@ -16,9 +16,9 @@
         </div>
     </div>
     <div class="card-body bg-light text-dark">
-        <table class="table table-sm table-hover table-bordered table-responsive">
+        <table id="table" class="table table-sm table-hover table-bordered table-striped table">
             <thead>
-                <th>S. No.</th>
+                <th>S.No.</th>
                 <th>Avatar</th>
                 <th>Local Name</th>
                 <th>Scientific Name</th>
@@ -32,7 +32,7 @@
                 <% products.forEach((product, sn=1 )=> { %>
                 <tr>
                     <td><%= sn+1 %></td>
-                    <td><%= product.avatar %></td>
+                    <td><img src="<%= product.avatarPath %>" style="width: 40px; height:40px"></td>
                     <td><a href="/admin/product/<%= product._id %>"><%= product.localName %></a></td>
                     <td><%= product.scientificName %></td>
                     <td><%= product.nepaliName %></td>

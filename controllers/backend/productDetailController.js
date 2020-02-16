@@ -26,7 +26,7 @@ module.exports = {
             gallery,
             product
         } = req.body
-
+       
         const newProductDetail = await new ProductDetail({
             productTitle,
             description,

@@ -14,7 +14,7 @@ module.exports = {
     // insert new products to the database
     addProduct: async (req, res, next) => {
         let {
-            avatar,
+            // avatar,
             localName,
             scientificName,
             nepaliName,
@@ -22,18 +22,20 @@ module.exports = {
             productCode,
             category
         } = req.body
+        
 
         const newProduct = new Product({
-            avatar,
+            // avatar,
             localName,
             scientificName,
             nepaliName,
             available,
             productCode,
             category
-        })
-        const productAdded = await newProduct.save()
-        if (!productAdded) {
+        });
+        saveAvatar(newProduct, req.body.avatar)
+        const product = await newProduct.save()
+        if (!product) {
             return res.status(400).json({ message: 'Add new product failed!' })
         }
         res.redirect('/admin/products')
@@ -126,6 +128,20 @@ module.exports = {
             return res.status(400).json({ message: 'product delete failed' })
         }
         res.redirect('/admin/products')
+    }
+
+}
+
+const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
+
+function saveAvatar(newProduct, avatarEncoded){
+    if(avatarEncoded == null){
+        return
+    }
+    const avatar = JSON.parse(avatarEncoded)
+    if(avatar != null && imageMimeTypes.includes(avatar.type)){
+        newProduct.avatar = new Buffer.from(avatar.data, 'base64')
+        newProduct.avatarType = avatar.type
     }
 
 }

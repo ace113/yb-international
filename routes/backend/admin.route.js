@@ -6,6 +6,8 @@ const productController = require('../../controllers/backend/productController')
 const orderController = require('../../controllers/backend/orderController')
 const categoryController = require('../../controllers/backend/categoryController')
 const productDetailController = require('../../controllers/backend/productDetailController')
+const pageController = require('../../controllers/backend/pageController')
+const testimonialController = require('../../controllers/backend/testimonialController')
 
 // admin auth routes start
 router.route('/')
@@ -21,6 +23,26 @@ router.route('/edit/:id')
 router.route('/reset-password/:id')
     .put(adminController.resetPassword)
     // #### note: add nodemailer function to recover the password if lost
+
+    
+// admin auth routes end
+
+// pages routes start 
+router.route('/pages')
+    .get(pageController.getPageList)
+
+router.route('/page/add')
+    .get(pageController.addPageForm)
+    .post(pageController.addPage)
+
+router.route('/page/:id')
+    .get(pageController.getPage)
+
+router.route('/page/edit/:id')
+    .get(pageController.editPageForm)
+    .put(pageController.editPage)
+    .delete(pageController.deletePage)
+// pages routes end
 
 router.route('/dashboard')
     .get(adminController.admin)
@@ -119,5 +141,19 @@ router.route('/order/edit/:id')
 
 //order route ends
 
+// pages routes start 
+router.route('/testimonials')
+    .get(testimonialController.getTestimonialList)
 
-module.exports = router
+router.route('/testimonial/add')
+    .get(testimonialController.addTestimonialForm)
+    .post(testimonialController.addTestimonial)
+
+router.route('/testimonial/:id')
+    .get(testimonialController.getTestimonial)
+
+router.route('/testimonial/edit/:id')
+    .get(testimonialController.editTestimonialForm)
+    .put(testimonialController.editTestimonial)
+    .delete(testimonialController.deleteTestimonial)
+// pages routes endTestimonialmodule.exports = router
