@@ -11,10 +11,6 @@ const passport = require('passport')
 const flash = require('connect-flash')
 require('./passport')
 
-if(process.env.NODE_ENV !== 'production'){
-    require('dotenv').config()
-}
-
 
 // env config
 dotenv.config();
