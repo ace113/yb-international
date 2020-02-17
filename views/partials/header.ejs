@@ -1,12 +1,19 @@
-<nav class="navbar navbar-dark bg-primary navbar-sm mb-2">
-  <div>
-    <a class="navbar-brand h1" href="/admin">Home</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4">
+  <a class="navbar-brand" href="/admin/dashboard">Welcome Admin</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto"> 
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/signout">Log Out</a>
+      </li>   
+    </ul>
   </div>
-
 </nav>
 
 <style>
-  .nav-link{
+  .nav-link {
     color: black;
   }
 </style>

@@ -6,6 +6,10 @@ const methodOverride = require('method-override')
 const expressLayouts = require('express-ejs-layouts')
 const favicon = require('serve-favicon')
 const path = require('path')
+const session = require('express-session')
+const passport = require('passport')
+const flash = require('connect-flash')
+require('./passport')
 
 
 
@@ -21,6 +25,30 @@ mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 const app = express()
+
+// express session
+app.use(session({
+    secret: 'herbshop-secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false, maxAge: 3600000 } // one hour
+}))
+
+
+// Passport middleware(it is important that you put this after session)
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect flash
+app.use(flash());
+
+// Global Vars
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
+});
 
 // serve favicon
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
@@ -53,8 +81,9 @@ app.use('/admin', require('./routes/backend/admin.route'))
 
 // non existing routes
 app.get('*', (req, res) => {
-    res.status(404).send(`errors 404 -- This page doesn't exists!`)
+    res.render('partials/404', {layout: 'authlayout'})
 })
+
 
 // Start the server
 const port = process.env.PORT || 3000;

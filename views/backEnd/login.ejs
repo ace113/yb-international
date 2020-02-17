@@ -1,63 +1,32 @@
-<!-- <div class="row my-auto ml-auto ">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="cardheader bg-primary text-light">
-                <h5 class="my-auto p-3">Admin Login</h5>
-            </div>
-            <div class="card-body">
-                <form action="" method="POST">
-                    <div class="form-group">
-                        <label>UserName</label>
-                        <input type="text" name="username" id="username" class="form-control form-control-sm">
+<div class="row justify-content-center align-items-center" style="height:100vh">   
+    <div class="col-6 p-5">
+        <%- include('../partials/errorMessage.ejs') %>
+        <div class="card border-0">
+            <div class="card card-body border-0">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-6 text-center border-right ">
+                        <img src="public/logo.png" alt="" width="82px;" height="80px">
+                        <h1>HerbShop</h1>
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" id="password" class="form-control form-control-sm">
-                    </div>                    
-                    <button type="submit">Submit</button>            
-                </form>
-            </div>           
-        </div>       
-    </div>
-</div> -->
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100 p-t-85 p-b-20">
-            <form class="login100-form validate-form" method="POST" action="">
-                <span class="login100-form-title ">
-                    Admin Login
-                </span>        
-
-                <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
-                    <input class="input100" type="text" name="username">
-                    <span class="focus-input100" data-placeholder="Username"></span>
+                    <div class="col-6">
+                        <form action="" method="POST">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" name="username" id="" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" id="" class="form-control form-control-sm">
+                            </div>
+                            <input type="submit" value="Login" class="btn btn-primary btn-block">
+                        </form>
+                    </div>
                 </div>
-
-                <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-                    <input class="input100" type="password" name="password">
-                    <span class="focus-input100" data-placeholder="Password"></span>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        Login
-                    </button>
-                </div>
-
-                <ul class="login-more p-t-20">
-                    <li class="m-b-8">
-                        <span class="txt1">
-                            Forgot
-                        </span>
-
-                        <a href="#" class="txt2">
-                            Username / Password?
-                        </a>
-                    </li>
-
-                 
-                </ul>
-            </form>
+            </div>
         </div>
+        <br/>
+        <div class="text-center">
+           <p class="text-muted">Powered by <a href="">Able Infotech</a></p>
+        </div>       
     </div>
 </div>

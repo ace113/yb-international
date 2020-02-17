@@ -8,23 +8,15 @@ module.exports = {
         res.render('backend/login', { layout: 'authlayout' })
     },
 
-    adminLogin: async (req, res, next) => {
-        let { username, password } = req.body;
+    adminLogin: async (req, res, next) => {        
+        res.render('backend/dashboard')
+    },
 
-        const adminFound = await Admin.findOne({
-            username
+    adminSignOut: async(req, res, next) => {
+        req.session.destroy(function(err){
+            if(err) throw err;
+            res.redirect('/admin')
         })
-        if (!adminFound) {
-            return res.status(400).json({ message: 'admin not found' })
-        }
-        const hashedpassword = adminFound.password
-        const comparedpassword = bcrypt.compare(password, hashedpassword)
-
-        if (!comparedpassword) {
-            return res.status(400).json({ message: 'password not match' })
-        }
-
-        res.status(200).json({ success: 'welcome admin' })
     },
 
     adminRegister: async (req, res, next) => {
@@ -72,7 +64,7 @@ module.exports = {
         // password reset function goes here
     },
 
-    admin: (req, res, next) => {
+    admin: (req, res, next) => {        
         res.render('backend/dashboard')
     }
 }

@@ -6,62 +6,68 @@ const productController = require('../../controllers/backend/productController')
 const orderController = require('../../controllers/backend/orderController')
 const categoryController = require('../../controllers/backend/categoryController')
 const productDetailController = require('../../controllers/backend/productDetailController')
-const pageController = require('../../controllers/backend/pageController')
-const testimonialController = require('../../controllers/backend/testimonialController')
+// const pageController = require('../../controllers/backend/pageController')
+// const testimonialController = require('../../controllers/backend/testimonialController')
+
+const passport = require('passport')
 
 // admin auth routes start
 router.route('/')
     .get(adminController.adminLoginForm)
-    .post(adminController.adminLogin)
+    .post(passport.authenticate('local', { session: true,failureFlash: true , failureRedirect: '/admin' }), adminController.adminLogin)
 
 router.route('/register')
-    .post(adminController.adminRegister)
+    .post(checkAuthenticated, adminController.adminRegister)
 
 router.route('/edit/:id')
-    .put(adminController.editAdmin)
+    .put(checkAuthenticated, adminController.editAdmin)
 
 router.route('/reset-password/:id')
-    .put(adminController.resetPassword)
-    // #### note: add nodemailer function to recover the password if lost
+    .put(checkAuthenticated, adminController.resetPassword)
+// #### note: add nodemailer function to recover the password if lost
 
-    
+router.route('/signout')
+    .get(checkAuthenticated, adminController.adminSignOut)
+
+
 // admin auth routes end
 
-// pages routes start 
-router.route('/pages')
-    .get(pageController.getPageList)
+// // pages routes start 
+// router.route('/pages')
+//     .get(pageController.getPageList)
 
-router.route('/page/add')
-    .get(pageController.addPageForm)
-    .post(pageController.addPage)
+// router.route('/page/add')
+//     .get(pageController.addPageForm)
+//     .post(pageController.addPage)
 
-router.route('/page/:id')
-    .get(pageController.getPage)
+// router.route('/page/:id')
+//     .get(pageController.getPage)
 
-router.route('/page/edit/:id')
-    .get(pageController.editPageForm)
-    .put(pageController.editPage)
-    .delete(pageController.deletePage)
+// router.route('/page/edit/:id')
+//     .get(pageController.editPageForm)
+//     .put(pageController.editPage)
+//     .delete(pageController.deletePage)
 // pages routes end
 
 router.route('/dashboard')
-    .get(adminController.admin)
+    .get(checkAuthenticated, adminController.admin)
+
 
 // Customer Routes starts 
 router.route('/customers')
-    .get(customerController.getCustomerList)
+    .get(checkAuthenticated,customerController.getCustomerList)
 
 router.route('/customer/add')
-    .get(customerController.addCustomerForm)
-    .post(customerController.addCustomer)
+    .get(checkAuthenticated,customerController.addCustomerForm)
+    .post(checkAuthenticated,customerController.addCustomer)
 
 router.route('/customer/:id')
     .get(customerController.getCustomer)
 
 router.route('/customer/edit/:id')
-    .get(customerController.editCustomerForm)
-    .put(customerController.editCustomer)
-    .delete(customerController.deleteCustomer)
+    .get(checkAuthenticated,customerController.editCustomerForm)
+    .put(checkAuthenticated,customerController.editCustomer)
+    .delete(checkAuthenticated,customerController.deleteCustomer)
 
 // customer route ends
 
@@ -69,91 +75,110 @@ router.route('/customer/edit/:id')
 // product category route starts
 
 router.route('/product/categorys')
-    .get(categoryController.getCategoryList)
+    .get(checkAuthenticated,categoryController.getCategoryList)
 
 router.route('/product/category/add')
-    .get(categoryController.getCategoryForm)
-    .post(categoryController.addCategory)
+    .get(checkAuthenticated,categoryController.getCategoryForm)
+    .post(checkAuthenticated,categoryController.addCategory)
 
 router.route('/product/category/:id')
-    .get(categoryController.getCategory)
+    .get(checkAuthenticated,categoryController.getCategory)
 
 router.route('/product/category/edit/:id')
-    .get(categoryController.editCategoryForm)
-    .put(categoryController.editCategory)
-    .delete(categoryController.deleteCategory)
+    .get(checkAuthenticated,categoryController.editCategoryForm)
+    .put(checkAuthenticated,categoryController.editCategory)
+    .delete(checkAuthenticated,categoryController.deleteCategory)
 
 // product category route ends
 
 //product detail route starts
 
 router.route('/product/productDetail')
-.get(productDetailController.productDetail)
+    .get(checkAuthenticated,productDetailController.productDetail)
 
 router.route('/product/productDetail/add')
-.get(productDetailController.addProductDetailFrom)
-.post(productDetailController.addProductDetail)
+    .get(checkAuthenticated,productDetailController.addProductDetailFrom)
+    .post(checkAuthenticated,productDetailController.addProductDetail)
 
 router.route('/product/productDetail/:id')
-.get(productDetailController.getProductDetail)
+    .get(checkAuthenticated,productDetailController.getProductDetail)
 
 router.route('/product/productDetail/edit/:id')
-.get(productDetailController.editProductDetailForm)
-.put(productDetailController.editProductDetail)
-.delete(productDetailController.deleteProductDetail)
+    .get(checkAuthenticated,productDetailController.editProductDetailForm)
+    .put(checkAuthenticated,productDetailController.editProductDetail)
+    .delete(checkAuthenticated,productDetailController.deleteProductDetail)
 
 //product detail route ends
 
 // product route starts
 
 router.route('/products')
-    .get(productController.getProducts)
+    .get(checkAuthenticated,productController.getProducts)
 
 router.route('/products/add')
-    .get(productController.addProductForm)
-    .post(productController.addProduct)
+    .get(checkAuthenticated,productController.addProductForm)
+    .post(checkAuthenticated,productController.addProduct)
 
 router.route('/product/:id')
-    .get(productController.getProduct)
+    .get(checkAuthenticated,productController.getProduct)
 
 router.route('/product/edit/:id')
-    .get(productController.editProductForm)
-    .put(productController.editProduct)
-    .delete(productController.deleteProduct)
+    .get(checkAuthenticated,productController.editProductForm)
+    .put(checkAuthenticated,productController.editProduct)
+    .delete(checkAuthenticated,productController.deleteProduct)
 
 //product route ends
 
 //order route starts
 
 router.route('/orders')
-.get(orderController.orderList)
+    .get(checkAuthenticated,orderController.orderList)
 
 router.route('/order/add')
-.get(orderController.addOrderForm)
-.post(orderController.addOrder)
+    .get(checkAuthenticated,orderController.addOrderForm)
+    .post(checkAuthenticated,orderController.addOrder)
 
 router.route('/order/:id')
 
 router.route('/order/edit/:id')
-.get(orderController.editOrderForm)
-.put(orderController.editOrder)
-.delete(orderController.deleteOrder)
+    .get(checkAuthenticated,orderController.editOrderForm)
+    .put(checkAuthenticated,orderController.editOrder)
+    .delete(checkAuthenticated,orderController.deleteOrder)
 
 //order route ends
 
 // pages routes start 
-router.route('/testimonials')
-    .get(testimonialController.getTestimonialList)
+// router.route('/testimonials')
+//     .get(testimonialController.getTestimonialList)
 
-router.route('/testimonial/add')
-    .get(testimonialController.addTestimonialForm)
-    .post(testimonialController.addTestimonial)
+// router.route('/testimonial/add')
+//     .get(testimonialController.addTestimonialForm)
+//     .post(testimonialController.addTestimonial)
 
-router.route('/testimonial/:id')
-    .get(testimonialController.getTestimonial)
+// router.route('/testimonial/:id')
+//     .get(testimonialController.getTestimonial)
 
-router.route('/testimonial/edit/:id')
-    .get(testimonialController.editTestimonialForm)
-    .put(testimonialController.editTestimonial)
-    .delete(testimonialController.deleteTestimonial)
-// pages routes endTestimonialmodule.exports = router
+// router.route('/testimonial/edit/:id')
+//     .get(testimonialController.editTestimonialForm)
+//     .put(testimonialController.editTestimonial)
+//     .delete(testimonialController.deleteTestimonial)
+// pages routes endTestimonial
+
+module.exports = router;
+
+function checkAuthenticated(req, res, next){
+    // console.log(req.isAuthenticated())
+    if(req.isAuthenticated()) {
+        return next()
+    }
+    req.flash('error_msg', 'Need to log in to access resources')
+    res.redirect('/admin')
+}
+
+// function checkNotAuthenticated(req, res, next){
+//     if(req.isAuthenticated()) {
+//         return res.redirect('/admin/dashboard')
+//     }
+//     next()
+    
+// }
