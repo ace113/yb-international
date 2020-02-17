@@ -4,12 +4,12 @@ const Category = require('./category.model')
 
 const productSchema  = new mongoose.Schema({
     avatar: {
-        type: Buffer
+        type: String
     },
-    avatarType: {
-        type: String,
-        required: true
-    },
+    // avatarType: {
+    //     type: String,
+    //     required: true
+    // },
     localName: {
         type: String
     },
@@ -35,11 +35,11 @@ const productSchema  = new mongoose.Schema({
     timestamps: true
 })
 
-productSchema.virtual('avatarPath').get(function(){
-   if(this.avatar != null && this.avatarType != null) {
-       return `data: ${this.avatarType};charset=utf-8;base64,${this.avatar.toString('base64')}`
-   } 
-})
+// productSchema.virtual('avatarPath').get(function(){
+//    if(this.avatar != null && this.avatarType != null) {
+//        return `data: ${this.avatarType};charset=utf-8;base64,${this.avatar.toString('base64')}`
+//    } 
+// })
 
 const Product = mongoose.model('Product', productSchema);
 

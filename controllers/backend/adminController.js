@@ -5,7 +5,7 @@ module.exports = {
 
     // serve admin login form 
     adminLoginForm: async (req, res, next) => {
-        res.render('backEnd/login', { layout: 'authlayout' })
+        res.render('backend/login', { layout: 'authlayout' })
     },
 
     adminLogin: async (req, res, next) => {        

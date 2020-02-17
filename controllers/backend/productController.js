@@ -22,10 +22,11 @@ module.exports = {
             productCode,
             category
         } = req.body
-        
+        const avatar = req.file.path
+        console.log('avatar:',avatar)
 
         const newProduct = new Product({
-            // avatar,
+            avatar,
             localName,
             scientificName,
             nepaliName,
@@ -33,7 +34,7 @@ module.exports = {
             productCode,
             category
         });
-        saveAvatar(newProduct, req.body.avatar)
+        // saveAvatar(newProduct, req.body.avatar)
         const product = await newProduct.save()
         if (!product) {
             return res.status(400).json({ message: 'Add new product failed!' })
@@ -132,16 +133,16 @@ module.exports = {
 
 }
 
-const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
+// const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
 
-function saveAvatar(newProduct, avatarEncoded){
-    if(avatarEncoded == null){
-        return
-    }
-    const avatar = JSON.parse(avatarEncoded)
-    if(avatar != null && imageMimeTypes.includes(avatar.type)){
-        newProduct.avatar = new Buffer.from(avatar.data, 'base64')
-        newProduct.avatarType = avatar.type
-    }
+// function saveAvatar(newProduct, avatarEncoded){
+//     if(avatarEncoded == null){
+//         return
+//     }
+//     const avatar = JSON.parse(avatarEncoded)
+//     if(avatar != null && imageMimeTypes.includes(avatar.type)){
+//         newProduct.avatar = new Buffer.from(avatar.data, 'base64')
+//         newProduct.avatarType = avatar.type
+//     }
 
-}
+// }

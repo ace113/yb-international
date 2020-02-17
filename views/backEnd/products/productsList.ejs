@@ -32,7 +32,7 @@
                 <% products.forEach((product, sn=1 )=> { %>
                 <tr>
                     <td><%= sn+1 %></td>
-                    <td><img src="<%= product.avatarPath %>" style="width: 40px; height:40px"></td>
+                    <td><img src="/<%= product.avatar %>" style="width: 40px; height:40px"></td>
                     <td><a href="/admin/product/<%= product._id %>"><%= product.localName %></a></td>
                     <td><%= product.scientificName %></td>
                     <td><%= product.nepaliName %></td>

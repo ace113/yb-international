@@ -1,4 +1,5 @@
 const router = require('express-promise-router')()
+const upload = require('../../helpers/multer')
 
 const adminController = require('../../controllers/backend/adminController')
 const customerController = require('../../controllers/backend/customerController')
@@ -117,7 +118,7 @@ router.route('/products')
 
 router.route('/products/add')
     .get(checkAuthenticated,productController.addProductForm)
-    .post(checkAuthenticated,productController.addProduct)
+    .post(checkAuthenticated,upload.single('avatar'),productController.addProduct)
 
 router.route('/product/:id')
     .get(checkAuthenticated,productController.getProduct)
