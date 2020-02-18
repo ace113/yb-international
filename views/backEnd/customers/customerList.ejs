@@ -6,49 +6,57 @@
 </nav>
 <div class="card">
     <div class="card-header bg-primary text-light">
-        <div class="row">
-            <div class="col-md-4">
-                <h4 class="my-auto">All Customers</h4>
-            </div>
-            <div class="col-md-4 ml-auto">
-                <a href="/admin/customer/add" class="btn btn-info">Add New</a>
-            </div>
-        </div>
+        <h4 class="my-auto" style="float: left;">All Customers</h4>
+        <a href="/admin/customer/add" class="btn btn-info btn-sm" style="float: right">Add New</a>
     </div>
-    <div class="card-body bg-light text-dark">
-        <table class="table table-sm table-hover table-bordered table-responsive">
-            <thead>
-                <th>S.No.</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Primary Address</th>
-                <th>City</th>
-                <th>Country</th>
-                <th></th>
-            </thead>
-            <tbody>
-                <% customers.forEach((customer, sn=1)=> { %>
-                <tr>
-                    <td><%= sn+1 %></td>
-                    <td><a href="/admin/customer/<%= customer._id %>"><%= customer.fname %></a></td>
-                    <td><%= customer.lname %></td>
-                    <td><%= customer.email %></td>
-                    <td><%= customer.phone %></td>
-                    <td><%= customer.address1 %></td>
-                    <td><%= customer.city %></td>
-                    <td><%= customer.country %></td>
-                    <td>
-                        <form action="/admin/customer/edit/<%= customer._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
-                            <a class="btn btn-primary btn-sm" href="/admin/customer/edit/<%= customer._id %>"><i
-                                    class="fas fa-edit"></i></a>
-                        </form>
-                    </td>
-                </tr>
-                <% }) %>
-            </tbody>
-        </table>
-    </div>
+</div>
+<div class="card-body bg-light text-dark">
+    <table class="table table-sm table-hover table-bordered table-responsive-sm">
+        <thead>
+            <th>S.No.</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Primary Address</th>
+            <th>City</th>
+            <th>Country</th>
+            <th width="40">&nbsp;</th>
+        </thead>
+        <tbody>
+            <% customers.forEach((customer, sn=1)=> { %>
+            <tr>
+                <td><%= sn+1 %></td>
+                <td><a href="/admin/customer/<%= customer._id %>"><%= customer.fname %></a></td>
+                <td><%= customer.lname %></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.phone %></td>
+                <td><%= customer.address1 %></td>
+                <td><%= customer.city %></td>
+                <td><%= customer.country %></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown">
+                            <i class="fa fa-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <form action="/admin/customer/edit/<%= customer._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-primary btn-sm dropdown-item" type="submit"><i
+                                            class="fas fa-trash"></i> Delete</button>
+                                </form>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-sm dropdown-item"
+                                    href="/admin/customer/edit/<%= customer._id %>"><i class="fas fa-edit"></i> Edit</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
 </div>

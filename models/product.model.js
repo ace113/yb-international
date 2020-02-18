@@ -11,7 +11,8 @@ const productSchema  = new mongoose.Schema({
     //     required: true
     // },
     localName: {
-        type: String
+        type: String,
+        required: true
     },
     scientificName: {
         type: String

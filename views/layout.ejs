@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
         type="text/css" />
-        <!-- <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script> -->
+    <!-- <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script> -->
 
-        <!-- filepond css -->
+    <!-- filepond css -->
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
         rel="stylesheet">
@@ -30,17 +30,51 @@
     <!-- datatables script -->
     <script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
     <title>herbShop</title>
+    <style>
+        th {
+            font-size: 12px;
+        }
 
+        .bd-sidebar {
+            /* background-color: #0865df; */
+            opacity: 0.9;
+            height: 100vh;
+            /* border-right: 1px solid gray; */
+            /* margin-right: 50px; */
+        }
+
+        /* .bd-sidebar ul {
+            background-color: #0650b1;          
+        } */
+
+        .bd-sidebar li {
+            list-style-type: none;           
+            margin-bottom: 0.5rem;
+        }
+
+        .bd-sidebar a {
+            /* color: white; */
+            color: gray;
+            text-decoration: none;
+            padding: 4px;
+            display: block;
+        }
+
+        .bd-sidebar a:hover {
+            /* background-color: #0865df;             */
+           color: darkgray;
+        }
+    </style>
 </head>
 
 <body>
     <%- include('./partials/header.ejs') %>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <%-include('./partials/sidebar.ejs') %>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-10  mt-3">
                 <%- body %>
             </div>
 
@@ -65,6 +99,21 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js">
+    </script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $('#avatar').change(function () {
+            readURL(this)
+        })
     </script>
     <script>
         $(document).ready(function () {

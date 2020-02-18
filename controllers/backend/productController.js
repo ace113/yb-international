@@ -1,5 +1,7 @@
 const Product = require('../../models/product.model')
 const Category = require('../../models/category.model')
+const fs = require('fs')
+const path = require('path')
 
 module.exports = {
 
@@ -22,7 +24,7 @@ module.exports = {
             productCode,
             category
         } = req.body
-        const avatar = req.file.path
+        const avatar = req.file != null ?req.file.path : null
         console.log('avatar:',avatar)
 
         const newProduct = new Product({
@@ -34,12 +36,20 @@ module.exports = {
             productCode,
             category
         });
-        // saveAvatar(newProduct, req.body.avatar)
-        const product = await newProduct.save()
-        if (!product) {
-            return res.status(400).json({ message: 'Add new product failed!' })
+        try {
+            const product = await newProduct.save()
+            if (!product) {
+                return res.status(400).json({ message: 'Add new product failed!' })
+            }
+            res.redirect('/admin/products')
+        } catch (error) {
+            if(newProduct.avatar != null) {
+                await removeAvatar(newProduct.avatar)
+                console.log(newProduct.avatar)
+            }
+            // res.redirect('/admin/product/add')
         }
-        res.redirect('/admin/products')
+       
 
     },
 
@@ -47,7 +57,7 @@ module.exports = {
     // get specific product
     getProduct: async (req, res, next) => {
         const id = req.params.id
-        const productsFound = await Product.findOne({_id: id})
+        const productsFound = await Product.findOne({_id: id}).populate('category')
 
         if (!productsFound) {
             return res.status(400).json({ message: 'product get request failed' })
@@ -61,7 +71,7 @@ module.exports = {
 
     // get product list
     getProducts: async (req, res, next) => {
-        const products = await Product.find({})
+        const products = await Product.find({}).populate('category')
 
         if (!products) {
             return res.status(400).json({ message: 'product get request failed' })
@@ -88,8 +98,7 @@ module.exports = {
     // edit product information
     editProduct: async (req, res, next) => {
         const id = req.params.id
-        let {
-            avatar,
+        let {          
             localName,
             scientificName,
             nepaliName,
@@ -97,6 +106,7 @@ module.exports = {
             productCode,
             category
         } = req.body
+        const avatar = req.file != null ?req.file.path : null
         console.log(id)
 
         
@@ -121,28 +131,22 @@ module.exports = {
     // deleteProduct
     deleteProduct: async(req, res, next) => {
         const id = req.params.id
-
+        const product = await Product.findOne({_id: id})
         const delProduct = await Product.deleteOne({
             _id: id
-        })
+        })        
         if (!delProduct) {
             return res.status(400).json({ message: 'product delete failed' })
         }
+        removeAvatar(product.avatar)
         res.redirect('/admin/products')
     }
 
 }
 
-// const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
-
-// function saveAvatar(newProduct, avatarEncoded){
-//     if(avatarEncoded == null){
-//         return
-//     }
-//     const avatar = JSON.parse(avatarEncoded)
-//     if(avatar != null && imageMimeTypes.includes(avatar.type)){
-//         newProduct.avatar = new Buffer.from(avatar.data, 'base64')
-//         newProduct.avatarType = avatar.type
-//     }
-
-// }
+function removeAvatar(avatar) {
+    fs.unlink(`${avatar}`, (err, stats) =>{
+        if(err) console.log(err);
+        console.log(`stats: ${JSON.stringify(stats)}`);
+    })
+}

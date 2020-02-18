@@ -125,7 +125,7 @@ router.route('/product/:id')
 
 router.route('/product/edit/:id')
     .get(checkAuthenticated,productController.editProductForm)
-    .put(checkAuthenticated,productController.editProduct)
+    .put(checkAuthenticated, upload.single('avatar'), productController.editProduct)
     .delete(checkAuthenticated,productController.deleteProduct)
 
 //product route ends

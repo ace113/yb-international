@@ -6,14 +6,8 @@
 </nav>
 <div class="card">
     <div class="card-header bg-primary text-light">
-        <div class="row">
-            <div class="col-md-4">
-                <h4 class="my-auto">All Products</h4>
-            </div>
-            <div class="col-md-4 ml-auto">
-                <a href="/admin/products/add" class="btn btn-info">Add New</a>
-            </div>
-        </div>
+        <h4 class="my-auto" style="float: left">All Products</h4>
+        <a href="/admin/products/add" class="btn btn-info btn-sm" style="float: right">Add New</a>
     </div>
     <div class="card-body bg-light text-dark">
         <table id="table" class="table table-sm table-hover table-bordered table-striped table">
@@ -26,7 +20,7 @@
                 <th>Available</th>
                 <th>Product Code</th>
                 <th>Category</th>
-                <th> &nbsp; </th>
+                <th width="40"> &nbsp; </th>
             </thead>
             <tbody>
                 <% products.forEach((product, sn=1 )=> { %>
@@ -38,11 +32,26 @@
                     <td><%= product.nepaliName %></td>
                     <td><%= product.available %></td>
                     <td><%= product.productCode %></td>
-                    <td><%= product.category %></td>
-                    <td><form action="/admin/product/edit/<%= product._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
-                        <a class="btn btn-primary btn-sm" href="/admin/product/edit/<%= product._id %>"><i class="fas fa-edit"></i></a>
-                        </form>
+                    <td><%= product.category.categoryName %></td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
+                                data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form action="/admin/product/edit/<%= product._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-primary btn-sm dropdown-item" type="submit"><i
+                                                class="fas fa-trash"></i> Delete</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <a class="btn btn-primary btn-sm dropdown-item"
+                                        href="/admin/product/edit/<%= product._id %>"><i class="fas fa-edit"></i>
+                                        Edit</a>
+                                </li>
+                            </ul>
                     </td>
                 </tr>
                 <% }) %>

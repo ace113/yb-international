@@ -13,13 +13,28 @@
             <div class="col-md-4 ml-auto">
                 <form action="/admin/product/edit/<%= product._id %>?_method=DELETE" method="POST">
                     <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
-                    <a class="btn btn-primary btn-sm" href="/admin/product/edit/<%= product._id %>"><i class="fas fa-edit"></i></a>
-                    </form>
+                    <a class="btn btn-primary btn-sm" href="/admin/product/edit/<%= product._id %>"><i
+                            class="fas fa-edit"></i></a>
+                </form>
             </div>
         </div>
     </div>
     <div class="card-body bg-light text-dark">
-        <div class="list-group">
+        <div class="row m-auto p-3">
+            <div class="col-4">
+                <img src="/<%= product.avatar %>" alt="" width="200px" height="200px;">
+            </div>
+            <div class="col-6">
+                <p class="h5 text-muted font-weight-bold">Product Details</p>
+                <p class="h6">ID: <%= product._id %></p>
+                <p class="h6">Local Name: <%= product.localName %></p>
+                <p class="h6">Scientific Name: <%= product.scientificName %></p>
+                <p class="h6">Nepali Name: <%= product.nepaliName %></p>
+                <p class="h6">Available: <%= product.available %></p>
+                <p class="h6">Category: <%= product.category.categoryName %></p>
+            </div>
+        </div>
+        <!-- <div class="list-group">
             <div class="list-group-item list-group-item-action py-1">
                 <h6>ID: <%= product._id %></h6>
             </div>
@@ -38,6 +53,6 @@
             <div class="list-group-item list-group-item-action py-1">
                 <h6>Category: <%= product.category %></h6>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
