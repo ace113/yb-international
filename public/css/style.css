@@ -1,84 +1,132 @@
-html,
-body {
-    height: 100%
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+html, body, html * {
+  font-family: 'Roboto', sans-serif;
+  font-size: normal;
+ 
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.text {
+  font-size: 14px;
 }
 
-ul {
-    list-style: none;
+header {
+  position: absolute;
+  padding: 0 100px;
+  background: #262626;
+  width:100%;
+  box-sizing: border-box;
 }
 
-body {
-    font-size: 1rem;
-    line-height: 1.6;
-    background-color: #ecf0f1;
-    color: #666;
-    font-family: 'roboto';
-}
-.info-nav {
-    background-color: midnightblue;
-    color: white;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-.main-nav {
-    background-color: midnightblue;
+header nav {
+  float: left;
 }
 
-.menu {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+header nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
-.menu>li,
-.menu>a {
-    display: inline-block;
-
+header nav ul li {
+  list-style: none;  
+  position: relative;
 }
 
-.menu a {
-    text-decoration: none;
-    color: #fff;
+header nav ul li.sub-menu::before{
+  content: '\f078';
+  font-family: fontAwesome;
+  font-size: 10px;
+  position: absolute;
+  line-height: 50px;
+  color: #fff;
+  right: 2px;
+}
+
+header nav ul li:hover.sub-menu::before{
+  content: '\f077';
+}
+
+header nav ul li ul {
+  position: absolute;
+  left: 0;
+  background: #333;
+  display: none;
+}
+
+header nav ul li:hover ul {
+   display: block;
+}
+
+header nav ul li ul li {
+  display: block;
+  width: 200px;
+}
+
+header nav ul li a {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+header nav ul li a:hover {
+  color: #fff;
+  background: #219621;
+}
+
+.menu-toggle {
+  color: #fff;
+  float: right;
+  line-height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+}
+
+/* .container-main {
+  position: relative;
+  top: 50px;
+  line-height: 250px;
+} */
+
+
+@media (max-width: 991px){
+  header{
+    padding: 0 20px;
+  }
+  .menu-toggle{
     display: block;
-    padding: 10px 1.5rem;
-    transition: background-color .22s ease, color .22s ease;
-}
-
-.menu a:hover {
-    background-color: #f34949;
-    color: #fff;
-}
-
-.submenu {
+  }
+  header nav{
+    /* display: none; */
     position: absolute;
-    background-color: midnightblue;
-    width: 140px;
-    /* left: 0; */
-    display: none;
-}
+    width: 100%;
+    height: calc(100vh - 50px);
+    background: #333;
+    top: 50px;
+    left: -100%;
+    transition: 0.5s;
+  }
+  
+  header nav.active {
+    left: 0;
+  }
 
-.submenu2 {
-    position: absolute;
-    background-color: midnightblue;
-    left: 100%;
-    width: 140px;
-    top: 44px;
-    display: none;
-}
-
-.menu li:hover>.submenu {
+  header nav ul {
     display: block;
-}
+    text-align: center;
+  }
+  header nav ul li a {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+  }
 
-.submenu li:hover>.submenu2 {
-    display: block;
+  header nav ul li ul {
+    position: relative; 
+    background: rgb(78, 78, 78);    
+  }
+  header nav ul li ul li {
+    width: 100%;;
+  }
 }
-

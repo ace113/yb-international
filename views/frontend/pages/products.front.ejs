@@ -1,0 +1,14 @@
+<table class="table table-hover table-responsive-sm table-striped">
+
+    <% products.forEach(product => {%>
+    <tr>
+        <td><%= product.localName %></td>
+        <td><%= product.scientificName %></td>
+        <td><%= product.nepaliName %></td>
+        <td><%= product.available %></td>
+        <td><%= product.productCode %></td>
+        <td><%= product.category.categoryName %></td>
+    </tr>
+    <%})%>
+
+</table>
