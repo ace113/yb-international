@@ -13,7 +13,7 @@ router.route('/products')
 router.route('/products/:cata')
 .get(productController.getCategoryProducts)
 
-router.route('/products/:cata/:product')
+router.route('/products/:cata/:code')
 .get(productController.getProduct)
 
 router.route('/quote')

@@ -1,8 +1,23 @@
-<table>
-    <td><%= product.localName %></td>
-    <td><%= product.scientificName %></td>
-    <td><%= product.nepaliName %></td>
-    <td><%= product.available %></td>
-    <td><%= product.productCode %></td>
+<table class="table">
+    <tr>
+        <td>LocalName</td>
+        <td><%= product.localName %></td>
+    </tr>
+    <tr>
+        <td>Scientific Name</td>
+        <td><%= product.scientificName %></td>
+    </tr>
+    <tr>
+        <td>Nepali Name</td>
+        <td><%= product.nepaliName %></td>
+    </tr>
+   
+    <tr>
+        <td>Product Code</td>
+        <td><%= product.productCode %></td>
+    </tr>  
+    <tr>
+        <td>Availability</td>
+        <td><%if(product.available) { %><%= 'available' %> <%}else{%> <%= 'Out of Stock'%><%}%></td>
+    </tr>    
 </table>
-

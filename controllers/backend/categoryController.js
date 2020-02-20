@@ -11,16 +11,17 @@ module.exports = {
     // post add category function
     addCategory: async (req, res, next) => {
         let { categoryName } = req.body
-
+        const cata = genCata(categoryName)
         const newCategory = new Category({
-            categoryName
+            categoryName,
+            cata
         })
 
         const category = await newCategory.save()
         if(!category){
             res.status(400).json({message: 'new category not added'})
         }
-        res.redirect('/admin/product/categorys')
+        res.redirect('/admin/product/categories')
     },
 
 
@@ -42,17 +43,20 @@ module.exports = {
     editCategory: async(req, res, next) => {
         const id = req.params.id
         let { categoryName } = req.body
+
+        const cata = genCata(categoryName)
         
         const updateCategory = await Category.updateOne({
             _id: id
         }, {
-            categoryName
+            categoryName,
+            cata
         })
 
         if(!updateCategory) {
             return res.status(400).json({message: 'category edit failed'})
         }
-        res.redirect('/admin/product/categorys')
+        res.redirect('/admin/product/categories')
     },
 
     // delete category function
@@ -65,7 +69,7 @@ module.exports = {
         if(!deleteCategory){
             return res.status(400).json({message: 'delete category failed'})            
         }
-        res.redirect('/admin/product/categorys')
+        res.redirect('/admin/product/categories')
     },
 
     // list category function
@@ -93,4 +97,13 @@ module.exports = {
         // if found render it to the category info
     }
     
+}
+
+
+// cata function
+
+function genCata(name) {
+   var namesplit=  name.split(" ")
+    var cata = namesplit.join("-")
+    return cata;
 }

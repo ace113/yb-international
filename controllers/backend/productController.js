@@ -21,11 +21,13 @@ module.exports = {
             scientificName,
             nepaliName,
             available,
-            productCode,
+            // productCode,
             category
         } = req.body
         const avatar = req.file != null ?req.file.path : null
-        console.log('avatar:',avatar)
+        // console.log('avatar:',avatar)
+
+        const productCode = generateProductCode()
 
         const newProduct = new Product({
             avatar,
@@ -149,4 +151,8 @@ function removeAvatar(avatar) {
         if(err) console.log(err);
         console.log(`stats: ${JSON.stringify(stats)}`);
     })
+}
+
+function generateProductCode() {
+    return 'PCN'+ Math.floor(1000 + Math.random() * 9000)
 }

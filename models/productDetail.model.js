@@ -8,9 +8,6 @@ const productDetailSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    // gallery: {
-    //     type: String
-    // },
     product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',

@@ -4,6 +4,10 @@ const categorySchema = new mongoose.Schema({
     categoryName: {
         type: String,
         required: true
+    },
+    cata: {
+        type: String,
+        required: true
     }
 })
 

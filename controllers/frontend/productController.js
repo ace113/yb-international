@@ -35,7 +35,7 @@ module.exports = {
             },
             {
                 $match: {
-                    'category.categoryName': cata
+                    'category.cata': cata
                 }
             }
 
@@ -44,28 +44,10 @@ module.exports = {
     },
 
     getProduct: async(req, res, next) => {
-        const product = req.params.product
+        const code = req.params.code
         const findCategory = await Category.find();
-        const productinfo = await Product.aggregate([
-            {
-                $lookup: {
-                    from: 'categories',
-                    localField: 'category',
-                    foreignField: '_id',
-                    as: 'category'
-                }
-            },
-            {
-                $unwind: '$category'
-            },
-            {
-                $match: {
-                    localName: product
-                }
-            }
-
-        ])
-        console.log('hello',productinfo)
+        const productinfo = await Product.findOne({productCode: code}).populate('category')
+        // console.log(productinfo)
         res.render('frontend/pages/product.front.ejs',  {layout: 'frontend_layout', product: productinfo,  category: findCategory})
     }
 

@@ -75,7 +75,7 @@ router.route('/customer/edit/:id')
 
 // product category route starts
 
-router.route('/product/categorys')
+router.route('/product/categories')
     .get(checkAuthenticated,categoryController.getCategoryList)
 
 router.route('/product/category/add')

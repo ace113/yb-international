@@ -1,14 +1,22 @@
-<table class="table table-hover table-responsive-sm table-striped">
-
-    <% products.forEach(product => {%>
-    <tr>
-        <td><%= product.localName %></td>
-        <td><%= product.scientificName %></td>
-        <td><%= product.nepaliName %></td>
-        <td><%= product.available %></td>
-        <td><%= product.productCode %></td>
-        <td><%= product.category.categoryName %></td>
-    </tr>
-    <%})%>
-
+<table id="myTable" class="table-responsive-sm">
+    <thead>
+        <th>Local Name</th>
+        <th>Scientific Name</th>
+        <th>Nepali Name</th>
+        <th>Product Code</th>
+        <th>Availability</th>
+    </thead>
+    <tbody>
+        <% products.forEach(product => {%>
+            <tr>
+                <td><%= product.localName %></td>
+                <td><%= product.scientificName %></td>
+                <td><%= product.nepaliName %></td>        
+                <td><%= product.productCode %></td>
+                <td>
+                    <%if(product.available) { %><%= 'available' %> <%}else{%> <%= 'Out of Stock'%><%}%>
+                </td>               
+            </tr>
+            <%})%>
+    </tbody> 
 </table>
