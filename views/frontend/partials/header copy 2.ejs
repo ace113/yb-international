@@ -1,0 +1,28 @@
+<!-- nav  -->
+<header>
+  <div class="upper-nav">
+      <div class="logo"><span>Logo</span></div>
+      <div class="company-details">
+          <span>email@email.com</span>
+          <span>45444444444</span>
+          <span>social media icons</span>
+      </div>
+  </div>
+  <div class="main-nav">
+      <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="/products">Product List</a>
+              <ul class="dropdown">
+                <% category.forEach( product => { %>
+                  <li><a href="/products/<%= product.cata %>"><%= product.categoryName %></a></li>  
+                <%})%>                                     
+              </ul>
+          </li>
+          <li><a href="#">Payment Methods</a></li>
+          <li><a href="#">Delivery</a></li>                
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Contact Us</a></li>
+      </ul>
+  </div>
+</header>

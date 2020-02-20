@@ -1,4 +1,4 @@
-<table id="myTable" class="table-responsive-sm">
+<table id="myTable" class="table">
     <thead>
         <th>Local Name</th>
         <th>Scientific Name</th>
@@ -9,7 +9,7 @@
     <tbody>
         <% products.forEach(product => {%>
             <tr>
-                <td><%= product.localName %></td>
+                <td><a href="/products/<%= product.category.cata %>/<%= product.productCode %>"><%= product.localName %></a></td>
                 <td><%= product.scientificName %></td>
                 <td><%= product.nepaliName %></td>        
                 <td><%= product.productCode %></td>

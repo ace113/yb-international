@@ -7,7 +7,7 @@ const productController = require('../../controllers/backend/productController')
 const orderController = require('../../controllers/backend/orderController')
 const categoryController = require('../../controllers/backend/categoryController')
 const productDetailController = require('../../controllers/backend/productDetailController')
-// const pageController = require('../../controllers/backend/pageController')
+const pageController = require('../../controllers/backend/pageController')
 // const testimonialController = require('../../controllers/backend/testimonialController')
 
 const passport = require('passport')
@@ -34,20 +34,20 @@ router.route('/signout')
 // admin auth routes end
 
 // // pages routes start 
-// router.route('/pages')
-//     .get(pageController.getPageList)
+router.route('/pages')
+    .get(pageController.getPageList)
 
-// router.route('/page/add')
-//     .get(pageController.addPageForm)
-//     .post(pageController.addPage)
+router.route('/page/add')
+    .get(pageController.addPageForm)
+    .post(pageController.addPage)
 
-// router.route('/page/:id')
-//     .get(pageController.getPage)
+router.route('/page/:id')
+    .get(pageController.getPage)
 
-// router.route('/page/edit/:id')
-//     .get(pageController.editPageForm)
-//     .put(pageController.editPage)
-//     .delete(pageController.deletePage)
+router.route('/page/edit/:id')
+    .get(pageController.editPageForm)
+    .put(pageController.editPage)
+    .delete(pageController.deletePage)
 // pages routes end
 
 router.route('/dashboard')

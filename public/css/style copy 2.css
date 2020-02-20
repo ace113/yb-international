@@ -1,0 +1,86 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size: normal;
+  background: lightgray;
+}
+
+/* upper nav */
+
+.upper-nav {
+  display: grid;
+  background: #fff;
+  grid-template-columns: 30% 70%;
+  height: 80px;
+  align-items: center;
+}
+
+.logo span {
+  font-size: 36px;
+  margin-left: 40px;
+}
+
+.company-details {
+  display: grid;
+  grid-row: 100%;
+  text-align: left;
+  border: 1px solid red;
+}
+
+/* main nav */
+
+
+.main-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  color: #fff;
+  background: #cb3529;
+  text-decoration: none;
+}
+
+.main-nav a:hover{
+  background: tomato;
+  color: #fff;
+
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+}
+
+.main-nav ul li {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.main-nav li:hover ul > li {
+  top: 0;
+  display: block;
+  transition: ease 0.5;
+}
+
+.dropdown li {
+  display: none;
+  position: relative;
+  top: 100px;
+}
+
+.dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+

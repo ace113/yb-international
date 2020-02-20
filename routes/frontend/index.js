@@ -19,4 +19,7 @@ router.route('/products/:cata/:code')
 router.route('/quote')
 .get(homeController.quoteForm)
 
+router.route('/contact')
+.get(homeController.contactForm)
+
 module.exports = router;
