@@ -1,9 +1,15 @@
-<div class="row justify-content-center align-items-center" style="height:80vh">
-    <div class="col-md-6">
-        <div class="h4">Contact Us</div>
-        <small>Reach out to us for any inquiry</small>           
-        <hr class="mb-4">
-        <form action="" method="POST">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/inquiry">Inquiry</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add Inquiry</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <h4 class="my-auto">Add Inquiry</h4>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <form action="/admin/inquiry/add" method="POST">
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label-sm">Name</label>
                 <div class="col-sm-8">
@@ -29,20 +35,11 @@
                     <textarea name="message" id="message" class="form-control form-control-sm" rows="5"></textarea>
                 </div>
             </div>    
-          
-            <input type="submit" value="Submit" class="btn btn-sm btn-success btn-block">
-        </form>         
+                <div class="col-sm-4">
+                    <input type="submit" class="btn btn-success btn-sm  btn-block" value="Submit">
+                </div>
+
+            </div>
+        </form>
     </div>
-    <div class="col-md-6">
-        <div class="div mb-2" style="width: 100%; height: 250px; background: gray;">
-            
-        </div>
-        <ul style="list-style: none; margin: 0; padding: 0;" class="mt-2">
-            <li><h4>YnB Internationals Jadibuti Suppliers</h4></li>
-            <li><i class="fas fa-map-marker-alt"></i> Nepalgunj-20, Banke, Nepal</li>
-            <li><i class="fas fa-phone"></i> 9858084583</li>
-            <li><i class="fas fa-envelope"></i> info@ynbinternationals.com</li>
-            <li><i class="fas fa-envelope"></i> sales@ynbinternationals.com</li>
-        </ul>
-    </div>
-</div>            
+</div>

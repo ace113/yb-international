@@ -1,0 +1,59 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/quotes">Inquires</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Quote Details</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="my-auto">Quote Details</h4>
+            </div>
+            <div class="col-md-4 ml-auto">
+                <form action="/admin/quote/edit/<%= quote._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-dark btn-sm" type="submit"><i class="fas fa-trash"></i></button>
+                    <a class="btn btn-dark btn-sm" href="/admin/quote/edit/<%= quote._id %>"><i class="fas fa-edit"></i></a>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <div class="list-group">
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>ID: <%= quote._id %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Name: <%= quote.name %></h6>
+            </div>
+           
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Email: <%= quote.email %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Phone: <%= quote.phone %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Product: <%- quote.product %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Product Code: <%- quote.productCode %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Quantity: <%- quote.quantity %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Requirements: <%- quote.requirements %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Packing Details: <%- quote.packingDetails %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Call Me: <%- quote.callMe %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Submitted Date: <%= quote.createdAt %></h6>
+            </div>
+        </div>
+    </div>
+</div>

@@ -42,7 +42,7 @@ module.exports = {
         if (!savePages) {
             return res.status(400).json({ message: "new cusomer not saved!" })
         }
-        res.redirect('/admin/Pagess')
+        res.redirect('/admin/Pages')
     },
 
     // function to delete Pages
@@ -72,7 +72,7 @@ module.exports = {
         if (!editedPages) {
             return res.status(400).json({ message: 'edit Pages failed' })
         }
-        res.redirect('/admin/Pagess')
+        res.redirect('/admin/Pages')
     },
 
     // function to delete Pages
@@ -85,7 +85,7 @@ module.exports = {
         if (!deletedPages) {
             return res.status(400).json({ message: 'delete Pages failed' })
         }
-        res.redirect('/admin/Pagess')
+        res.redirect('/admin/Pages')
     },
 
     // function to get the list of Pages
@@ -97,7 +97,7 @@ module.exports = {
             return res.status(400).json({ message: 'getting Pages list failed' })
         }
 
-        res.render('backEnd/Pagess/PagesList', {
+        res.render('backEnd/Pages/PagesList', {
             Pages: Pageslist
         })
 
@@ -109,7 +109,7 @@ module.exports = {
 
         const PagesFound = await Pages.findOne({ _id: id })
 
-        res.render('backEnd/Pagess/PagesInfo', {
+        res.render('backEnd/Pages/PagesInfo', {
             Pages: PagesFound
         })
 

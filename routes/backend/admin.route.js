@@ -8,6 +8,8 @@ const orderController = require('../../controllers/backend/orderController')
 const categoryController = require('../../controllers/backend/categoryController')
 const productDetailController = require('../../controllers/backend/productDetailController')
 const pageController = require('../../controllers/backend/pageController')
+const inquiryController = require('../../controllers/backend/inquiryController')
+const quoteController = require('../../controllers/backend/quoteController')
 // const testimonialController = require('../../controllers/backend/testimonialController')
 
 const passport = require('passport')
@@ -15,7 +17,7 @@ const passport = require('passport')
 // admin auth routes start
 router.route('/')
     .get(adminController.adminLoginForm)
-    .post(passport.authenticate('local', { session: true,failureFlash: true , failureRedirect: '/admin' }), adminController.adminLogin)
+    .post(passport.authenticate('local', { session: true, failureFlash: true, failureRedirect: '/admin' }), adminController.adminLogin)
 
 router.route('/register')
     .post(adminController.adminRegister)
@@ -32,6 +34,42 @@ router.route('/signout')
 
 
 // admin auth routes end
+
+
+// inquiry routes start 
+router.route('/inquiries')
+    .get(inquiryController.getInquiryList)
+
+router.route('/inquiry/add')
+    .get(inquiryController.addInquiryFrom)
+    .post(inquiryController.addInquiry)
+
+router.route('/inquiry/:id')
+    .get(inquiryController.getInquiry)
+
+router.route('/inquiry/edit/:id')
+    .get(inquiryController.editInquiryForm)
+    .put(inquiryController.editInquiry)
+    .delete(inquiryController.deleteInquiry)
+// inquiry routes end
+
+// quote routes start 
+router.route('/quotes')
+    .get(quoteController.getQuoteList)
+
+router.route('/quote/add')
+    .get(quoteController.addQuoteFrom)
+    .post(quoteController.addQuote)
+
+router.route('/quote/:id')
+    .get(quoteController.getQuote)
+
+router.route('/quote/edit/:id')
+    .get(quoteController.editQuoteForm)
+    .put(quoteController.editQuote)
+    .delete(quoteController.deleteQuote)
+// quote routes end
+
 
 // // pages routes start 
 router.route('/pages')
@@ -56,19 +94,19 @@ router.route('/dashboard')
 
 // Customer Routes starts 
 router.route('/customers')
-    .get(checkAuthenticated,customerController.getCustomerList)
+    .get(checkAuthenticated, customerController.getCustomerList)
 
 router.route('/customer/add')
-    .get(checkAuthenticated,customerController.addCustomerForm)
-    .post(checkAuthenticated,customerController.addCustomer)
+    .get(checkAuthenticated, customerController.addCustomerForm)
+    .post(checkAuthenticated, customerController.addCustomer)
 
 router.route('/customer/:id')
     .get(customerController.getCustomer)
 
 router.route('/customer/edit/:id')
-    .get(checkAuthenticated,customerController.editCustomerForm)
-    .put(checkAuthenticated,customerController.editCustomer)
-    .delete(checkAuthenticated,customerController.deleteCustomer)
+    .get(checkAuthenticated, customerController.editCustomerForm)
+    .put(checkAuthenticated, customerController.editCustomer)
+    .delete(checkAuthenticated, customerController.deleteCustomer)
 
 // customer route ends
 
@@ -76,75 +114,75 @@ router.route('/customer/edit/:id')
 // product category route starts
 
 router.route('/product/categories')
-    .get(checkAuthenticated,categoryController.getCategoryList)
+    .get(checkAuthenticated, categoryController.getCategoryList)
 
 router.route('/product/category/add')
-    .get(checkAuthenticated,categoryController.getCategoryForm)
-    .post(checkAuthenticated,categoryController.addCategory)
+    .get(checkAuthenticated, categoryController.getCategoryForm)
+    .post(checkAuthenticated, categoryController.addCategory)
 
 router.route('/product/category/:id')
-    .get(checkAuthenticated,categoryController.getCategory)
+    .get(checkAuthenticated, categoryController.getCategory)
 
 router.route('/product/category/edit/:id')
-    .get(checkAuthenticated,categoryController.editCategoryForm)
-    .put(checkAuthenticated,categoryController.editCategory)
-    .delete(checkAuthenticated,categoryController.deleteCategory)
+    .get(checkAuthenticated, categoryController.editCategoryForm)
+    .put(checkAuthenticated, categoryController.editCategory)
+    .delete(checkAuthenticated, categoryController.deleteCategory)
 
 // product category route ends
 
 //product detail route starts
 
 router.route('/product/productDetail')
-    .get(checkAuthenticated,productDetailController.productDetail)
+    .get(checkAuthenticated, productDetailController.productDetail)
 
 router.route('/product/productDetail/add')
-    .get(checkAuthenticated,productDetailController.addProductDetailFrom)
-    .post(checkAuthenticated,productDetailController.addProductDetail)
+    .get(checkAuthenticated, productDetailController.addProductDetailFrom)
+    .post(checkAuthenticated, productDetailController.addProductDetail)
 
 router.route('/product/productDetail/:id')
-    .get(checkAuthenticated,productDetailController.getProductDetail)
+    .get(checkAuthenticated, productDetailController.getProductDetail)
 
 router.route('/product/productDetail/edit/:id')
-    .get(checkAuthenticated,productDetailController.editProductDetailForm)
-    .put(checkAuthenticated,productDetailController.editProductDetail)
-    .delete(checkAuthenticated,productDetailController.deleteProductDetail)
+    .get(checkAuthenticated, productDetailController.editProductDetailForm)
+    .put(checkAuthenticated, productDetailController.editProductDetail)
+    .delete(checkAuthenticated, productDetailController.deleteProductDetail)
 
 //product detail route ends
 
 // product route starts
 
 router.route('/products')
-    .get(checkAuthenticated,productController.getProducts)
+    .get(checkAuthenticated, productController.getProducts)
 
 router.route('/products/add')
-    .get(checkAuthenticated,productController.addProductForm)
-    .post(checkAuthenticated,upload.single('avatar'),productController.addProduct)
+    .get(checkAuthenticated, productController.addProductForm)
+    .post(checkAuthenticated, upload.single('avatar'), productController.addProduct)
 
 router.route('/product/:id')
-    .get(checkAuthenticated,productController.getProduct)
+    .get(checkAuthenticated, productController.getProduct)
 
 router.route('/product/edit/:id')
-    .get(checkAuthenticated,productController.editProductForm)
+    .get(checkAuthenticated, productController.editProductForm)
     .put(checkAuthenticated, upload.single('avatar'), productController.editProduct)
-    .delete(checkAuthenticated,productController.deleteProduct)
+    .delete(checkAuthenticated, productController.deleteProduct)
 
 //product route ends
 
 //order route starts
 
 router.route('/orders')
-    .get(checkAuthenticated,orderController.orderList)
+    .get(checkAuthenticated, orderController.orderList)
 
 router.route('/order/add')
-    .get(checkAuthenticated,orderController.addOrderForm)
-    .post(checkAuthenticated,orderController.addOrder)
+    .get(checkAuthenticated, orderController.addOrderForm)
+    .post(checkAuthenticated, orderController.addOrder)
 
 router.route('/order/:id')
 
 router.route('/order/edit/:id')
-    .get(checkAuthenticated,orderController.editOrderForm)
-    .put(checkAuthenticated,orderController.editOrder)
-    .delete(checkAuthenticated,orderController.deleteOrder)
+    .get(checkAuthenticated, orderController.editOrderForm)
+    .put(checkAuthenticated, orderController.editOrder)
+    .delete(checkAuthenticated, orderController.deleteOrder)
 
 //order route ends
 
@@ -163,23 +201,23 @@ router.route('/order/edit/:id')
 //     .get(testimonialController.editTestimonialForm)
 //     .put(testimonialController.editTestimonial)
 //     .delete(testimonialController.deleteTestimonial)
-// pages routes endTestimonial
+// pages routes end
+
+
+
+
+
+
 
 module.exports = router;
 
-function checkAuthenticated(req, res, next){
+function checkAuthenticated(req, res, next) {
     // console.log(req.isAuthenticated())
-    if(req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         return next()
     }
     req.flash('error_msg', 'Need to log in to access resources')
     res.redirect('/admin')
 }
 
-// function checkNotAuthenticated(req, res, next){
-//     if(req.isAuthenticated()) {
-//         return res.redirect('/admin/dashboard')
-//     }
-//     next()
-    
-// }
+

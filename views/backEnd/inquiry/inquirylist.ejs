@@ -1,0 +1,54 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/inquiries">Inquires</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All Inquires</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <h4 class="my-auto" style="float: left;">All Inquires</h4>
+        <a href="/admin/inquiry/add" class="btn btn-info btn-sm" style="float: right">Add New</a>
+    </div>
+</div>
+<div class="card-body bg-light text-dark">
+    <table class="table table-sm table-hover table-bordered table-responsive-sm">
+        <thead>
+            <th>S.No.</th>
+            <th>name</th>
+            <th>Email</th>
+            <th>Submitted Date</th>           
+            <th width="40">&nbsp;</th>
+        </thead>
+        <tbody>
+            <% inquiryList.forEach((inquiry, sn=1)=> { %>
+            <tr>
+                <td><%= sn+1 %></td>
+                <td><a href="/admin/inquiry/<%= inquiry._id %>"><%= inquiry.name %></a></td>
+                <td><%= inquiry.email %></td>
+                <td><%= inquiry.createdAt.toISOString().split('T')[0] %></td>               
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown">
+                            <i class="fa fa-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <form action="/admin/inquiry/edit/<%= inquiry._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-primary btn-sm dropdown-item" type="submit"><i
+                                            class="fas fa-trash"></i> Delete</button>
+                                </form>
+                            </li>
+                            <li>
+                                <a class="btn btn-primary btn-sm dropdown-item"
+                                    href="/admin/inquiry/edit/<%= inquiry._id %>"><i class="fas fa-edit"></i> Edit</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+</div>

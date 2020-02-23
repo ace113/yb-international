@@ -1,8 +1,15 @@
-<div class="row justify-content-center align-items-center mt-2" style="height:100vh">
-    <div class="col-md-6">
-        <div class="h4">Online Quote Request</div>
-        <hr class="mb-4">
-        <form action="" method="POST">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/quote">Quote</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add Quote</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <h4 class="my-auto">Add Quote</h4>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <form action="/admin/quote/add" method="POST">
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label-sm">Name</label>
                 <div class="col-sm-8">
@@ -30,7 +37,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label-sm">Product Code</label>
                 <div class="col-sm-8">
-                    <input type="text" name="code" id="code"
+                    <input type="text" name="productCode" id="code"
                         class="form-control form-control-sm"><small>(Optional)</small>
                 </div>
             </div>
@@ -66,7 +73,12 @@
                     </div>
                 </div>
             </div>
-            <input type="submit" value="Submit" class="btn btn-sm btn-success btn-block">
+            </div>    
+                <div class="col-sm-4">
+                    <input type="submit" class="btn btn-success btn-sm  btn-block" value="Submit">
+                </div>
+
+            </div>
         </form>
     </div>
 </div>
