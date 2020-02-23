@@ -28,7 +28,6 @@ npm start
 ```
 
 ### Admin
-
 End point to access the admin route
 
 ```
