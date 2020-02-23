@@ -17,7 +17,7 @@ dotenv.config();
 
 
 // connect mongodb
-const URL = process.env.DATABASE_URI;
+const URL = process.env.DATABASE_URI; // pass your mongodb cloud url to the DATABASE_URI VARIABLE
 mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Database is ready'))
     .catch(err => console.log(err))
