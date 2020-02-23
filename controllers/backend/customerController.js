@@ -3,7 +3,7 @@ const Customer = require('../../models/customer.model')
 module.exports = {
     //add customer form 
     addCustomerForm: (req, res, next) => {
-        res.render('backend/customers/addCustomer')
+        res.render('backEnd/customers/addCustomer')
     },
 
     // edit customer form 
@@ -12,7 +12,7 @@ module.exports = {
 
         const customerFound = await Customer.findOne({_id: id})
 
-        res.render('backend/customers/editCustomer',{
+        res.render('backEnd/customers/editCustomer',{
             customer: customerFound
         })
         
@@ -122,7 +122,7 @@ module.exports = {
             return res.status(400).json({message: 'getting customer list failed'})
         }
 
-        res.render('backend/customers/customerList',{
+        res.render('backEnd/customers/customerList',{
             customers : customerlist
         })
 
@@ -134,7 +134,7 @@ module.exports = {
          
         const customerFound = await Customer.findOne({_id: id})
 
-        res.render('backend/customers/customerInfo',{
+        res.render('backEnd/customers/customerInfo',{
             customer: customerFound
         })
 

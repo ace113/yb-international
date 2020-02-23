@@ -5,7 +5,7 @@ module.exports = {
     // add category form
     getCategoryForm: (req, res, next) => {
         // render add category form here
-        res.render('backend/products/categorys/addCategory')
+        res.render('backEnd/products/categorys/addCategory')
     },
 
     // post add category function
@@ -34,7 +34,7 @@ module.exports = {
             return res.status(400).json({message: 'category not found'})
         }
         // render the found category values to the edit form 
-        res.render('backend/products/categorys/editCategory',{
+        res.render('backEnd/products/categorys/editCategory',{
             category: categoryFound
         })
     },
@@ -79,7 +79,7 @@ module.exports = {
             return res.status(400).json({message: 'category list not found'})
         }
         // render categorylist to the category list page
-        res.render('backend/products/categorys/categoryList',{
+        res.render('backEnd/products/categorys/categoryList',{
             categorys: categorylist
         })
     },

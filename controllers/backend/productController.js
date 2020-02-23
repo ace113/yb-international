@@ -8,7 +8,7 @@ module.exports = {
     //add product form
     addProductForm: async (req, res, next) => {
         const categorys = await Category.find()
-        res.render('backend/products/addProduct',{
+        res.render('backEnd/products/addProduct',{
             categorys: categorys
         })
     },
@@ -64,7 +64,7 @@ module.exports = {
         if (!productsFound) {
             return res.status(400).json({ message: 'product get request failed' })
         }
-        res.render('backend/products/productInfo', {
+        res.render('backEnd/products/productInfo', {
             product: productsFound
         })
     },
@@ -78,7 +78,7 @@ module.exports = {
         if (!products) {
             return res.status(400).json({ message: 'product get request failed' })
         }
-        res.render('backend/products/productsList',{
+        res.render('backEnd/products/productsList',{
             products: products
         })
     },
@@ -91,7 +91,7 @@ module.exports = {
         if(!productFound){
             return res.status(400).json({message: 'product not found'})
         }
-        res.render('backend/products/editProduct',{
+        res.render('backEnd/products/editProduct',{
             product: productFound
         })
         // render the found product values to the edit form 

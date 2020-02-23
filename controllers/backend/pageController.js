@@ -3,7 +3,7 @@ const Pages = require('../../models/pages.model')
 module.exports = {
     //add Pages form 
     addPageForm: (req, res, next) => {
-        res.render('backend/pages/addPage')
+        res.render('backEnd/pages/addPage')
     },
 
     // edit Pages form 
@@ -12,7 +12,7 @@ module.exports = {
 
         const PagesFound = await Pages.findOne({ _id: id })
 
-        res.render('backend/Page/editPages', {
+        res.render('backEnd/Page/editPages', {
             Pages: PagesFound
         })
 
@@ -97,7 +97,7 @@ module.exports = {
             return res.status(400).json({ message: 'getting Pages list failed' })
         }
 
-        res.render('backend/Pagess/PagesList', {
+        res.render('backEnd/Pagess/PagesList', {
             Pages: Pageslist
         })
 
@@ -109,7 +109,7 @@ module.exports = {
 
         const PagesFound = await Pages.findOne({ _id: id })
 
-        res.render('backend/Pagess/PagesInfo', {
+        res.render('backEnd/Pagess/PagesInfo', {
             Pages: PagesFound
         })
 

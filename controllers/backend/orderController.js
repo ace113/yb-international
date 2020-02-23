@@ -7,7 +7,7 @@ module.exports = {
     //order list
     orderList: async(req, res, next) => {
         const orders = await Order.find()
-        res.render('backend/orders/orderList', {
+        res.render('backEnd/orders/orderList', {
             orders: orders
         })
     },
@@ -16,7 +16,7 @@ module.exports = {
     addOrderForm: async(req, res, next) => {
         const products = await Product.find()
         const customers = await Customer.find()
-        res.render('backend/orders/addOrder', {
+        res.render('backEnd/orders/addOrder', {
             products, customers
         })
     },
@@ -50,7 +50,7 @@ module.exports = {
             return res.status(400).json({message: 'order not found'})
         }
         // render the found category values to the edit form 
-        res.render('backend/orders/editOrder',{
+        res.render('backEnd/orders/editOrder',{
             order: order
         })
     },

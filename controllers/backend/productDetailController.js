@@ -6,7 +6,7 @@ module.exports = {
     //product detail 
     productDetail: async (req, res, next) => {
         const productDetails = await ProductDetail.find({})
-        res.render('backend/products/productDetail/productDetailList', {
+        res.render('backEnd/products/productDetail/productDetailList', {
             productDetails: productDetails
         })
     },
@@ -14,7 +14,7 @@ module.exports = {
     //add product detail
     addProductDetailFrom: async(req, res, next) => {
         const products = await Product.find()
-        res.render('backend/products/productDetail/addProductDetail', {
+        res.render('backEnd/products/productDetail/addProductDetail', {
             products: products
         })
     },
@@ -50,7 +50,7 @@ module.exports = {
             return res.status(400).json({message: 'product detail not found'})
         }
         // render the found category values to the edit form 
-        res.render('backend/products/productDetail/editProductDetail',{
+        res.render('backEnd/products/productDetail/editProductDetail',{
             productDetail: productDetail
         })
     },
@@ -101,7 +101,7 @@ module.exports = {
             return res.status(400).json({message: 'product Detail with the id not found'})
         }
 
-        res.render('backend/products/productDetail/productDetailInfo',{
+        res.render('backEnd/products/productDetail/productDetailInfo',{
             productDetail: productDetailFound
         })
     }

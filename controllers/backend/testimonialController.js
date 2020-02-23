@@ -3,7 +3,7 @@ const Testimonial = require('../../models/testimonials.model')
 module.exports = {
     //add Testimonial form 
     addTestimonialForm: (req, res, next) => {
-        res.render('backend/Testimonials/addTestimonial')
+        res.render('backEnd/Testimonials/addTestimonial')
     },
 
     // edit Testimonial form 
@@ -12,7 +12,7 @@ module.exports = {
 
         const TestimonialFound = await Testimonial.findOne({ _id: id })
 
-        res.render('backend/Testimonials/editTestimonial', {
+        res.render('backEnd/Testimonials/editTestimonial', {
             Testimonial: TestimonialFound
         })
 
@@ -106,7 +106,7 @@ module.exports = {
             return res.status(400).json({ message: 'getting Testimonial list failed' })
         }
 
-        res.render('backend/Testimonials/TestimonialList', {
+        res.render('backEnd/Testimonials/TestimonialList', {
             Testimonials: Testimoniallist
         })
 
@@ -118,7 +118,7 @@ module.exports = {
 
         const TestimonialFound = await Testimonial.findOne({ _id: id })
 
-        res.render('backend/Testimonials/TestimonialInfo', {
+        res.render('backEnd/Testimonials/TestimonialInfo', {
             Testimonial: TestimonialFound
         })
 
