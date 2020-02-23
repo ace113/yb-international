@@ -22,4 +22,7 @@ router.route('/quote')
 router.route('/contact')
 .get(homeController.contactForm)
 
+router.route('/about')
+.get(homeController.getAbout)
+
 module.exports = router;

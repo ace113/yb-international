@@ -20,6 +20,11 @@ module.exports = {
     contactForm: async(req,res, next)=> {
         const findCategory = await Category.find();
         res.render('frontend/pages/contact.front.ejs',{layout: 'frontend_layout', category: findCategory})
+    },
+
+    getAbout: async(req, res, next) => {
+        const findCategory = await Category.find();
+        res.render('frontend/pages/about.front.ejs',{layout: 'frontend_layout', category: findCategory})
     }
  
 }
