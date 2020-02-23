@@ -18,7 +18,7 @@ router.route('/')
     .post(passport.authenticate('local', { session: true,failureFlash: true , failureRedirect: '/admin' }), adminController.adminLogin)
 
 router.route('/register')
-    .post(checkAuthenticated, adminController.adminRegister)
+    .post(adminController.adminRegister)
 
 router.route('/edit/:id')
     .put(checkAuthenticated, adminController.editAdmin)
