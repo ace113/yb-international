@@ -9,6 +9,7 @@
     <tbody>
         <% products.forEach(product => {%>
             <tr>
+                <td><img src="/<%= product.avatar %>" alt="" height="40px" width="40px"></td>
                 <td><a href="/products/<%= product.category.cata %>/<%= product.productCode %>"><%= product.localName %></a></td>
                 <td><%= product.scientificName %></td>
                 <td><%= product.nepaliName %></td>        

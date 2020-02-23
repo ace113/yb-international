@@ -1,23 +1,33 @@
-<table class="table">
-    <tr>
-        <td>LocalName</td>
-        <td><%= product.localName %></td>
-    </tr>
-    <tr>
-        <td>Scientific Name</td>
-        <td><%= product.scientificName %></td>
-    </tr>
-    <tr>
-        <td>Nepali Name</td>
-        <td><%= product.nepaliName %></td>
-    </tr>
-   
-    <tr>
-        <td>Product Code</td>
-        <td><%= product.productCode %></td>
-    </tr>  
-    <tr>
-        <td>Availability</td>
-        <td><%if(product.available) { %><%= 'available' %> <%}else{%> <%= 'Out of Stock'%><%}%></td>
-    </tr>    
-</table>
+<div class="row mt-4">
+    <div class="col-md-4 ml-auto p-3">
+        <img src="/<%= product.avatar %>" alt="" width="300px" height="300px;">
+    </div>
+    <div class="col-md-6 ml-auto">
+        <table class="table">  
+            <tr>
+                <th colspan="2"><h5>Product Info</h5></th>
+            </tr>  
+            <tr>
+                <td>LocalName</td>
+                <td><%= product.localName %></td>
+            </tr>
+            <tr>
+                <td>Scientific Name</td>
+                <td><%= product.scientificName %></td>
+            </tr>
+            <tr>
+                <td>Nepali Name</td>
+                <td><%= product.nepaliName %></td>
+            </tr>
+           
+            <tr>
+                <td>Product Code</td>
+                <td><%= product.productCode %></td>
+            </tr>  
+            <tr>
+                <td>Availability</td>
+                <td><%if(product.available) { %><%= 'available' %> <%}else{%> <%= 'Out of Stock'%><%}%></td>
+            </tr>    
+        </table>
+    </div>
+</div>
