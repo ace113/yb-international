@@ -20,10 +20,16 @@ router.route('/')
     .post(passport.authenticate('local', { session: true, failureFlash: true, failureRedirect: '/admin' }), adminController.adminLogin)
 
 router.route('/register')
-    .post(adminController.adminRegister)
+    .get(checkAuthenticated,adminController.adminRegisterForm)
+    .post(checkAuthenticated,adminController.adminRegister)
+
+router.route('/adminlist')
+.get(checkAuthenticated,adminController.adminList)
 
 router.route('/edit/:id')
+    .get(checkAuthenticated,adminController.adminEditForm)
     .put(checkAuthenticated, adminController.editAdmin)
+    .delete(checkAuthenticated,adminController.deleteAdmin)
 
 router.route('/reset-password/:id')
     .put(checkAuthenticated, adminController.resetPassword)
@@ -38,54 +44,54 @@ router.route('/signout')
 
 // inquiry routes start 
 router.route('/inquiries')
-    .get(inquiryController.getInquiryList)
+    .get(checkAuthenticated,inquiryController.getInquiryList)
 
 router.route('/inquiry/add')
-    .get(inquiryController.addInquiryFrom)
-    .post(inquiryController.addInquiry)
+    .get(checkAuthenticated,inquiryController.addInquiryFrom)
+    .post(checkAuthenticated,inquiryController.addInquiry)
 
 router.route('/inquiry/:id')
-    .get(inquiryController.getInquiry)
+    .get(checkAuthenticated,inquiryController.getInquiry)
 
 router.route('/inquiry/edit/:id')
-    .get(inquiryController.editInquiryForm)
-    .put(inquiryController.editInquiry)
-    .delete(inquiryController.deleteInquiry)
+    .get(checkAuthenticated,inquiryController.editInquiryForm)
+    .put(checkAuthenticated,inquiryController.editInquiry)
+    .delete(checkAuthenticated,inquiryController.deleteInquiry)
 // inquiry routes end
 
 // quote routes start 
 router.route('/quotes')
-    .get(quoteController.getQuoteList)
+    .get(checkAuthenticated,quoteController.getQuoteList)
 
 router.route('/quote/add')
-    .get(quoteController.addQuoteFrom)
-    .post(quoteController.addQuote)
+    .get(checkAuthenticated,quoteController.addQuoteFrom)
+    .post(checkAuthenticated,quoteController.addQuote)
 
 router.route('/quote/:id')
-    .get(quoteController.getQuote)
+    .get(checkAuthenticated,quoteController.getQuote)
 
 router.route('/quote/edit/:id')
-    .get(quoteController.editQuoteForm)
-    .put(quoteController.editQuote)
-    .delete(quoteController.deleteQuote)
+    .get(checkAuthenticated,quoteController.editQuoteForm)
+    .put(checkAuthenticated,quoteController.editQuote)
+    .delete(checkAuthenticated,quoteController.deleteQuote)
 // quote routes end
 
 
 // // pages routes start 
 router.route('/pages')
-    .get(pageController.getPageList)
+    .get(checkAuthenticated,pageController.getPageList)
 
 router.route('/page/add')
-    .get(pageController.addPageForm)
-    .post(pageController.addPage)
+    .get(checkAuthenticated,pageController.addPageForm)
+    .post(checkAuthenticated,pageController.addPage)
 
 router.route('/page/:id')
-    .get(pageController.getPage)
+    .get(checkAuthenticated,pageController.getPage)
 
 router.route('/page/edit/:id')
-    .get(pageController.editPageForm)
-    .put(pageController.editPage)
-    .delete(pageController.deletePage)
+    .get(checkAuthenticated,pageController.editPageForm)
+    .put(checkAuthenticated,pageController.editPage)
+    .delete(checkAuthenticated,pageController.deletePage)
 // pages routes end
 
 router.route('/dashboard')
@@ -188,19 +194,19 @@ router.route('/order/edit/:id')
 
 // pages routes start 
 // router.route('/testimonials')
-//     .get(testimonialController.getTestimonialList)
+//     .get(checkAuthenticated,testimonialController.getTestimonialList)
 
 // router.route('/testimonial/add')
-//     .get(testimonialController.addTestimonialForm)
-//     .post(testimonialController.addTestimonial)
+//     .get(checkAuthenticated,testimonialController.addTestimonialForm)
+//     .post(checkAuthenticated,testimonialController.addTestimonial)
 
 // router.route('/testimonial/:id')
-//     .get(testimonialController.getTestimonial)
+//     .get(checkAuthenticated,testimonialController.getTestimonial)
 
 // router.route('/testimonial/edit/:id')
-//     .get(testimonialController.editTestimonialForm)
-//     .put(testimonialController.editTestimonial)
-//     .delete(testimonialController.deleteTestimonial)
+//     .get(checkAuthenticated,testimonialController.editTestimonialForm)
+//     .put(checkAuthenticated,testimonialController.editTestimonial)
+//     .delete(checkAuthenticated,testimonialController.deleteTestimonial)
 // pages routes end
 
 

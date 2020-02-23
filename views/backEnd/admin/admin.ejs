@@ -1,0 +1,37 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/adminlist">Admin</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add User</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <h4 class="my-auto">Add User</h4>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <form action="/admin/register" method="POST">
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label-sm">Username</label>
+                <div class="col-sm-8">
+                    <input type="text" name="username" id="username" class="form-control form-control-sm" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label-sm">Password</label>
+                <div class="col-sm-8">
+                    <input type="password" name="password" id="password" class="form-control form-control-sm" required>                    
+                </div>
+            </div>          
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label-sm">Password</label>
+                <div class="col-sm-8">
+                    <input type='password' name="password2" id="password2" class="form-control form-control-sm">
+                </div>
+            </div>    
+                <div class="col-sm-4">
+                    <input type="submit" class="btn btn-success btn-sm  btn-block" value="Submit">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 {
-  "name": "herb_shop",
+  "name": "ynb_international",
   "version": "1.0.0",
   "description": "\"e-commerce site for herbs\"",
   "main": "app.js",
@@ -12,13 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.0",
-    "bcryptjs": "^2.4.3",
-    "bootstrap": "^4.4.1",
-    "connect-flash": "^0.1.1",
-    "datatables.net-bs4": "^1.10.20",
-    "datatables.net-dt": "^1.10.20",
-    "datatables.net-responsive-bs4": "^2.2.3",
-    "datatables.net-responsive-dt": "^2.2.3",
+    "bcryptjs": "^2.4.3",   
+    "connect-flash": "^0.1.1",   
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",

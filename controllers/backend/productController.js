@@ -22,7 +22,10 @@ module.exports = {
             nepaliName,
             available,
             // productCode,
-            category
+            category,
+            pricing,
+            offers,
+            details
         } = req.body
         const avatar = req.file != null ?req.file.path : null
         // console.log('avatar:',avatar)
@@ -36,7 +39,10 @@ module.exports = {
             nepaliName,
             available,
             productCode,
-            category
+            category,
+            pricing,
+            offers,
+            details
         });
         try {
             const product = await newProduct.save()
@@ -106,7 +112,10 @@ module.exports = {
             nepaliName,
             available,
             productCode,
-            category
+            category,
+            pricing,
+            offers,
+            details
         } = req.body
         const avatar = req.file != null ?req.file.path : null
         console.log(id)
@@ -114,14 +123,16 @@ module.exports = {
         
         const editProduct = await Product.updateOne({
             _id: id
-        }, {
-            avatar,
+        }, {            
             localName,
             scientificName,
             nepaliName,
             available,
             productCode,
-            category
+            category,
+            pricing,
+            offers,
+            details
         })
 
         if (!editProduct) {
