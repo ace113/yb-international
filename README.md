@@ -22,6 +22,8 @@ This is a website for yb-international.
 ### Running Locally
 
 ```
+To clone run - git clone https://github.com/ace113/yb-international.git
+
 npm start
 ```
 
