@@ -8,16 +8,22 @@ This is a website for yb-international.
 2. connect-flash
 3. dotenv
 4. express
-5. mongoose
-6. passport
-7. passport-local
+5. mongoose - mongodb 
+6. passport - authentication
+7. passport-local - authentication strategy
 8. serve-favicon
-9. bcryptjs
-10. morgan
-11. multer
+9. bcryptjs - hash password
+10. morgan - logger
+11. multer - file upload
 12. method-override
 13. express-session
-14. froala-editor
+14. froala-editor - Rich Text Editor
+
+### Running Locally
+
+```
+npm start
+```
 
 ### Admin
 

@@ -165,5 +165,5 @@ function removeAvatar(avatar) {
 }
 
 function generateProductCode() {
-    return 'PCN'+ Math.floor(1000 + Math.random() * 9000)
+    return 'YNB'+ Math.floor(1000 + Math.random() * 9000)
 }

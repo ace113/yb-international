@@ -1,4 +1,7 @@
 const Admin = require('../../models/admin.model')
+const Product = require('../../models/product.model')
+const Quote = require('../../models/quote.model')
+const Inquiry = require('../../models/inquiry.model')
 const bcrypt = require('bcryptjs')
 
 module.exports = {
@@ -34,7 +37,7 @@ module.exports = {
     },
 
     adminLogin: async (req, res, next) => {
-        res.render('backEnd/dashboard')
+        res.redirect('/admin/dashboard')
     },
 
     adminSignOut: async (req, res, next) => {
@@ -75,17 +78,25 @@ module.exports = {
 
     editAdmin: async (req, res, next) => {
         const id = req.params.id
-        let { username } = req.body;
+        let { username, password, password2 } = req.body;
+        if(password != password2){
+            return res.redirect(`/admin/edit/${id}`)
+        }
+        const salt = await bcrypt.genSalt(10)
+        const hashpassword = await bcrypt.hash(password , salt)
+
 
         const updateAdmin = await Admin.updateOne({
             _id: id
         }, {
-            username
+            username,
+            password: hashpassword
         })
 
         if (!updateAdmin) {
             return res.status(400).json({ message: 'Edit admin failed' })
         }
+        res.redirect('/admin')
 
     },
     adminEditForm: async (req, res, next) => {
@@ -105,8 +116,16 @@ module.exports = {
         // password reset function goes here
     },
 
-    admin: (req, res, next) => {
-        res.render('backEnd/dashboard')
+    admin: async (req, res, next) => {
+        const countProducts = await Product.find().countDocuments()
+        const countQuotes = await Quote.find().countDocuments()
+        const countInquiries = await Inquiry.find().countDocuments()
+        
+        res.render('backEnd/dashboard',{ 
+            products: countProducts,
+            quotes: countQuotes,
+            inquiries: countInquiries
+        })
     },
 
     deleteAdmin: async (req, res, next) => {

@@ -14,7 +14,7 @@
     <table class="table table-sm table-hover table-bordered table-responsive-sm">
         <thead>
             <th>S.No.</th>
-            <th>name</th>
+            <th>Subject</th>
             <th>Email</th>
             <th>Submitted Date</th>           
             <th width="40">&nbsp;</th>
@@ -23,7 +23,7 @@
             <% inquiryList.forEach((inquiry, sn=1)=> { %>
             <tr>
                 <td><%= sn+1 %></td>
-                <td><a href="/admin/inquiry/<%= inquiry._id %>"><%= inquiry.name %></a></td>
+                <td><a href="/admin/inquiry/<%= inquiry._id %>"><%= inquiry.subject %></a></td>
                 <td><%= inquiry.email %></td>
                 <td><%= inquiry.createdAt.toISOString().split('T')[0] %></td>               
                 <td>

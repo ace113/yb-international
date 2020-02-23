@@ -47,7 +47,7 @@ module.exports = {
         const code = req.params.code
         const findCategory = await Category.find();
         const productinfo = await Product.findOne({productCode: code}).populate('category')
-        // console.log(productinfo)
+        console.log(productinfo)
         res.render('frontend/pages/product.front.ejs',  {layout: 'frontend_layout', product: productinfo,  category: findCategory})
     }
 

@@ -36,18 +36,27 @@
 <div>
     <div class="pricing mb-4">
         <h4>Pricing</h4>
-    <hr>
-    <small>Contact Us for pricing Details</small>
+        <hr>
+        <% if(product.pricing == '') { %>
+        <small>Contact Us for pricing Details</small>
+        <% } else {%> 
+        <small><%= product.pricing %></small>    
+        <% } %>
+    
     </div>
     <div class="offers mb-4">
         <h4>Special Offers</h4>
         <hr>
+        <% if(product.offers == ''){ %>
         <small>Currently there are no Offers for this item.</small>
+        <% } else {%> 
+        <small><%= product.offers %></small>    
+        <% } %>
     </div>
     <div class="details mb-4">
         <h4>Details</h4>
         <hr>
-       <small> <%- product.details %></small>
+       <%- product.details %>
 
     </div>
 </div>

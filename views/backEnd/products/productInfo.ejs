@@ -21,10 +21,10 @@
     </div>
     <div class="card-body bg-light text-dark">
         <div class="row m-auto p-3">
-            <div class="col-4">
+            <div class="col-md-4">
                 <img src="/<%= product.avatar %>" alt="" width="200px" height="200px;">
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <p class="h5 text-muted font-weight-bold">Product Details</p>
                 <p class="h6">ID: <%= product._id %></p>
                 <p class="h6">Local Name: <%= product.localName %></p>
@@ -32,7 +32,16 @@
                 <p class="h6">Nepali Name: <%= product.nepaliName %></p>
                 <p class="h6">Available: <%= product.available %></p>
                 <p class="h6">Category: <%= product.category.categoryName %></p>
+                <p class="h6">Pricing: <%= product.pricing %></p>
+                <p class="h6">Offer: <%= product.offers %></p>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Details</h4>
+                <small><%- product.details %></small>
+            </div>
+            
         </div>
         <!-- <div class="list-group">
             <div class="list-group-item list-group-item-action py-1">
