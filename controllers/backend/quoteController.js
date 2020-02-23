@@ -6,7 +6,7 @@ module.exports = {
     // Quote list 
     getQuoteList: async (req, res, next) => {
         const QuoteList = await Quote.find({})
-        res.render('backEnd/quote/quotelist', {
+        res.render('backEnd/quote/quoteList', {
             quoteList: QuoteList
         })
     },
