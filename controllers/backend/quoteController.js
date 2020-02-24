@@ -5,7 +5,7 @@ module.exports = {
 
     // Quote list 
     getQuoteList: async (req, res, next) => {
-        const QuoteList = await Quote.find().sort('-createdAt')
+        const QuoteList = await Quote.find().sort({createdAt: 'desc'})
         res.render('backEnd/quote/quoteList', {
             quoteList: QuoteList
         })
