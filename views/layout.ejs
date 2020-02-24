@@ -9,17 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
         type="text/css" />
-    <!-- <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script> -->
-
-    <!-- filepond css -->
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-        rel="stylesheet">
-
-    <!-- Filepond scripts -->
-    <script defer
-        src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js">
-    </script>
+    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 
     <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
@@ -48,7 +38,7 @@
         } */
 
         .bd-sidebar li {
-            list-style-type: none;           
+            list-style-type: none;
             margin-bottom: 0.5rem;
         }
 
@@ -62,7 +52,7 @@
 
         .bd-sidebar a:hover {
             /* background-color: #0865df;             */
-           color: darkgray;
+            color: darkgray;
         }
     </style>
 </head>
@@ -121,13 +111,11 @@
 
         });
     </script>
-    <!-- <script src="/public/js/froala-editor.js"></script> -->
     <script>
-        new FroalaEditor('#editor');
+        CKEDITOR.replace( 'details' );       
     </script>
-    <!-- <script>
-        CKEDITOR.replace( 'editor' );
-</script> -->
+         
+   
 </body>
 
 </html>
