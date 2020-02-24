@@ -18,7 +18,7 @@ const productSchema  = new mongoose.Schema({
     },
     available: {
         type: Boolean,
-        default: true
+        required: true
     },
     productCode: {
         type: String,

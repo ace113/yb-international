@@ -12,6 +12,10 @@ module.exports = {
     addCategory: async (req, res, next) => {
         let { categoryName } = req.body
         const cata = genCata(categoryName)
+        if( categoryName == "" && cata == ""){
+            req.flash('error_msg', 'Fields cannot be empty.')
+            return res.redirect('/admin/product/category/add')
+        }
         const newCategory = new Category({
             categoryName,
             cata
@@ -21,6 +25,7 @@ module.exports = {
         if(!category){
             res.status(400).json({message: 'new category not added'})
         }
+        
         res.redirect('/admin/product/categories')
     },
 
@@ -45,7 +50,10 @@ module.exports = {
         let { categoryName } = req.body
 
         const cata = genCata(categoryName)
-        
+        if( categoryName == "" && cata == ""){
+            req.flash('error_msg', 'Fields cannot be empty.')
+            return res.redirect('/admin/product/category/add')
+        }
         const updateCategory = await Category.updateOne({
             _id: id
         }, {

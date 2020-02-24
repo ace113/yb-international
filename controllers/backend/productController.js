@@ -32,6 +32,11 @@ module.exports = {
 
         const productCode = generateProductCode()
 
+        if(localName == "" || available == "" || category == "" ){
+            req.flash('error_msg', 'fields cannot be empty.')
+            return res.redirect('/admin/products/add')
+        }
+
         const newProduct = new Product({
             avatar,
             localName,
@@ -47,7 +52,8 @@ module.exports = {
         try {
             const product = await newProduct.save()
             if (!product) {
-                return res.status(400).json({ message: 'Add new product failed!' })
+                req.flash('error_msg', 'failed to save products.')
+                return res.redirect('/admin/products/add')
             }
             res.redirect('/admin/products')
         } catch (error) {
@@ -57,7 +63,6 @@ module.exports = {
             }
             // res.redirect('/admin/product/add')
         }
-       
 
     },
 

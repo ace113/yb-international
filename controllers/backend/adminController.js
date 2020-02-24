@@ -54,17 +54,29 @@ module.exports = {
     adminRegister: async (req, res, next) => {
         let { username, password, password2 } = req.body;
 
+        if(username == "" || password == "" || password2 == "") {
+            req.flash('error_msg', 'fields cannot be empty.')
+            return res.redirect('/admin/register')
+        }
+
+        if(password.length < 6){
+            req.flash('error_msg', "password should be atleast of 6 characters.")
+            return res.redirect('/admin/register')
+        }
+
         // check if passwords match
         const isMatch = (password == password2)
         if (!isMatch) {
             // return res.status(400).json({ message: 'Passwords do not match' })
-            res.redirect('/admin/register')
+            req.flash('error_msg', 'passwords donot match')
+            return res.redirect('/admin/register')
         }
 
         const adminExists = await Admin.findOne({ username })
         if (adminExists) {
             // return res.status(400).json({ message: 'admin already exists' })
-            res.redirect('/admin/register')
+            req.flash('error_msg', 'admin already exists.')
+            return res.redirect('/admin/register')
         }
 
         const newAdmin = new Admin({
@@ -79,7 +91,17 @@ module.exports = {
     editAdmin: async (req, res, next) => {
         const id = req.params.id
         let { username, password, password2 } = req.body;
+        if(username == "" || password == "" || password2 == "") {
+            req.flash('error_msg', 'fields cannot be empty.')
+            return res.redirect(`/admin/edit/${id}`)
+        }
+
+        if(password.length < 6){
+            req.flash('error_msg', "password should be atleast of 6 characters.")
+            return res.redirect(`/admin/edit/${id}`)
+        }
         if(password != password2){
+            req.flash('error_msg', 'passwords donot match.')
             return res.redirect(`/admin/edit/${id}`)
         }
         const salt = await bcrypt.genSalt(10)
