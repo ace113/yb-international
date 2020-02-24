@@ -11,40 +11,53 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $(".dropdown, .btn-group").hover(function(){
+        $(document).ready(function () {
+            $(".dropdown, .btn-group").hover(function () {
                 var dropdownMenu = $(this).children(".dropdown-menu");
-                if(dropdownMenu.is(":visible")){
+                if (dropdownMenu.is(":visible")) {
                     dropdownMenu.parent().toggleClass("open");
                 }
             });
-        });		
-        </script>
-        <style>
-        .bs-example{
+        });
+    </script>
+    <style>
+        .bs-example {
             margin: 20px;
         }
+        .error {
+            color:rgb(212, 40, 40);
+            font-size: 12px;
+        }
+
         @media screen and (min-width: 768px) {
-          .dropdown:hover .dropdown-menu, .btn-group:hover .dropdown-menu{
+
+            .dropdown:hover .dropdown-menu,
+            .btn-group:hover .dropdown-menu {
                 display: block;
                 background: rgb(46, 46, 46);
                 color: #fff;
             }
-            .dropdown-menu{
+
+            .dropdown-menu {
                 margin-top: 0;
             }
-            .dropdown-toggle{
+
+            .dropdown-toggle {
                 margin-bottom: 2px;
             }
-            .navbar .dropdown-toggle, .nav-tabs .dropdown-toggle{
+
+            .navbar .dropdown-toggle,
+            .nav-tabs .dropdown-toggle {
                 margin-bottom: 0;
             }
-            .dropdown-item{
+
+            .dropdown-item {
                 color: #fff;
             }
         }
-        </style>
+    </style>
 
     <title>YnB Internationals</title>
 </head>
@@ -52,7 +65,7 @@
 <body>
     <%- include('./frontend/partials/header') %>
 
-    <div class="container container-main" style="min-height: 70vh;">
+    <div class="container container-main" style="min-height: 80vh;">
         <%- body %>
     </div>
 
@@ -67,6 +80,12 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script>
+        $(function() {
+            $("#contact").validate();
+            $("#quote").validate();
+        });
     </script>
 </body>
 
