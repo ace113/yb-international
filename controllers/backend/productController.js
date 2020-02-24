@@ -124,11 +124,15 @@ module.exports = {
         } = req.body
         const avatar = req.file != null ?req.file.path : null
         console.log(id)
-
+        if(localName == "" || available == "" || category == "" ){
+            req.flash('error_msg', 'fields cannot be empty.')
+            return res.redirect(`/admin/product/edit/${id}`)
+        }
         
         const editProduct = await Product.updateOne({
             _id: id
-        }, {            
+        }, {   
+            avatar,         
             localName,
             scientificName,
             nepaliName,
