@@ -17,7 +17,7 @@ This is a website for yb-international.
 11. multer - file upload
 12. method-override
 13. express-session
-14. froala-editor - Rich Text Editor
+
 
 ### Running Locally
 
@@ -25,6 +25,14 @@ This is a website for yb-international.
 To clone run - git clone https://github.com/ace113/yb-international.git
 
 npm start
+```
+
+## Demo
+
+Demo page on heroku
+
+```
+https://git.heroku.com/ynbinternational.git
 ```
 
 ### Admin
