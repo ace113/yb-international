@@ -25,6 +25,11 @@ module.exports = {
             callMe
         } = req.body;
 
+        if(email == '' || phone == '' || product == '' || quantity == ''){
+            req.flash('error_msg', 'Please fill in all required fields')
+            return res.redirect('/quote')
+        }
+
         const newQuote = new Quote({
             name,
             email,
@@ -38,10 +43,10 @@ module.exports = {
         })
         const quoteSaved = await newQuote.save()
         if(!quoteSaved) {
-            req.flash('message', "Your quote request has been submitted")
+            req.flash('error', "Something went wrong")
             return res.redirect('/quote')
         }
-        req.flash('message', "Your quote request has been submitted")
+        req.flash('success_msg', "Your quote request has been submitted")
         res.redirect('/quote')
     }
  

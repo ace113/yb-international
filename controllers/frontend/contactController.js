@@ -17,6 +17,11 @@ module.exports = {
             message
         } = req.body;
 
+        if(name == '' || email == '' || subject == '' || message == '' ){
+            req.flash('error_msg', 'All fields are Required')
+            return res.redirect('/contact')
+        }
+
         const newMessage = new Inquiry({
             name,
             email,
@@ -25,10 +30,10 @@ module.exports = {
         })
         const messageSaved = await newMessage.save()
         if(!messageSaved) {
-            req.flash('message', "Your message has been submitted")
+            req.flash('error_msg', "Your message has not been submitted")
             return res.redirect('/contact')
         }
-        req.flash('message', "Your message has been submitted")
+        req.flash('success_msg', "Your message has been submitted")
         res.redirect('/contact')
     }
  
