@@ -17,7 +17,7 @@ This is a website for yb-international.
 11. multer - file upload
 12. method-override
 13. express-session
-14. froala-editor - Rich Text Editor
+
 
 ### Running Locally
 
