@@ -27,6 +27,14 @@ To clone run - git clone https://github.com/ace113/yb-international.git
 npm start
 ```
 
+## Demo
+
+Demo page on heroku
+
+```
+https://git.heroku.com/ynbinternational.git
+```
+
 ### Admin
 End point to access the admin route
 

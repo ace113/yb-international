@@ -38,7 +38,7 @@
         <h4>Pricing</h4>
         <hr>
         <% if(product.pricing == '') { %>
-        <small>Contact Us for pricing Details</small>
+        <small><a href="/contact">Contact Us</a> for pricing Details</small>
         <% } else {%> 
         <small><%= product.pricing %></small>    
         <% } %>
