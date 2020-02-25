@@ -92,7 +92,7 @@ module.exports = {
         if (!updateQuote) {
             return res.status(400).json({ message: 'Quote edit failed' })
         }
-        res.redirect('/admin/inquiries')
+        res.redirect('/admin/quotes')
     },
 
     //delete product detail
@@ -105,7 +105,7 @@ module.exports = {
         if (!deleteQuote) {
             return res.status(400).json({ message: 'delete product detail failed' })
         }
-        res.redirect('/admin/inquiries')
+        res.redirect('/admin/quotes')
     },
 
     //product detail info

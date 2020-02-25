@@ -17,8 +17,8 @@ const productSchema  = new mongoose.Schema({
         type: String
     },
     available: {
-        type: Boolean,
-        default: true
+        type: Boolean
+       
     },
     productCode: {
         type: String,
