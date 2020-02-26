@@ -1,5 +1,6 @@
 const Product = require('../../models/product.model')
 const Category = require('../../models/category.model')
+const Gallery = require('../../models/gallery.model')
 const fs = require('fs')
 const path = require('path')
 
@@ -67,11 +68,13 @@ module.exports = {
         const id = req.params.id
         const productsFound = await Product.findOne({_id: id}).populate('category')
 
+        const gallery = await Gallery.find({product: id})
+
         if (!productsFound) {
             return res.status(400).json({ message: 'product get request failed' })
         }
         res.render('backEnd/products/productInfo', {
-            product: productsFound
+            product: productsFound ,gallery: gallery
         })
     },
 
@@ -153,6 +156,50 @@ module.exports = {
         }
         removeAvatar(product.avatar)
         res.redirect('/admin/products')
+    },
+
+    addGallery: async(req, res, next)=> {
+        let{  product} = req.body;
+        const image = req.file.path
+        console.log(image)
+        const newGallery = new Gallery({
+            image,
+            product
+        })
+        const gallery = await newGallery.save()
+    },
+
+    // uploading images to the gallery 
+    uploadGallery: async(req, res, next) => {
+        const id = req.params.id;
+       
+     
+        const image = req.files.map((p,arr) =>{return arr = p.path})
+        console.log(image)
+        const gallery = {
+            image: image
+        }
+        console.log(gallery)
+
+        const addImages = await Product.updateOne({
+            _id: id
+        },{
+           $push:{ gallery: gallery}
+        })
+    },
+    
+    viewGallery: async(req, res, next) => {
+        const id = req.params.id;
+
+        const product = await Product.findOne({
+            _id:id
+        })
+        
+        const gallery = product.gallery[0].image
+        console.log(gallery)
+        res.render('backEnd/products/gallery', {
+            gallery: gallery
+        })
     }
 
 }

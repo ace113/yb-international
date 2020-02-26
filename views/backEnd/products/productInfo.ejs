@@ -43,6 +43,16 @@
             </div>
             
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Gallery</h4>
+                <% gallery.forEach(img => { %>                   
+                    <img src="/<%= img.image %>" width="250px" height="250px">
+                <% }) %>
+            </div>
+            
+        </div>
+       
         <!-- <div class="list-group">
             <div class="list-group-item list-group-item-action py-1">
                 <h6>ID: <%= product._id %></h6>

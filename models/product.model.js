@@ -2,6 +2,15 @@ const mongoose = require('mongoose')
 
 const Category = require('./category.model')
 
+const gallerySchema = new mongoose.Schema({
+    image: {
+        type: String
+    },
+    imageType: {
+        type: String
+    }
+})
+
 const productSchema  = new mongoose.Schema({
     avatar: {
         type: String
@@ -32,6 +41,9 @@ const productSchema  = new mongoose.Schema({
     },
     details: {
         type: String
+    },
+    gallery: {
+        type: [gallerySchema]
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,
