@@ -9,7 +9,7 @@ module.exports = {
     //add product form
     addProductForm: async (req, res, next) => {
         const categorys = await Category.find()
-        res.render('backEnd/products/addProduct',{
+        res.render('backEnd/products/addProduct', {
             categorys: categorys
         })
     },
@@ -28,7 +28,7 @@ module.exports = {
             offers,
             details
         } = req.body
-        const avatar = req.file != null ?req.file.path : null
+        const avatar = req.file != null ? req.file.path : null
         // console.log('avatar:',avatar)
 
         const productCode = generateProductCode()
@@ -52,13 +52,13 @@ module.exports = {
             }
             res.redirect('/admin/products')
         } catch (error) {
-            if(newProduct.avatar != null) {
+            if (newProduct.avatar != null) {
                 await removeAvatar(newProduct.avatar)
                 console.log(newProduct.avatar)
             }
             // res.redirect('/admin/product/add')
         }
-       
+
 
     },
 
@@ -66,15 +66,15 @@ module.exports = {
     // get specific product
     getProduct: async (req, res, next) => {
         const id = req.params.id
-        const productsFound = await Product.findOne({_id: id}).populate('category')
+        const productsFound = await Product.findOne({ _id: id }).populate('category')
 
-        const gallery = await Gallery.find({product: id})
+        const gallery = await Gallery.find({ product: id })
 
         if (!productsFound) {
             return res.status(400).json({ message: 'product get request failed' })
         }
         res.render('backEnd/products/productInfo', {
-            product: productsFound ,gallery: gallery
+            product: productsFound, gallery: gallery
         })
     },
 
@@ -87,20 +87,20 @@ module.exports = {
         if (!products) {
             return res.status(400).json({ message: 'product get request failed' })
         }
-        res.render('backEnd/products/productsList',{
+        res.render('backEnd/products/productsList', {
             products: products
         })
     },
 
     // edit product form render
-    editProductForm: async( req, res, next) => {
+    editProductForm: async (req, res, next) => {
         const id = req.params.id
 
-        const productFound = await Product.findOne({_id: id})
-        if(!productFound){
-            return res.status(400).json({message: 'product not found'})
+        const productFound = await Product.findOne({ _id: id })
+        if (!productFound) {
+            return res.status(400).json({ message: 'product not found' })
         }
-        res.render('backEnd/products/editProduct',{
+        res.render('backEnd/products/editProduct', {
             product: productFound
         })
         // render the found product values to the edit form 
@@ -109,7 +109,7 @@ module.exports = {
     // edit product information
     editProduct: async (req, res, next) => {
         const id = req.params.id
-        let {          
+        let {
             localName,
             scientificName,
             nepaliName,
@@ -120,13 +120,13 @@ module.exports = {
             offers,
             details
         } = req.body
-        const avatar = req.file != null ?req.file.path : null
+        const avatar = req.file != null ? req.file.path : null
         console.log(id)
 
-        
+
         const editProduct = await Product.updateOne({
             _id: id
-        }, {            
+        }, {
             localName,
             scientificName,
             nepaliName,
@@ -145,12 +145,12 @@ module.exports = {
     },
 
     // deleteProduct
-    deleteProduct: async(req, res, next) => {
+    deleteProduct: async (req, res, next) => {
         const id = req.params.id
-        const product = await Product.findOne({_id: id})
+        const product = await Product.findOne({ _id: id })
         const delProduct = await Product.deleteOne({
             _id: id
-        })        
+        })
         if (!delProduct) {
             return res.status(400).json({ message: 'product delete failed' })
         }
@@ -158,43 +158,75 @@ module.exports = {
         res.redirect('/admin/products')
     },
 
-    addGallery: async(req, res, next)=> {
-        let{  product} = req.body;
-        const image = req.file.path
-        console.log(image)
-        const newGallery = new Gallery({
-            image,
-            product
+    addGallery: async (req, res, next) => {
+        let { product } = req.body;
+        // const image = req.file.path
+        const imag = req.files.map((img, index = _id) => {
+            return img.path
         })
-        const gallery = await newGallery.save()
+        const i = imag.length;
+
+        for (j = 0; j < i; j++) {
+            const add =
+            {
+                image: imag[j],
+                product
+            }
+            const gallery = await Gallery.insertMany(add)
+
+        }
     },
 
     // uploading images to the gallery 
-    uploadGallery: async(req, res, next) => {
+    uploadGallery: async (req, res, next) => {
         const id = req.params.id;
-       
-     
-        const image = req.files.map((p,arr) =>{return arr = p.path})
-        console.log(image)
-        const gallery = {
-            image: image
-        }
-        console.log(gallery)
 
-        const addImages = await Product.updateOne({
-            _id: id
-        },{
-           $push:{ gallery: gallery}
+
+        // const imag = req.files.map((img, index = _id) => {
+        //     return img.path
+        // })
+        // const i = imag.length;
+
+        // for (j = 0; j < i; j++) {
+        //     const add = 
+        //         {             
+        //             image: imag[j]  
+        //         }
+
+        //         const addImages = await Product.updateOne({
+        //             _id: id
+        //         }, {
+        //             $push: { gallery: add }
+        //         })
+        // }
+
+        const imag = req.files.map(async (img, index = _id) => {
+            const image = { image: img.path }
+
+            const addImages = await Product.updateOne({
+                _id: id
+            }, {
+                $push: { gallery: image }
+            })
         })
+
     },
-    
-    viewGallery: async(req, res, next) => {
+    deleteImageGallery: async(req, res, next) => {
+        const id = req.params.id
+        const parent = '5e537a78e9785d082c4150c5'
+        const product = await Product.findOne({_id: parent})
+
+        const dele = product.gallery.pull(id).remove()
+        console.log(dele)
+    },
+
+    viewGallery: async (req, res, next) => {
         const id = req.params.id;
 
         const product = await Product.findOne({
-            _id:id
+            _id: id
         })
-        
+
         const gallery = product.gallery[0].image
         console.log(gallery)
         res.render('backEnd/products/gallery', {
@@ -205,12 +237,12 @@ module.exports = {
 }
 
 function removeAvatar(avatar) {
-    fs.unlink(`${avatar}`, (err, stats) =>{
-        if(err) console.log(err);
+    fs.unlink(`${avatar}`, (err, stats) => {
+        if (err) console.log(err);
         console.log(`stats: ${JSON.stringify(stats)}`);
     })
 }
 
 function generateProductCode() {
-    return 'YNB'+ Math.floor(1000 + Math.random() * 9000)
+    return 'YNB' + Math.floor(1000 + Math.random() * 9000)
 }

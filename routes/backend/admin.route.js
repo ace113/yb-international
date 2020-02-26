@@ -173,7 +173,10 @@ router.route('/product/edit/:id')
     .delete(checkAuthenticated, productController.deleteProduct)
 
 router.route('/product/gallery/')
-    .post(upload.single('image'), productController.addGallery)
+    .post(upload.array('image'), productController.addGallery)
+
+router.route('/product/gallery/delete/:id')
+    .delete(productController.deleteImageGallery)
 
 router.route('/product/gallery/:id')
     .get(productController.viewGallery)
