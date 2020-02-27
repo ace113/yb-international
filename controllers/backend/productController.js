@@ -211,13 +211,28 @@ module.exports = {
         })
 
     },
-    deleteImageGallery: async(req, res, next) => {
+    deleteImageGallery: async (req, res, next) => {
         const id = req.params.id
         const parent = '5e537a78e9785d082c4150c5'
-        const product = await Product.findOne({_id: parent})
+       
+        // const product = await Product.findOne({_id: parent})
 
-        const dele = product.gallery.pull(id).remove()
-        console.log(dele)
+        const index = await Product.aggregate([
+            {
+              
+                    "index": {
+                        "$indexOfArray": ["$gallery._id", id]
+                    }
+                
+            }
+        ])
+        
+        console.log(index)
+        // const product = await Product.updateOne({ _id: parent }, { $pull: { gallery: { _id: id } } })
+        // removeImage(products.gallery[0].image)
+        // console.log(products)
+        // console.log(products.gallery[0].image)
+        // res.json(product)
     },
 
     viewGallery: async (req, res, next) => {
@@ -234,8 +249,10 @@ module.exports = {
         })
     }
 
+
 }
 
+// function to delete the selected avatar from the uploads folder
 function removeAvatar(avatar) {
     fs.unlink(`${avatar}`, (err, stats) => {
         if (err) console.log(err);
@@ -243,6 +260,16 @@ function removeAvatar(avatar) {
     })
 }
 
+// function to delete the selected image from the uploads folder
+function removeImage(image) {
+    fs.unlink(`${image}`, (err, stats) => {
+        if (err) console.log(err);
+        console.log(`stats: ${JSON.stringify(stats)}`)
+    })
+}
+
+// generate random product code
 function generateProductCode() {
     return 'YNB' + Math.floor(1000 + Math.random() * 9000)
 }
+

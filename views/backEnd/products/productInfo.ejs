@@ -50,11 +50,13 @@
                 <hr>
             </div>
             <div class="col-md-12 d-flex py-2">
-                <% gallery.forEach(img => { %>
+                <% product.gallery.forEach(img => { %>
                 <div class="card mb-2 ml-4" style="width:200px">
                     <img class="card-img-top" src="/<%= img.image %>" alt="Card image cap" width="200px" height="200px">
                     <div class="card-footer">
-                        <button class="btn btn-outline-info btn-block"><i class="far fa-trash-alt"></i></button>
+                        <form action="/admin/product/gallery/delete/<%= img._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-outline-info btn-block"><i class="far fa-trash-alt"></i></button>
+                        </form>                        
                     </div>
                 </div>
                 <% }) %>
