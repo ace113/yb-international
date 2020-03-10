@@ -1,0 +1,39 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/blogs">Blogs</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Blog Info</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="my-auto">Blog Info</h4>
+            </div>
+            <div class="col-md-4 ml-auto">
+                <form action="/admin/blog/edit/<%= blog._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-primary btn-sm" type="submit"><i class="fas fa-trash"></i></button>
+                    <a class="btn btn-primary btn-sm" href="/admin/blog/edit/<%= blog._id %>"><i
+                            class="fas fa-edit"></i></a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <div class="list-group">
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>ID: &nbsp; <%= blog._id %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Blog Title: &nbsp; <%= blog.title %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Blog Category: &nbsp; <%= blog.category %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Description: </h6>
+                <p><%= blog.description %></p>
+            </div>
+        </div>
+    </div>
+</div>

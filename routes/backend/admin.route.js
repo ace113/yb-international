@@ -10,6 +10,7 @@ const productDetailController = require('../../controllers/backend/productDetail
 const pageController = require('../../controllers/backend/pageController')
 const inquiryController = require('../../controllers/backend/inquiryController')
 const quoteController = require('../../controllers/backend/quoteController')
+const blogController = require('../../controllers/backend/blogController')
 // const testimonialController = require('../../controllers/backend/testimonialController')
 
 const passport = require('passport')
@@ -20,16 +21,16 @@ router.route('/')
     .post(passport.authenticate('local', { session: true, failureFlash: true, failureRedirect: '/admin' }), adminController.adminLogin)
 
 router.route('/register')
-    .get(checkAuthenticated,adminController.adminRegisterForm)
-    .post(checkAuthenticated,adminController.adminRegister)
+    .get(checkAuthenticated, adminController.adminRegisterForm)
+    .post(checkAuthenticated, adminController.adminRegister)
 
 router.route('/adminlist')
-.get(checkAuthenticated,adminController.adminList)
+    .get(checkAuthenticated, adminController.adminList)
 
 router.route('/edit/:id')
-    .get(checkAuthenticated,adminController.adminEditForm)
+    .get(checkAuthenticated, adminController.adminEditForm)
     .put(checkAuthenticated, adminController.editAdmin)
-    .delete(checkAuthenticated,adminController.deleteAdmin)
+    .delete(checkAuthenticated, adminController.deleteAdmin)
 
 router.route('/reset-password/:id')
     .put(checkAuthenticated, adminController.resetPassword)
@@ -44,54 +45,54 @@ router.route('/signout')
 
 // inquiry routes start 
 router.route('/inquiries')
-    .get(checkAuthenticated,inquiryController.getInquiryList)
+    .get(checkAuthenticated, inquiryController.getInquiryList)
 
 router.route('/inquiry/add')
-    .get(checkAuthenticated,inquiryController.addInquiryFrom)
-    .post(checkAuthenticated,inquiryController.addInquiry)
+    .get(checkAuthenticated, inquiryController.addInquiryFrom)
+    .post(checkAuthenticated, inquiryController.addInquiry)
 
 router.route('/inquiry/:id')
-    .get(checkAuthenticated,inquiryController.getInquiry)
+    .get(checkAuthenticated, inquiryController.getInquiry)
 
 router.route('/inquiry/edit/:id')
-    .get(checkAuthenticated,inquiryController.editInquiryForm)
-    .put(checkAuthenticated,inquiryController.editInquiry)
-    .delete(checkAuthenticated,inquiryController.deleteInquiry)
+    .get(checkAuthenticated, inquiryController.editInquiryForm)
+    .put(checkAuthenticated, inquiryController.editInquiry)
+    .delete(checkAuthenticated, inquiryController.deleteInquiry)
 // inquiry routes end
 
 // quote routes start 
 router.route('/quotes')
-    .get(checkAuthenticated,quoteController.getQuoteList)
+    .get(checkAuthenticated, quoteController.getQuoteList)
 
 router.route('/quote/add')
-    .get(checkAuthenticated,quoteController.addQuoteFrom)
-    .post(checkAuthenticated,quoteController.addQuote)
+    .get(checkAuthenticated, quoteController.addQuoteFrom)
+    .post(checkAuthenticated, quoteController.addQuote)
 
 router.route('/quote/:id')
-    .get(checkAuthenticated,quoteController.getQuote)
+    .get(checkAuthenticated, quoteController.getQuote)
 
 router.route('/quote/edit/:id')
-    .get(checkAuthenticated,quoteController.editQuoteForm)
-    .put(checkAuthenticated,quoteController.editQuote)
-    .delete(checkAuthenticated,quoteController.deleteQuote)
+    .get(checkAuthenticated, quoteController.editQuoteForm)
+    .put(checkAuthenticated, quoteController.editQuote)
+    .delete(checkAuthenticated, quoteController.deleteQuote)
 // quote routes end
 
 
 // // pages routes start 
 router.route('/pages')
-    .get(checkAuthenticated,pageController.getPageList)
+    .get(checkAuthenticated, pageController.getPageList)
 
 router.route('/page/add')
-    .get(checkAuthenticated,pageController.addPageForm)
-    .post(checkAuthenticated,pageController.addPage)
+    .get(checkAuthenticated, pageController.addPageForm)
+    .post(checkAuthenticated, pageController.addPage)
 
 router.route('/page/:id')
-    .get(checkAuthenticated,pageController.getPage)
+    .get(checkAuthenticated, pageController.getPage)
 
 router.route('/page/edit/:id')
-    .get(checkAuthenticated,pageController.editPageForm)
-    .put(checkAuthenticated,pageController.editPage)
-    .delete(checkAuthenticated,pageController.deletePage)
+    .get(checkAuthenticated, pageController.editPageForm)
+    .put(checkAuthenticated, pageController.editPage)
+    .delete(checkAuthenticated, pageController.deletePage)
 // pages routes end
 
 router.route('/dashboard')
@@ -172,6 +173,16 @@ router.route('/product/edit/:id')
     .put(checkAuthenticated, upload.single('avatar'), productController.editProduct)
     .delete(checkAuthenticated, productController.deleteProduct)
 
+router.route('/product/gallery/')
+    .post(upload.array('image'), productController.addGallery)
+
+router.route('/product/gallery/delete/:id')
+    .delete(productController.deleteImageGallery)
+
+router.route('/product/gallery/:id')
+    .get(productController.viewGallery)
+    .put(upload.array('image'), productController.uploadGallery)
+
 //product route ends
 
 //order route starts
@@ -191,6 +202,41 @@ router.route('/order/edit/:id')
     .delete(checkAuthenticated, orderController.deleteOrder)
 
 //order route ends
+
+//blog category route Start
+router.route('/blogs/categorys')
+    .get(checkAuthenticated, blogController.categoryForm)
+
+router.route('/blogs/category/add')
+    .get(checkAuthenticated, blogController.addCategoryForm)
+    .post(checkAuthenticated, blogController.addCategory)
+
+router.route('/blogs/category/edit/:id')
+    .put(checkAuthenticated, blogController.editCategory)
+    .delete(checkAuthenticated, blogController.deleteCategory)
+
+//blog category route ends
+
+//blog route starts
+router.route('/blogs')
+    .get(checkAuthenticated, blogController.blogList)
+
+router.route('/blog/info/:id')
+    .get(checkAuthenticated, blogController.blogInfo)
+
+router.route('/blog/add')
+    .get(checkAuthenticated, blogController.addBlogForm)
+    .post(checkAuthenticated, blogController.addBlog)
+
+router.route('/blog/edit/:id')
+    .get(checkAuthenticated, blogController.editBlogForm)
+    .put(checkAuthenticated, blogController.editBlog)
+    .delete(checkAuthenticated, blogController.deleteBlog)
+
+router.route('/blog/editStatus/:id')
+    .put(checkAuthenticated, blogController.editStatus)
+
+//blog route ends
 
 // pages routes start 
 // router.route('/testimonials')

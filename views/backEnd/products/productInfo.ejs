@@ -39,10 +39,31 @@
         <div class="row">
             <div class="col-md-12">
                 <h4>Details</h4>
+                <hr>
                 <small><%- product.details %></small>
             </div>
-            
+
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Gallery</h4>
+                <hr>
+            </div>
+            <div class="col-md-12 d-flex py-2">
+                <% product.gallery.forEach(img => { %>
+                <div class="card mb-2 ml-4" style="width:200px">
+                    <img class="card-img-top" src="/<%= img.image %>" alt="Card image cap" width="200px" height="200px">
+                    <div class="card-footer">
+                        <form action="/admin/product/gallery/delete/<%= img._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-outline-info btn-block"><i class="far fa-trash-alt"></i></button>
+                        </form>                        
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+
+        </div>
+
         <!-- <div class="list-group">
             <div class="list-group-item list-group-item-action py-1">
                 <h6>ID: <%= product._id %></h6>

@@ -1,0 +1,64 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/blogs">Blogs</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All Blogs</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <h4 class="my-auto" style="float: left">Blogs</h4>
+        <a href="/admin/blog/add" class="btn btn-info btn-sm" style="float: right">Add New</a>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <table class="table table-sm table-hover table-bordered table-responsive-sm">
+            <thead>
+                <th width="50px">S.No.</th>
+                <th>ID</th>
+                <th>Blog</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th width="50px">&nbsp;</th>
+            </thead>
+            <tbody>
+                <% blogs.forEach((blog, sn=1)=> { %>
+                <tr>
+                    <td><%= sn+1 %></td>
+                    <td><%= blog._id %></td>
+                    <td><a href="/admin/blog/info/<%= blog._id %>"><%= blog.title %></a></td>
+                    <td><%= blog.category %></td>
+                    <td>
+                        <div class="form-inline">
+                            <div class="mr-4">
+                                <%= blog.status %>
+                            </div>
+                            <form action="/admin/blog/editStatus/<%= blog._id %>?_method=PUT" method="POST">
+                                <button class="btn btn-outline-secondary btn-sm" type="submit"><i
+                                        class="fas fa-eye-slash"></i></button>
+                            </form>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form action="/admin/blog/edit/<%= blog._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-primary btn-sm dropdown-item" type="submit"><i
+                                                class="fas fa-trash"></i> Delete</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <a class="btn btn-primary btn-sm dropdown-item"
+                                        href="/admin/blog/edit/<%= blog._id %>"><i class="fas fa-edit"></i> Edit</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

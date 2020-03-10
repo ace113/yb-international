@@ -1,0 +1,51 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/pages">Pages</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All Pages</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header bg-primary text-light">
+        <h4 class="my-auto" style="float: left">Pages</h4>
+        <a href="/admin/page/add" class="btn btn-info btn-sm" style="float: right">Add New</a>
+    </div>
+    <div class="card-body bg-light text-dark">
+        <table class="table table-sm table-hover table-bordered table-responsive-sm">
+            <thead>
+                <th width="50px">S.No.</th>
+                <th>Page Type</th>
+                <th>Page Title</th>
+                <th>&nbsp;</th>
+            </thead>
+            <tbody>
+                <% pages.forEach((page, sn=1) => { %>
+                <tr>
+                    <td><%= sn+1 %></td>
+                    <td><a href="/admin/page/<%= page._id %>"><%= page.pageType %></a></td>
+                    <td><%= page.pageTitle %></td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
+                                data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form action="/admin/page/edit/<%= page._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-primary btn-sm dropdown-item" type="submit"><i
+                                                class="fas fa-trash"></i> Delete</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <a class="btn btn-primary btn-sm dropdown-item"
+                                        href="/admin/page/edit/<%= page._id %>"><i class="fas fa-edit"></i> Edit</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
