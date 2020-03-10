@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
-        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 
     <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
@@ -19,12 +17,17 @@
 
     <!-- datatables script -->
     <script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
+
+    <script src="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.css">
+
     <title>YnB Internationals</title>
     <style>
         th {
             font-size: 12px;
         }
-
+        
         .bd-sidebar {
             /* background-color: #0865df; */
             opacity: 0.9;
@@ -32,16 +35,15 @@
             /* border-right: 1px solid gray; */
             /* margin-right: 50px; */
         }
-
         /* .bd-sidebar ul {
             background-color: #0650b1;          
         } */
-
+        
         .bd-sidebar li {
             list-style-type: none;
             margin-bottom: 0.5rem;
         }
-
+        
         .bd-sidebar a {
             /* color: white; */
             color: gray;
@@ -49,7 +51,7 @@
             padding: 4px;
             display: block;
         }
-
+        
         .bd-sidebar a:hover {
             /* background-color: #0865df;             */
             color: darkgray;
@@ -59,63 +61,82 @@
 
 <body>
     <%- include('./partials/header.ejs') %>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-2">
-                <%-include('./partials/sidebar.ejs') %>
-            </div>
-            <div class="col-md-10  mt-3">
-                <%- body %>
-            </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    <%-include('./partials/sidebar.ejs') %>
+                </div>
+                <div class="col-md-10  mt-3">
+                    <%- body %>
+                </div>
 
+            </div>
         </div>
-    </div>
 
 
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+        </script>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js">
-    </script>
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#preview').attr('src', e.target.result);
+        </script>
+        <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('#preview').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
                 }
-                reader.readAsDataURL(input.files[0]);
             }
-        }
-        $('#avatar').change(function () {
-            readURL(this)
-        })
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('table').DataTable()
+            $('#avatar').change(function() {
+                readURL(this)
+            })
 
-        });
-    </script>
-    <script>
-        CKEDITOR.replace( 'details' );       
-    </script>
-         
-   
+            // function readIMG(input, placeholder) {
+            //     if (input.files) {
+            //         var no_of_files = input.files.length;
+            //         for (i = 0; i < no_of_files; i++) {
+            //             var reader = new FileReader();
+
+            //             reader.onload = function(e) {
+            //                 $($.parseHTML('<img>')).attr('src', e.target.result).attr('width', '150px').attr('height', "150px").appendTo(placeholder)
+            //             }
+            //             reader.readAsDataURL(input.files[i])
+            //         }
+            //     }
+
+            // }
+            // $('#gallery').change(function() {
+            //     readIMG(this, 'div.gallery')
+            // })
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $('table').DataTable()
+
+            });
+        </script>
+        <script>
+            CKEDITOR.replace('details');
+        </script>
+        <script>
+            var upload = new FileUploadWithPreview('myUniqueUploadId')
+        </script>
+
+
 </body>
 
 </html>

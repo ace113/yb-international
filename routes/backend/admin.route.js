@@ -10,7 +10,7 @@ const productDetailController = require('../../controllers/backend/productDetail
 const pageController = require('../../controllers/backend/pageController')
 const inquiryController = require('../../controllers/backend/inquiryController')
 const quoteController = require('../../controllers/backend/quoteController')
-// const testimonialController = require('../../controllers/backend/testimonialController')
+    // const testimonialController = require('../../controllers/backend/testimonialController')
 
 const passport = require('passport')
 
@@ -33,7 +33,7 @@ router.route('/edit/:id')
 
 router.route('/reset-password/:id')
     .put(checkAuthenticated, adminController.resetPassword)
-// #### note: add nodemailer function to recover the password if lost
+    // #### note: add nodemailer function to recover the password if lost
 
 router.route('/signout')
     .get(checkAuthenticated, adminController.adminSignOut)
@@ -57,7 +57,7 @@ router.route('/inquiry/edit/:id')
     .get(checkAuthenticated, inquiryController.editInquiryForm)
     .put(checkAuthenticated, inquiryController.editInquiry)
     .delete(checkAuthenticated, inquiryController.deleteInquiry)
-// inquiry routes end
+    // inquiry routes end
 
 // quote routes start 
 router.route('/quotes')
@@ -74,7 +74,7 @@ router.route('/quote/edit/:id')
     .get(checkAuthenticated, quoteController.editQuoteForm)
     .put(checkAuthenticated, quoteController.editQuote)
     .delete(checkAuthenticated, quoteController.deleteQuote)
-// quote routes end
+    // quote routes end
 
 
 // // pages routes start 
@@ -92,7 +92,7 @@ router.route('/page/edit/:id')
     .get(checkAuthenticated, pageController.editPageForm)
     .put(checkAuthenticated, pageController.editPage)
     .delete(checkAuthenticated, pageController.deletePage)
-// pages routes end
+    // pages routes end
 
 router.route('/dashboard')
     .get(checkAuthenticated, adminController.admin)
@@ -163,6 +163,9 @@ router.route('/products')
 router.route('/products/add')
     .get(checkAuthenticated, productController.addProductForm)
     .post(checkAuthenticated, upload.single('avatar'), productController.addProduct)
+router.route('/product/gallery')
+    .get(productController.getAddGalleryForm)
+    .post(upload.array('image'), productController.addGallery)
 
 router.route('/product/:id')
     .get(checkAuthenticated, productController.getProduct)
@@ -172,10 +175,9 @@ router.route('/product/edit/:id')
     .put(checkAuthenticated, upload.single('avatar'), productController.editProduct)
     .delete(checkAuthenticated, productController.deleteProduct)
 
-router.route('/product/gallery/')
-    .post(upload.array('image'), productController.addGallery)
 
-router.route('/product/gallery/delete/:id')
+
+router.route('/product/gallery/delete/:id/:gid')
     .delete(productController.deleteImageGallery)
 
 router.route('/product/gallery/:id')
@@ -235,5 +237,3 @@ function checkAuthenticated(req, res, next) {
     req.flash('error_msg', 'Need to log in to access resources')
     res.redirect('/admin')
 }
-
-

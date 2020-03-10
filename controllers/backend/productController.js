@@ -7,7 +7,7 @@ const path = require('path')
 module.exports = {
 
     //add product form
-    addProductForm: async (req, res, next) => {
+    addProductForm: async(req, res, next) => {
         const categorys = await Category.find()
         res.render('backEnd/products/addProduct', {
             categorys: categorys
@@ -15,7 +15,7 @@ module.exports = {
     },
 
     // insert new products to the database
-    addProduct: async (req, res, next) => {
+    addProduct: async(req, res, next) => {
         let {
             // avatar,
             localName,
@@ -29,7 +29,7 @@ module.exports = {
             details
         } = req.body
         const avatar = req.file != null ? req.file.path : null
-        // console.log('avatar:',avatar)
+            // console.log('avatar:',avatar)
 
         const productCode = generateProductCode()
 
@@ -64,7 +64,7 @@ module.exports = {
 
 
     // get specific product
-    getProduct: async (req, res, next) => {
+    getProduct: async(req, res, next) => {
         const id = req.params.id
         const productsFound = await Product.findOne({ _id: id }).populate('category')
 
@@ -74,14 +74,15 @@ module.exports = {
             return res.status(400).json({ message: 'product get request failed' })
         }
         res.render('backEnd/products/productInfo', {
-            product: productsFound, gallery: gallery
+            product: productsFound,
+            gallery: gallery
         })
     },
 
 
 
     // get product list
-    getProducts: async (req, res, next) => {
+    getProducts: async(req, res, next) => {
         const products = await Product.find({}).populate('category')
 
         if (!products) {
@@ -93,7 +94,7 @@ module.exports = {
     },
 
     // edit product form render
-    editProductForm: async (req, res, next) => {
+    editProductForm: async(req, res, next) => {
         const id = req.params.id
 
         const productFound = await Product.findOne({ _id: id })
@@ -101,13 +102,13 @@ module.exports = {
             return res.status(400).json({ message: 'product not found' })
         }
         res.render('backEnd/products/editProduct', {
-            product: productFound
-        })
-        // render the found product values to the edit form 
+                product: productFound
+            })
+            // render the found product values to the edit form 
     },
 
     // edit product information
-    editProduct: async (req, res, next) => {
+    editProduct: async(req, res, next) => {
         const id = req.params.id
         let {
             localName,
@@ -144,8 +145,9 @@ module.exports = {
         res.redirect('/admin/products')
     },
 
+
     // deleteProduct
-    deleteProduct: async (req, res, next) => {
+    deleteProduct: async(req, res, next) => {
         const id = req.params.id
         const product = await Product.findOne({ _id: id })
         const delProduct = await Product.deleteOne({
@@ -158,7 +160,12 @@ module.exports = {
         res.redirect('/admin/products')
     },
 
-    addGallery: async (req, res, next) => {
+    // add images to gallery form
+    getAddGalleryForm: async(req, res, next) => {
+        res.render('backend/products/addGallery')
+    },
+
+    addGallery: async(req, res, next) => {
         let { product } = req.body;
         // const image = req.file.path
         const imag = req.files.map((img, index = _id) => {
@@ -167,8 +174,7 @@ module.exports = {
         const i = imag.length;
 
         for (j = 0; j < i; j++) {
-            const add =
-            {
+            const add = {
                 image: imag[j],
                 product
             }
@@ -178,7 +184,7 @@ module.exports = {
     },
 
     // uploading images to the gallery 
-    uploadGallery: async (req, res, next) => {
+    uploadGallery: async(req, res, next) => {
         const id = req.params.id;
 
 
@@ -200,7 +206,7 @@ module.exports = {
         //         })
         // }
 
-        const imag = req.files.map(async (img, index = _id) => {
+        const imag = req.files.map(async(img, index = _id) => {
             const image = { image: img.path }
 
             const addImages = await Product.updateOne({
@@ -211,38 +217,33 @@ module.exports = {
         })
 
     },
-    deleteImageGallery: async (req, res, next) => {
+    deleteImageGallery: async(req, res, next) => {
+        const gallery_id = req.params.gid
         const id = req.params.id
-        const parent = '5e537a78e9785d082c4150c5'
-       
-        // const product = await Product.findOne({_id: parent})
+            // console.log('gallery id:', gallery_id)
+        console.log('id', id)
 
-        const index = await Product.aggregate([
-            {
-              
-                    "index": {
-                        "$indexOfArray": ["$gallery._id", id]
-                    }
-                
-            }
-        ])
-        
-        console.log(index)
-        // const product = await Product.updateOne({ _id: parent }, { $pull: { gallery: { _id: id } } })
-        // removeImage(products.gallery[0].image)
-        // console.log(products)
-        // console.log(products.gallery[0].image)
-        // res.json(product)
+        const product = await Product.findOne({ _id: id });
+        console.log(product)
+        const image_path = await product.gallery.id(gallery_id).image
+        console.log(image_path)
+        const remov = await product.gallery.id(gallery_id).remove();
+        removeImage(image_path)
+        product.save((err) => {
+            if (err) throw err;
+            console.log('removed')
+        })
+        res.redirect(`/admin/product/${id}`)
     },
 
-    viewGallery: async (req, res, next) => {
+    viewGallery: async(req, res, next) => {
         const id = req.params.id;
 
         const product = await Product.findOne({
             _id: id
         })
 
-        const gallery = product.gallery[0].image
+        const gallery = product.gallery.image
         console.log(gallery)
         res.render('backEnd/products/gallery', {
             gallery: gallery
@@ -272,4 +273,3 @@ function removeImage(image) {
 function generateProductCode() {
     return 'YNB' + Math.floor(1000 + Math.random() * 9000)
 }
-
