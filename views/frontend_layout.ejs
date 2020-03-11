@@ -13,8 +13,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $(".dropdown, .btn-group").hover(function () {
+        $(document).ready(function() {
+            $(".dropdown, .btn-group").hover(function() {
                 var dropdownMenu = $(this).children(".dropdown-menu");
                 if (dropdownMenu.is(":visible")) {
                     dropdownMenu.parent().toggleClass("open");
@@ -26,33 +26,29 @@
         .bs-example {
             margin: 20px;
         }
+        
         .error {
-            color:rgb(212, 40, 40);
+            color: rgb(212, 40, 40);
             font-size: 12px;
         }
-
+        
         @media screen and (min-width: 768px) {
-
             .dropdown:hover .dropdown-menu,
             .btn-group:hover .dropdown-menu {
                 display: block;
-                background: rgb(46, 46, 46);
+                background: rgb(8, 155, 45);
                 color: #fff;
             }
-
             .dropdown-menu {
                 margin-top: 0;
             }
-
             .dropdown-toggle {
                 margin-bottom: 2px;
             }
-
             .navbar .dropdown-toggle,
             .nav-tabs .dropdown-toggle {
                 margin-bottom: 0;
             }
-
             .dropdown-item {
                 color: #fff;
             }
@@ -65,28 +61,25 @@
 <body>
     <%- include('./frontend/partials/header') %>
 
-    <div class="container container-main" style="min-height: 80vh;">
-        <%- body %>
-    </div>
+        <div class="container container-main" style="min-height: 80vh;">
+            <%- body %>
+        </div>
 
-    <%- include('./frontend/partials/footer') %>
+        <%- include('./frontend/partials/footer') %>
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <script>
-        $(function() {
-            $("#contact").validate();
-            $("#quote").validate();
-        });
-    </script>
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+            </script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+            </script>
+            <script>
+                $(function() {
+                    $("#contact").validate();
+                    $("#quote").validate();
+                });
+            </script>
 </body>
 
 </html>

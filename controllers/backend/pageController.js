@@ -24,18 +24,22 @@ module.exports = {
     // function to add Pages
     addPage: async (req, res, next) => {
         let {
-           
-           pageTitle,
-           description
+            pageType,
+            pageTitle,
+            description
         } = req.body
-
-       const pageType = 'Home'
+        const Page = await Pages.findOne({pageType: pageType})
+        if(Page){
+            req.flash('error_msg', 'Page already exists.')
+            return res.redirect('/admin/page/add')
+        }
 
         const newPages = new Pages({
             pageType,
-           pageTitle,
-           description
+            pageTitle,
+            description
         })
+        console.log(newPages)
 
         const savePages = await newPages.save()
 
@@ -91,14 +95,10 @@ module.exports = {
     // function to get the list of Pages
     getPageList: async (req, res, next) => {
 
-        const Pageslist = await Pages.find()
-
-        if (!Pageslist) {
-            return res.status(400).json({ message: 'getting Pages list failed' })
-        }
+        const pages = await Pages.find()
 
         res.render('backEnd/Pages/PagesList', {
-            Pages: Pageslist
+            pages: pages
         })
 
     },
@@ -109,7 +109,7 @@ module.exports = {
 
         const PagesFound = await Pages.findOne({ _id: id })
 
-        res.render('backEnd/Pages/PagesInfo', {
+        res.render('backEnd/pages/pageinfo', {
             Pages: PagesFound
         })
 
@@ -119,3 +119,4 @@ module.exports = {
 
 
 }
+//module ends

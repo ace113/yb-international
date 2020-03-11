@@ -29,6 +29,11 @@ module.exports = {
             callMe
         } = req.body;
 
+        if(name == "" || email == "" || phone == "" || product == "" || quantity == "") {
+            req.flash('error_msg', 'Please fill in the fields.')
+            return res.redirect('/admin/quote/add')
+        }
+
         const newQuote = new Quote({
             name,
             email,
@@ -42,7 +47,8 @@ module.exports = {
         })       
         const quote = await newQuote.save()
         if (!quote) {
-            res.status(400).json({ message: 'new Quote not added' })
+            req.flash('error_msg', 'fail to save quote.')
+            res.redirect('/admin/quote/add')
         }
         res.redirect('/admin/quotes')
     },
@@ -75,6 +81,12 @@ module.exports = {
             callMe
         } = req.body
 
+        if(name == "" || email == "" || phone == "" || product == "" || quantity == "") {
+            req.flash('error_msg', 'Please fill in the fields.')
+            return res.redirect(`/admin/quote/edit/${id}`)
+        }
+
+
         const updateQuote = await Quote.updateOne({
             _id: id
         }, {
@@ -90,7 +102,8 @@ module.exports = {
         })
 
         if (!updateQuote) {
-            return res.status(400).json({ message: 'Quote edit failed' })
+            req.flash('error_msg', 'failed to update quote.')
+            return res.redirect(`/admin/quote/edit/${id}`)
         }
         res.redirect('/admin/quotes')
     },

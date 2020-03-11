@@ -24,6 +24,11 @@ module.exports = {
             message
         } = req.body
 
+        if(name == "" || email == "" || subject == "" || message == "") {
+            req.flash('error_msg', 'Please fill in all the fields.')
+            return res.redirect('/admin/inquiry/add')
+        }
+
         const newInquiry = await new Inquiry({
             name,
             email,
@@ -33,7 +38,8 @@ module.exports = {
 
         const inquiry = await newInquiry.save()
         if (!inquiry) {
-            res.status(400).json({ message: 'new inquiry not added' })
+            req.flash('error_msg', 'failed to save inquiry')
+            return res.redirect('/admin/inquiry/add')
         }
         res.redirect('/admin/inquiries')
     },
@@ -61,6 +67,11 @@ module.exports = {
             message
         } = req.body
 
+        if(name == "" || email == "" || subject == "" || message == "") {
+            req.flash('error_msg', 'Please fill in all the fields.')
+            return res.redirect(`/admin/inquiry/edit/${id}`)
+        }
+
         const updateInquiry = await Inquiry.updateOne({
             _id: id
         }, {
@@ -71,7 +82,8 @@ module.exports = {
         })
 
         if (!updateInquiry) {
-            return res.status(400).json({ message: 'Inquiry edit failed' })
+            req.flash('error_msg', 'Failed to update inquiry.')
+            return res.redirect(`/admin/inquiry/edit/${id}`)
         }
         res.redirect('/admin/inquiries')
     },

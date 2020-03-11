@@ -1,26 +1,30 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/admin/pages">Pages</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add Pages</li>
+        <li class="breadcrumb-item"><a href="/admin/blogs">Blogs</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add Blogs</li>
     </ol>
 </nav>
 <div class="card">
     <div class="card-header bg-primary text-light">
-        <h4 class="my-auto">Pages</h4>
+        <h4 class="my-auto">Add Blog</h4>
     </div>
     <div class="card-body bg-light text-dark">
         <%- include('../../partials/errorMessage.ejs') %>
-        <form action="/admin/page/add" method="post">
+        <form action="/admin/blog/add" method="post">
             <div class="form-group row">
-                <label for="pageType" class="col-sm-2 col-form-label col-form-label-sm">Page Type</label>
+                <label for="pageType" class="col-sm-2 col-form-label col-form-label-sm">Blog Title</label>
                 <div class="col-sm-4">
-                    <input type="text" name="pageType" class="form-control form-control-sm">
+                    <input type="text" name="title" class="form-control form-control-sm">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="pageTitle" class="col-sm-2 col-form-label col-form-label-sm">Page Title</label>
+                <label for="pageTitle" class="col-sm-2 col-form-label col-form-label-sm">Blog Category</label>
                 <div class="col-sm-4">
-                    <input type="text" name="pageTitle" class="form-control form-control-sm">
+                    <select name="category" class="form-control form-control-sm">
+                        <% categorys.forEach(category => { %>
+                        <option value="<%= category._id %>"><%= category.category %></option>
+                        <% }) %>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">

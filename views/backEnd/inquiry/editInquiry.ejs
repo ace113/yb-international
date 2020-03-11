@@ -9,17 +9,18 @@
         <h4 class="my-auto">Edit Inquiry</h4>
     </div>
     <div class="card-body bg-light text-dark">
+        <%- include('../../partials/errorMessage.ejs') %>
         <form action="/admin/inquiry/edit/<%= inquiry._id %>?_method=PUT" method="POST">
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label-sm">Name</label>
                 <div class="col-sm-8">
-                    <input type="text" name="name" id="name" class="form-control form-control-sm" value="<%= inquiry.name %>" required>
+                    <input type="text" name="name" id="name" class="form-control form-control-sm" value="<%= inquiry.name %>" >
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label-sm">Email</label>
                 <div class="col-sm-8">
-                    <input type="email" name="email" id="email" class="form-control form-control-sm" value="<%= inquiry.email %>" required>                    
+                    <input type="email" name="email" id="email" class="form-control form-control-sm" value="<%= inquiry.email %>" >                    
                 </div>
             </div>
             <div class="form-group row">

@@ -10,6 +10,7 @@ const productDetailController = require('../../controllers/backend/productDetail
 const pageController = require('../../controllers/backend/pageController')
 const inquiryController = require('../../controllers/backend/inquiryController')
 const quoteController = require('../../controllers/backend/quoteController')
+const blogController = require('../../controllers/backend/blogController')
     // const testimonialController = require('../../controllers/backend/testimonialController')
 
 const passport = require('passport')
@@ -204,6 +205,41 @@ router.route('/order/edit/:id')
 
 //order route ends
 
+//blog category route Start
+router.route('/blogs/categorys')
+    .get(checkAuthenticated, blogController.categoryForm)
+
+router.route('/blogs/category/add')
+    .get(checkAuthenticated, blogController.addCategoryForm)
+    .post(checkAuthenticated, blogController.addCategory)
+
+router.route('/blogs/category/edit/:id')
+    .put(checkAuthenticated, blogController.editCategory)
+    .delete(checkAuthenticated, blogController.deleteCategory)
+
+//blog category route ends
+
+//blog route starts
+router.route('/blogs')
+    .get(checkAuthenticated, blogController.blogList)
+
+router.route('/blog/info/:id')
+    .get(checkAuthenticated, blogController.blogInfo)
+
+router.route('/blog/add')
+    .get(checkAuthenticated, blogController.addBlogForm)
+    .post(checkAuthenticated, blogController.addBlog)
+
+router.route('/blog/edit/:id')
+    .get(checkAuthenticated, blogController.editBlogForm)
+    .put(checkAuthenticated, blogController.editBlog)
+    .delete(checkAuthenticated, blogController.deleteBlog)
+
+router.route('/blog/editStatus/:id')
+    .put(checkAuthenticated, blogController.editStatus)
+
+//blog route ends
+
 // pages routes start 
 // router.route('/testimonials')
 //     .get(checkAuthenticated,testimonialController.getTestimonialList)
@@ -220,9 +256,6 @@ router.route('/order/edit/:id')
 //     .put(checkAuthenticated,testimonialController.editTestimonial)
 //     .delete(checkAuthenticated,testimonialController.deleteTestimonial)
 // pages routes end
-
-
-
 
 
 
