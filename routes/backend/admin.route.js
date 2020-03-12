@@ -183,6 +183,9 @@ router.route('/product/gallery/:id')
     .get(productController.viewGallery)
     .put(upload.array('image'), productController.uploadGallery)
 
+router.route('/product/edit/removeAvatar/:id')
+    .put(productController.deleteAvatar)
+
 //product route ends
 
 //order route starts

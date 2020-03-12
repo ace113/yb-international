@@ -33,7 +33,7 @@ module.exports = {
 
         const productCode = generateProductCode()
 
-        if(localName == "" || available == "" || category == "" ){
+        if (localName == "" || available == "" || category == "") {
             req.flash('error_msg', 'fields cannot be empty.')
             return res.redirect('/admin/products/add')
         }
@@ -132,6 +132,7 @@ module.exports = {
         const editProduct = await Product.updateOne({
             _id: id
         }, {
+            avatar,
             localName,
             scientificName,
             nepaliName,
@@ -149,7 +150,7 @@ module.exports = {
         res.redirect('/admin/products')
     },
 
-    // deleteProduct
+    // delete Product
     deleteProduct: async (req, res, next) => {
         const id = req.params.id
         const product = await Product.findOne({ _id: id })
@@ -219,19 +220,19 @@ module.exports = {
     deleteImageGallery: async (req, res, next) => {
         const id = req.params.id
         const parent = '5e537a78e9785d082c4150c5'
-       
+
         // const product = await Product.findOne({_id: parent})
 
         const index = await Product.aggregate([
             {
-              
-                    "index": {
-                        "$indexOfArray": ["$gallery._id", id]
-                    }
-                
+
+                "index": {
+                    "$indexOfArray": ["$gallery._id", id]
+                }
+
             }
         ])
-        
+
         console.log(index)
         // const product = await Product.updateOne({ _id: parent }, { $pull: { gallery: { _id: id } } })
         // removeImage(products.gallery[0].image)
@@ -252,10 +253,28 @@ module.exports = {
         res.render('backEnd/products/gallery', {
             gallery: gallery
         })
+    },
+
+    //delete avatar from product
+    deleteAvatar: async (req, res, next) => {
+        const id = req.params.id
+        console.log(id)
+        const product = await Product.findOne({_id: id})
+        console.log(product.avatar)
+        const removeAvatar1 = await Product.updateOne({
+            _id: id
+        }, {
+            avatar: ''
+        })
+        console.log(removeAvatar1)
+        removeAvatar(product.avatar)
+        console.log('avatar removed')
+        // res.redirect(`/admin/product/edit/${id}`)
     }
 
 
 }
+//module ends
 
 // function to delete the selected avatar from the uploads folder
 function removeAvatar(avatar) {

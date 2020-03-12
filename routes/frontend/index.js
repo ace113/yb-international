@@ -6,6 +6,7 @@ const contactController = require('../../controllers/frontend/contactController'
 const productController = require('../../controllers/frontend/productController')
 const quoteController = require('../../controllers/frontend/quoteController')
 const termsController = require('../../controllers/frontend/termsController')
+const paymentController = require('../../controllers/frontend/paymentController')
 
 router.route('/')
 .get(homeController.index)
@@ -29,6 +30,9 @@ router.route('/contact')
 
 router.route('/about')
 .get(homeController.getAbout)
+
+router.route('/payment')
+.get(paymentController.getPaymentModes)
 
 router.route('/terms')
 .get(termsController.getTerms)

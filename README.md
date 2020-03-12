@@ -32,7 +32,7 @@ npm start
 Demo page on heroku
 
 ```
-https://git.heroku.com/ynbinternational.git
+https://ynbinternational.herokuapp.com/
 ```
 
 ### Admin
