@@ -33,6 +33,7 @@ router.route('/contact')
 router.route('/about')
     .get(homeController.getAbout)
 
+
 router.route('/terms')
     .get(termsController.getTerms)
 
