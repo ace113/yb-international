@@ -1,4 +1,4 @@
-// const Pages = require('../../models/pages.model')
+const Pages = require('../../models/pages.model')
 
 module.exports = {
         //add Pages form 

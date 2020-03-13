@@ -8,6 +8,7 @@ const quoteController = require('../../controllers/frontend/quoteController')
 const termsController = require('../../controllers/frontend/termsController')
 const paymentController = require('../../controllers/frontend/paymentController')
 const queryController = require('../../controllers/frontend/query')
+const blogController = require('../../controllers/frontend/blogController')
 
 router.route('/')
     .get(homeController.index)
@@ -43,6 +44,9 @@ router.route('/esewa')
 //     .get(queryController.getQueryForm)
 router.route('/query/')
     .get(queryController.getQuery)
+
+router.route('/blogs')
+    .get(blogController.getBlogs)
 
 
 module.exports = router;
