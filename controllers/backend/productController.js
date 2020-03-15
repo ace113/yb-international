@@ -104,7 +104,7 @@ module.exports = {
 
             const productFound = await Product.findOne({ _id: id })
             if (!productFound) {
-                return res.status(400).json({ message: 'product not found' })
+                return res.status(400).json({ message: 'product not found' });
             }
             res.render('backEnd/products/editProduct', {
                     product: productFound
@@ -273,6 +273,7 @@ module.exports = {
             console.log(removeAvatar1)
             removeAvatar(product.avatar)
             console.log('avatar removed')
+            return res.status(200).json({message: 'success'})
                 // res.redirect(`/admin/product/edit/${id}`)
         }
 
