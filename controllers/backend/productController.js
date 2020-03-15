@@ -79,7 +79,8 @@ module.exports = {
             return res.status(400).json({ message: 'product get request failed' })
         }
         res.render('backEnd/products/productInfo', {
-            product: productsFound, gallery: gallery
+            product: productsFound,
+            gallery: gallery
         })
     },
 
@@ -103,7 +104,7 @@ module.exports = {
 
         const productFound = await Product.findOne({ _id: id })
         if (!productFound) {
-            return res.status(400).json({ message: 'product not found' })
+            return res.status(400).json({ message: 'product not found' });
         }
         res.render('backEnd/products/editProduct', {
             product: productFound
@@ -164,6 +165,11 @@ module.exports = {
         res.redirect('/admin/products')
     },
 
+    // add images to gallery form
+    getAddGalleryForm: async (req, res, next) => {
+        res.render('backend/products/addGallery')
+    },
+
     addGallery: async (req, res, next) => {
         let { product } = req.body;
         // const image = req.file.path
@@ -173,8 +179,7 @@ module.exports = {
         const i = imag.length;
 
         for (j = 0; j < i; j++) {
-            const add =
-            {
+            const add = {
                 image: imag[j],
                 product
             }
@@ -218,20 +223,19 @@ module.exports = {
 
     },
     deleteImageGallery: async (req, res, next) => {
+        const gallery_id = req.params.gid
         const id = req.params.id
         const parent = '5e537a78e9785d082c4150c5'
 
         // const product = await Product.findOne({_id: parent})
 
-        const index = await Product.aggregate([
-            {
+        const index = await Product.aggregate([{
 
-                "index": {
-                    "$indexOfArray": ["$gallery._id", id]
-                }
-
+            "index": {
+                "$indexOfArray": ["$gallery._id", id]
             }
-        ])
+
+        }])
 
         console.log(index)
         // const product = await Product.updateOne({ _id: parent }, { $pull: { gallery: { _id: id } } })
@@ -248,7 +252,7 @@ module.exports = {
             _id: id
         })
 
-        const gallery = product.gallery[0].image
+        const gallery = product.gallery.image
         console.log(gallery)
         res.render('backEnd/products/gallery', {
             gallery: gallery
@@ -259,7 +263,7 @@ module.exports = {
     deleteAvatar: async (req, res, next) => {
         const id = req.params.id
         console.log(id)
-        const product = await Product.findOne({_id: id})
+        const product = await Product.findOne({ _id: id })
         console.log(product.avatar)
         const removeAvatar1 = await Product.updateOne({
             _id: id
@@ -267,10 +271,9 @@ module.exports = {
             avatar: ''
         })
         console.log(removeAvatar1)
-        // removeAvatar(product.avatar)
+        removeAvatar(product.avatar)
         console.log('avatar removed')
-        return res.status(200)
-        // res.redirect(`/admin/product/edit/${id}`)
+        return res.status(200).json({ message: 'success' })
     }
 
 
@@ -297,4 +300,3 @@ function removeImage(image) {
 function generateProductCode() {
     return 'YNB' + Math.floor(1000 + Math.random() * 9000)
 }
-

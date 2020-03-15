@@ -11,6 +11,7 @@ const pageController = require('../../controllers/backend/pageController')
 const inquiryController = require('../../controllers/backend/inquiryController')
 const quoteController = require('../../controllers/backend/quoteController')
 const blogController = require('../../controllers/backend/blogController')
+const bannerController = require('../../controllers/backend/bannerController')
 // const testimonialController = require('../../controllers/backend/testimonialController')
 
 const passport = require('passport')
@@ -93,6 +94,7 @@ router.route('/page/edit/:id')
     .get(checkAuthenticated, pageController.editPageForm)
     .put(checkAuthenticated, pageController.editPage)
     .delete(checkAuthenticated, pageController.deletePage)
+
 // pages routes end
 
 router.route('/dashboard')
@@ -164,6 +166,9 @@ router.route('/products')
 router.route('/products/add')
     .get(checkAuthenticated, productController.addProductForm)
     .post(checkAuthenticated, upload.single('avatar'), productController.addProduct)
+router.route('/product/gallery')
+    .get(productController.getAddGalleryForm)
+    .post(upload.array('image'), productController.addGallery)
 
 router.route('/product/:id')
     .get(checkAuthenticated, productController.getProduct)
@@ -173,10 +178,9 @@ router.route('/product/edit/:id')
     .put(checkAuthenticated, upload.single('avatar'), productController.editProduct)
     .delete(checkAuthenticated, productController.deleteProduct)
 
-router.route('/product/gallery/')
-    .post(upload.array('image'), productController.addGallery)
 
-router.route('/product/gallery/delete/:id')
+
+router.route('/product/gallery/delete/:id/:gid')
     .delete(productController.deleteImageGallery)
 
 router.route('/product/gallery/:id')
@@ -241,6 +245,26 @@ router.route('/blog/editStatus/:id')
 
 //blog route ends
 
+//banner route starts
+router.route('/banners')
+    .get(checkAuthenticated, bannerController.getBanner)
+
+router.route('/banner/add')
+    .get(checkAuthenticated, bannerController.addBannerForm)
+    .post(checkAuthenticated, upload.single('image'), bannerController.addBanner)
+
+router.route('/banner/edit/:id')
+    .get(checkAuthenticated, bannerController.editBannerForm)
+    .put(checkAuthenticated,upload.single('image'), bannerController.editBanner)
+    .delete(checkAuthenticated, bannerController.deleteBanner)
+
+router.route('/banner/edit/removeImage/:id')
+    .put(bannerController.deleteImage)
+
+//banner route ends
+
+
+
 // pages routes start 
 // router.route('/testimonials')
 //     .get(checkAuthenticated,testimonialController.getTestimonialList)
@@ -261,9 +285,6 @@ router.route('/blog/editStatus/:id')
 
 
 
-
-
-
 module.exports = router;
 
 function checkAuthenticated(req, res, next) {
@@ -274,5 +295,3 @@ function checkAuthenticated(req, res, next) {
     req.flash('error_msg', 'Need to log in to access resources')
     res.redirect('/admin')
 }
-
-

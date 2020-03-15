@@ -1,4 +1,13 @@
-<h4 class="mt-3 mb-2">List of Products We Offer:</h4>
+<form action="/query" method="GET">
+    <select name="search" id="" class="form-control">
+        <% options.forEach(option=> { %>
+        <option value="<%= option.localName %>"><%= option.localName %></option>
+        <% })%>
+
+    </select>
+    <input type="submit" value="Search" class="btn btn-block btn-danger">
+</form>
+<br>
 <table id="myTable" class="table table-bordered table-striped table-responsive-sm">
     <thead>
         <th>S.No.</th>

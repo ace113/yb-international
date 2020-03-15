@@ -28,8 +28,8 @@ module.exports = {
             pageTitle,
             description
         } = req.body
-        const Page = await Pages.findOne({pageType: pageType})
-        if(Page){
+        const Page = await Pages.findOne({ pageType: pageType })
+        if (Page) {
             req.flash('error_msg', 'Page already exists.')
             return res.redirect('/admin/page/add')
         }
@@ -114,9 +114,11 @@ module.exports = {
         })
 
         // render found Pages to the Pages info page
-    }
+    },
+    
 
 
 
 }
+
 //module ends

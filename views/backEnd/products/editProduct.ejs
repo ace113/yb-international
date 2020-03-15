@@ -11,126 +11,116 @@
 
     <div class="card-body bg-light text-dark">
         <%- include('../../partials/errorMessage') %>
-        <form action="/admin/product/edit/<%= product._id %>?_method=PUT" method="POST" enctype="multipart/form-data" id='form0'>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group row">
-                        <label for="localName" class="col-sm-4 col-form-label col-form-label-sm">Local Name</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="localName" class="form-control form-control-sm"
-                                value="<%= product.localName %>">
+            <form action="/admin/product/edit/<%= product._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group row">
+                            <label for="localName" class="col-sm-4 col-form-label col-form-label-sm">Local Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="localName" class="form-control form-control-sm" value="<%= product.localName %>">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="scientificName" class="col-sm-4 col-form-label col-form-label-sm">Scientific
+                        <div class="form-group row">
+                            <label for="scientificName" class="col-sm-4 col-form-label col-form-label-sm">Scientific
                             Name</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="scientificName" class="form-control form-control-sm"
-                                value="<%= product.scientificName %>">
+                            <div class="col-sm-8">
+                                <input type="text" name="scientificName" class="form-control form-control-sm" value="<%= product.scientificName %>">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="nepaliname" class="col-sm-4 col-form-label col-form-label-sm">Nepali Name</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="nepaliName" class="form-control form-control-sm"
-                                value="<%= product.nepaliName %>">
+                        <div class="form-group row">
+                            <label for="nepaliname" class="col-sm-4 col-form-label col-form-label-sm">Nepali Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="nepaliName" class="form-control form-control-sm" value="<%= product.nepaliName %>">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
+                        <div class="form-group row">
 
-                        <label for="available" class="col-sm-4 col-form-label col-form-label-sm">Availability</label>
-                        <div class="col-sm-8">
-                            <div class="form-check form-check-inline">
-                                <input type="radio" name="available" class="form-check-input" value="true"
-                                    <%= product.available == true ? "checked" : "" %>>
-                                <label class="form-check-label">True</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" name="available" class="form-check-input" value="false"
-                                    <%= product.available == false ? "checked" : "" %>>
-                                <label class="form-check-label">False</label>
+                            <label for="available" class="col-sm-4 col-form-label col-form-label-sm">Availability</label>
+                            <div class="col-sm-8">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="available" class="form-check-input" value="true" <%= product.available == true ? "checked" : "" %>>
+                                    <label class="form-check-label">True</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="available" class="form-check-input" value="false" <%= product.available == false ? "checked" : "" %>>
+                                    <label class="form-check-label">False</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="productCode" class="col-sm-4 col-form-label col-form-label-sm">Product Code</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="productCode" class="form-control form-control-sm"
-                                value="<%= product.productCode %>">
+                        <div class="form-group row">
+                            <label for="productCode" class="col-sm-4 col-form-label col-form-label-sm">Product Code</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="productCode" class="form-control form-control-sm" value="<%= product.productCode %>">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="category" class="col-sm-4 col-form-label col-form-label-sm">Category</label>
-                        <div class="col-sm-8">
-                            <select name="category" class="form-control form-control-sm">
+                        <div class="form-group row">
+                            <label for="category" class="col-sm-4 col-form-label col-form-label-sm">Category</label>
+                            <div class="col-sm-8">
+                                <select name="category" class="form-control form-control-sm">
                                 <option value="<%= product.category %>"><%= product.category %></option>
                             </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="pricing" class="col-sm-4 col-form-label col-form-label-sm">Pricing</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="pricing" class="form-control form-control-sm" value="<%= product.pricing %>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="offers" class="col-sm-4 col-form-label col-form-label-sm">Offers</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="offers" class="form-control form-control-sm" value="<%= product.offers %>">
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="pricing" class="col-sm-4 col-form-label col-form-label-sm">Pricing</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="pricing" class="form-control form-control-sm"
-                                value="<%= product.pricing %>">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="offers" class="col-sm-4 col-form-label col-form-label-sm">Offers</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="offers" class="form-control form-control-sm"
-                                value="<%= product.offers %>">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group row text-center">
-                        <label for="avatar" class="col-sm-12 col-form-label col-form-label-sm">Avatar</label>
+                    <div class="col-md-4">
+                        <div class="form-group row text-center">
+                            <label for="avatar" class="col-sm-12 col-form-label col-form-label-sm">Avatar</label>
 
-                    </div>
-                    <div class="form-group row text-center">
-                        <div class="col-sm-12">
-                            <input type="file" name="avatar" id="avatar" class="form-control-file form-control-sm">
                         </div>
-                    </div>
-                    <div class="form-group row text-center">
-                        <div class="col-12">
-                            <img src="/<%= product.avatar%>" id="preview" width="200px" height="200px"
-                                class="bg-secondary">
+                        <div class="form-group row text-center">
+                            <div class="col-sm-12">
+                                <input type="file" name="avatar" id="avatar" class="form-control-file form-control-sm">
+                            </div>
                         </div>
-                    </div>
-                    <% if(product.avatar != "") { %>
-                    <div class="form-group row text-center">
-                        <div class="col-12">
-                            <button class="btn btn-danger btn-sm" id="removeAvatar" type="button">Remove Avatar</button>
+                        <div class="form-group row text-center">
+                            <div class="col-12">
+                                <img src="/<%= product.avatar%>" id="preview" width="200px" height="200px" class="bg-secondary">
+                            </div>
                         </div>
-                    </div>
-                    <% } %>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group row">
-                        <label for="Details" class="col-sm-2 col-form-label col-form-label-sm">Details</label>
-                        <div class="col-sm-10">
-                            <textarea id="editor" name="details" class="form-control form-control-sm"
-                                rows="5"><%- product.details %></textarea>
-                        </div>
+                        <% if(product.avatar != "") { %>
+                            <div class="form-group row text-center">
+                                <div class="col-12">
+                                    <button class="btn btn-danger btn-sm" id="removeAvatar" type="button">Remove Avatar</button>
+                                </div>
+                            </div>
+                            <% } %>
                     </div>
                 </div>
-            </div>
-            <input type="submit" class="btn btn-success btn-sm  btn-block" value="Submit">
-        </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <label for="Details" class="col-sm-2 col-form-label col-form-label-sm">Details</label>
+                            <div class="col-sm-10">
+                                <textarea id="editor" name="details" class="form-control form-control-sm" rows="5"><%- product.details %></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-success btn-sm  btn-block" value="Submit">
+            </form>
     </div>
 </div>
 
 <script>
-    $("#removeAvatar").on('click', function (e) {
+    $("#removeAvatar").on('click', function(e) {
         e.preventDefault()
         $.ajax({
-            type: 'PUT',
-            url: '/admin/product/edit/removeAvatar/<%= product._id %>'
-        }).done(function() {
-            alert('no')
+            method: 'PUT',
+            url: '/admin/product/edit/removeAvatar/<%= product._id %>',          
+        }).done(function(){            
+            location.reload()
         })
     })
 </script>
