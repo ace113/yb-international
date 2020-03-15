@@ -267,8 +267,9 @@ module.exports = {
             avatar: ''
         })
         console.log(removeAvatar1)
-        removeAvatar(product.avatar)
+        // removeAvatar(product.avatar)
         console.log('avatar removed')
+        return res.status(200)
         // res.redirect(`/admin/product/edit/${id}`)
     }
 
