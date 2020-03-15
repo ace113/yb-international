@@ -43,10 +43,10 @@ router.route('/esewa')
 // query product
 // router.route('/query/form')
 //     .get(queryController.getQueryForm)
-router.route('/query/')
+router.route('/query')
     .get(queryController.getQuery)
 
-router.route('/blogs')
+router.route('/blog')
     .get(blogController.getBlogs)
 
 

@@ -1,49 +1,67 @@
-<div class="row justify-content-center align-items-center" style="height:80vh">
-    <div class="col-md-6">
-        <div class="h4">Contact Us</div>
-        <small>Reach out to us for any inquiry</small>                   
-        <hr class="mb-4">
-        <%- include('../partials/errorMessage.ejs') %>
-        <form action="" method="POST" id="contact">
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label-sm">Name<span class="text-danger"> *</span></label>
-                <div class="col-sm-8">
-                    <input type="text" name="name" id="name" class="form-control form-control-sm" required required>
+<div class="contain">
+    <div class="row">
+        <div class="col-sm-3 sidebar padding-zero">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                    Cras justo odio
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum sint quam ea ut ipsum officiis
+                    dignissimos, quia alias sed fuga dolor est voluptatum. Ullam sint vel, rerum omnis voluptas
+                    maxime?
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label-sm">Email<span class="text-danger"> *</span></label>
-                <div class="col-sm-8">
-                    <input type="email" name="email" id="email" class="form-control form-control-sm" required>                    
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label-sm">Subject<span class="text-danger"> *</span></label>
-                <div class="col-sm-8">
-                    <input type="text" name="subject" id="subject" class="form-control form-control-sm" required>
-                </div>
-            </div>
-          
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label-sm">Message<span class="text-danger"> *</span></label>
-                <div class="col-sm-8">
-                    <textarea name="message" id="message" class="form-control form-control-sm" rows="5" required></textarea>
-                </div>
-            </div>    
-          
-            <input type="submit" value="Submit" class="btn btn-sm btn-success btn-block">
-        </form>         
-    </div>
-    <div class="col-md-6">
-        <div class="div mb-2" style="width: 100%; height: 250px; background: gray;">
-            
+
         </div>
-        <ul style="list-style: none; margin: 0; padding: 0;" class="mt-2">
-            <li><h4>YnB Internationals Jadibuti Suppliers</h4></li>
-            <li><i class="fas fa-map-marker-alt"></i> Nepalgunj-20, Banke, Nepal</li>
-            <li><i class="fas fa-phone"></i> 9858084583</li>
-            <li><i class="fas fa-envelope"></i> info@ynbinternationals.com</li>
-            <li><i class="fas fa-envelope"></i> sales@ynbinternationals.com</li>
-        </ul>
+        <div class="col-sm-9 main-content">
+            <div class="contact">
+                <h4 class="heading-primary">Contact Us</h4>
+                <small class="heading-tertiary">Contact us at any of your convenient customer service phone
+                    number or you can simply shoot an email and we will get back to you as soon as
+                    possible.</small>
+                <hr>
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="name">Name <span class="red-star">*</span></label>
+                        <input type="text" name="Name" id="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Email <span class="red-star">*</span></label>
+                        <input type="text" name="Name" id="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Subject <span class="red-star">*</span></label>
+                        <input type="text" name="Name" id="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Message <span class="red-star">*</span></label>
+                        <textarea name="Name" id="" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="button-wrapper">
+                        <input type="submit" value="Send Message" class="button">
+                    </div>
+                </form>
+                <hr class="mb-4 mt-4">
+                <div class="row">
+                    <div class="col-md-6 map">
+                        <img src="public/images/map.JPG" alt="" class="map__image">
+                    </div>
+                    <div class="col-md-6 contact-info">
+                        <div class="heading-secondary mb-4">YnB Internationals Jadibuti Suppliers</div>
+                        <li><i class="fas fa-map-marker-alt"></i> Nepalgunj-20, Banke, Nepal</li>
+                        <li><i class="fas fa-phone"></i> Nepalgunj-20, Banke, Nepal</li>
+                        <li><i class="fas fa-envelope"></i>  info@ynbinternationals.com</li>
+                        <li><i class="fas fa-envelope"></i> sales@ynbinternationals.com</li>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>            
+</div>

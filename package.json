@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "watch": "node-sass public/sass/main.scss public/css/style.css -w"
   },
   "author": "\"Prajwal Maharjan\"",
   "license": "ISC",
@@ -31,6 +32,7 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "node-sass": "^4.13.1",
     "nodemon": "^2.0.2"
   }
 }
