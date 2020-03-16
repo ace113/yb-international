@@ -7,7 +7,7 @@
 <div class="card">
     <div class="card-header bg-primary text-light">
         <h4 class="my-auto" style="float: left">All Blog Categories</h4>
-        <a href="/admin/blogs/category/add" class="btn btn-info btn-sm" style="float: right">Add New</a>
+        <a href="/admin/blogs/category/add" class="btn btn-primary btn-sm" style="float: right"><i class="fas fa-plus"> Add New</i></a>
     </div>
     <div class="card-body bg-light text-dark">
         <table class="table table-sm table-hover table-bordered table-responsive-sm">
@@ -30,7 +30,7 @@
                                 <%= category.status %>
                             </div>
                             <form action="/admin/blogs/category/edit/<%= category._id %>?_method=PUT" method="POST">
-                                <button class="btn btn-outline-secondary btn-sm" type="submit"><i class="fas fa-eye-slash"></i></button>
+                                <button class="btn btn-outline-primary btn-sm" type="submit"><i class="fas fa-eye-slash"></i></button>
                             </form>
                         </div>
                     </td>

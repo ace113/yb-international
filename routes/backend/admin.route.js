@@ -18,7 +18,7 @@ const passport = require('passport')
 
 // admin auth routes start
 router.route('/')
-    .get(adminController.adminLoginForm)
+    .get(checkUnAuthenticated, adminController.adminLoginForm)
     .post(passport.authenticate('local', { session: true, failureFlash: true, failureRedirect: '/admin' }), adminController.adminLogin)
 
 router.route('/register')
@@ -255,7 +255,7 @@ router.route('/banner/add')
 
 router.route('/banner/edit/:id')
     .get(checkAuthenticated, bannerController.editBannerForm)
-    .put(checkAuthenticated,upload.single('image'), bannerController.editBanner)
+    .put(checkAuthenticated, upload.single('image'), bannerController.editBanner)
     .delete(checkAuthenticated, bannerController.deleteBanner)
 
 router.route('/banner/edit/removeImage/:id')
@@ -294,4 +294,12 @@ function checkAuthenticated(req, res, next) {
     }
     req.flash('error_msg', 'Need to log in to access resources')
     res.redirect('/admin')
+}
+
+function checkUnAuthenticated(req, res, next) {
+    // console.log(req.isAuthenticated())
+    if(req.isAuthenticated()){
+        return res.redirect('/admin/dashboard')
+    }
+    next()
 }
