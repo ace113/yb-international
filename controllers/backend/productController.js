@@ -126,7 +126,9 @@ module.exports = {
             offers,
             details
         } = req.body
-        const avatar = req.file != null ? req.file.path : null
+
+        const product = await Product.findOne({_id: id})
+        const avatar = req.file != null ? req.file.path : product.avatar
         console.log(id)
 
 
