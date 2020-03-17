@@ -93,6 +93,7 @@ module.exports = {
         if (!products) {
             return res.status(400).json({ message: 'product get request failed' })
         }
+
         res.render('backEnd/products/productsList', {
             products: products
         })

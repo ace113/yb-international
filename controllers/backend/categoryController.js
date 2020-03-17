@@ -1,4 +1,5 @@
 const Category = require('../../models/category.model')
+const Products = require('../../models/product.model')
 
 module.exports = {
 
@@ -75,7 +76,12 @@ module.exports = {
             _id: id
         })
         if(!deleteCategory){
-            return res.status(400).json({message: 'delete category failed'})            
+            req.flash('error_msg', 'Failed to delete category.')
+            return res.status(400).redirect(`/admin/produt/categories`)            
+        }
+
+        if(deleteCategory){
+            const deleteProducts = await Products.deleteMany({category: id})
         }
         res.redirect('/admin/product/categories')
     },
