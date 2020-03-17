@@ -17,7 +17,6 @@ module.exports = {
     // insert new products to the database
     addProduct: async (req, res, next) => {
         let {
-            // avatar,
             localName,
             scientificName,
             nepaliName,
@@ -29,12 +28,16 @@ module.exports = {
             details
         } = req.body
         const avatar = req.file != null ? req.file.path : null
-        // console.log('avatar:',avatar)
+        console.log(avatar)
 
         const productCode = generateProductCode()
 
         if (localName == "" || available == "" || category == "") {
             req.flash('error_msg', 'fields cannot be empty.')
+            return res.redirect('/admin/products/add')
+        }
+        if(avatar == undefined){
+            req.flash('error_msg', 'Invalid format of Image.')
             return res.redirect('/admin/products/add')
         }
 
@@ -128,10 +131,13 @@ module.exports = {
             details
         } = req.body
 
+        if (localName == "" || available == "" || category == "") {
+            req.flash('error_msg', 'fields cannot be empty.')
+            return res.redirect('/admin/products/edit/${id')
+        }
+
         const product = await Product.findOne({_id: id})
         const avatar = req.file != null ? req.file.path : product.avatar
-        console.log(id)
-
 
         const editProduct = await Product.updateOne({
             _id: id
@@ -149,7 +155,8 @@ module.exports = {
         })
 
         if (!editProduct) {
-            return res.status(400).json({ message: 'product edit failed' })
+            req.flash('error_msg', 'Failed to edit products.')
+            return res.status(400).redirect('/admin/products/edit/${id')
         }
         res.redirect('/admin/products')
     },

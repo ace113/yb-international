@@ -1,6 +1,8 @@
 const Blog = require('../../models/blog.model')
 const BlogCategory = require('../../models/blogCategory.model')
 
+const fs = require('fs')
+
 module.exports = {
 
     //category list
@@ -20,7 +22,7 @@ module.exports = {
         let {
             category
         } = req.body
-        if(category == ""){
+        if (category == "") {
             req.flash('error_msg', "Please fill the fields.")
             return res.redirect('/admin/blogs/category/add')
         }
@@ -67,21 +69,24 @@ module.exports = {
         const deleteCategory = await BlogCategory.deleteOne({
             _id: id
         })
+        if (deleteCategory) {
+            const deleteBlogs = await Blog.deleteMany({ category: id })
+        }
         console.log(deleteCategory)
         res.redirect('/admin/blogs/categorys')
     },
 
     //blog list
     blogList: async (req, res, next) => {
-        const blogs = await Blog.find()
+        const blogs = await Blog.find({}).populate('category')
         res.render('backEnd/blog/blogList', {
             blogs: blogs
         })
     },
 
-    blogInfo: async(req, res, next) => {
+    blogInfo: async (req, res, next) => {
         const id = req.params.id
-        const blog = await Blog.findOne({_id: id})
+        const blog = await Blog.findOne({ _id: id })
         res.render('backEnd/blog/blogInfo', {
             blog: blog
         })
@@ -99,20 +104,33 @@ module.exports = {
         let {
             title,
             category,
+            author,
             description
         } = req.body
-        if(title == ''){
+        console.log(req.file)
+        const hero = req.file != null ? req.file.path : null
+        console.log(hero)
+        if (title == '') {
             req.flash('error_msg', "Please provide the title.")
             return res.redirect('/admin/blog/add')
+        }
+        if (author == "") {
+            author = "admin"
         }
         const blogs = await Blog.findOne({ title: title })
         if (blogs) {
             req.flash('error_msg', "Blog already exists.")
             return res.redirect('/admin/blog/add')
         }
+        if (req.file == undefined) {
+            req.flash('error_msg', "Image is not in valid format.")
+            return res.redirect('/admin/blog/add')
+        }
         const newBlog = new Blog({
             title,
             category,
+            author,
+            hero,
             description
         })
         const saveBlog = await newBlog.save()
@@ -132,15 +150,29 @@ module.exports = {
         const id = req.params.id
         let {
             title,
+            author,
             description
         } = req.body
-        if(title == ''){
+        if (title == '') {
             req.flash('error_msg', 'Title is required.')
-            res.redirect(`/admin/blog/edit/${id}`)
+            return res.redirect(`/admin/blog/edit/${id}`)
+        }
+        if (author == "") {
+            author = "admin"
         }
         const blog = await Blog.findOne({ _id: id })
+        const hero = req.file != null ? req.file.path : blog.hero
+        console.log(hero)
+        if( req.file == undefined){
+            req.flash('error_msg', 'Invalid image format.')
+            return res.redirect(`/admin/blog/edit/${id}`)
+        }
         const updateBlog = await blog.updateOne({
+            _id: id
+        }, {
             title,
+            author,
+            hero,
             description
         })
         console.log(updateBlog)
@@ -154,6 +186,7 @@ module.exports = {
         const deleteBlog = await Blog.deleteOne({
             _id: id
         })
+        removeImage(blog.hero)
         console.log(deleteBlog)
         res.redirect('/admin/blogs')
     },
@@ -179,8 +212,31 @@ module.exports = {
             console.log(showBlog)
         }
         res.redirect('/admin/blogs')
+    },
+
+    deleteHero: async (req, res, next) => {
+        const id = req.params.id
+        console.log(id)
+        const blog = await Blog.findOne({ _id: id })
+        console.log(blog.hero)
+        const removeImage1 = await Blog.updateOne({
+            _id: id
+        }, {
+            hero: ''
+        })
+        console.log(removeImage1)
+        removeImage(blog.hero)
+        console.log('image removed')
+        return res.status(200).json({ message: 'success' })
     }
 
 
 }
 //module ends
+
+function removeImage(hero) {
+    fs.unlink(`${hero}`, (err, stats) => {
+        if (err) console.log(err);
+        console.log(`stats: ${JSON.stringify(stats)}`);
+    })
+}

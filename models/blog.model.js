@@ -12,8 +12,15 @@ const blogSchema = new mongoose.Schema({
         ref: 'BlogCategory',
         required: true
     },
+    hero: {
+        type: String
+    },
     description: {
         type: String
+    },
+    author: {
+        type: String,
+        required: true
     },
     status: {
         type: Boolean,

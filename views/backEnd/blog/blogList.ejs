@@ -14,25 +14,30 @@
             <thead>
                 <th width="50px">S.No.</th>
                 <th>ID</th>
+                <th>Image</th>
                 <th>Blog</th>
                 <th>Category</th>
+                <th>Author</th>
                 <th>Status</th>
                 <th width="50px">&nbsp;</th>
             </thead>
             <tbody>
                 <% blogs.forEach((blog, sn=1)=> { %>
+                    <% if(blog.category != null) { %>
                 <tr>
                     <td><%= sn+1 %></td>
                     <td><%= blog._id %></td>
+                    <td><img src="/<%= blog.hero %>" style="width: 40px; height:40px"></td>
                     <td><a href="/admin/blog/info/<%= blog._id %>"><%= blog.title %></a></td>
-                    <td><%= blog.category %></td>
+                    <td><%= blog.category.category %></td>
+                    <td><%= blog.author %></td>
                     <td>
                         <div class="form-inline">
                             <div class="mr-4">
                                 <%= blog.status %>
                             </div>
                             <form action="/admin/blog/editStatus/<%= blog._id %>?_method=PUT" method="POST">
-                                <button class="btn btn-outline-secondary btn-sm" type="submit"><i
+                                <button class="btn btn-outline-primary btn-sm" type="submit"><i
                                         class="fas fa-eye-slash"></i></button>
                             </form>
                         </div>
@@ -57,6 +62,7 @@
                         </div>
                     </td>
                 </tr>
+                <% } %>
                 <% }) %>
             </tbody>
         </table>

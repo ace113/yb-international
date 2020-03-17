@@ -166,6 +166,7 @@ router.route('/products')
 router.route('/products/add')
     .get(checkAuthenticated, productController.addProductForm)
     .post(checkAuthenticated, upload.single('avatar'), productController.addProduct)
+    
 router.route('/product/gallery')
     .get(productController.getAddGalleryForm)
     .post(upload.array('image'), productController.addGallery)
@@ -177,8 +178,6 @@ router.route('/product/edit/:id')
     .get(checkAuthenticated, productController.editProductForm)
     .put(checkAuthenticated, upload.single('avatar'), productController.editProduct)
     .delete(checkAuthenticated, productController.deleteProduct)
-
-
 
 router.route('/product/gallery/delete/:id/:gid')
     .delete(productController.deleteImageGallery)
@@ -233,15 +232,18 @@ router.route('/blog/info/:id')
 
 router.route('/blog/add')
     .get(checkAuthenticated, blogController.addBlogForm)
-    .post(checkAuthenticated, blogController.addBlog)
+    .post(checkAuthenticated, upload.single('hero'), blogController.addBlog)
 
 router.route('/blog/edit/:id')
     .get(checkAuthenticated, blogController.editBlogForm)
-    .put(checkAuthenticated, blogController.editBlog)
+    .put(checkAuthenticated, upload.single('hero'), blogController.editBlog)
     .delete(checkAuthenticated, blogController.deleteBlog)
 
 router.route('/blog/editStatus/:id')
     .put(checkAuthenticated, blogController.editStatus)
+
+router.route('/blog/edit/removeImage/:id')
+    .put(checkAuthenticated, blogController.deleteHero)
 
 //blog route ends
 
@@ -298,7 +300,7 @@ function checkAuthenticated(req, res, next) {
 
 function checkUnAuthenticated(req, res, next) {
     // console.log(req.isAuthenticated())
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         return res.redirect('/admin/dashboard')
     }
     next()

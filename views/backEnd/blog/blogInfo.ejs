@@ -25,10 +25,17 @@
                 <h6>ID: &nbsp; <%= blog._id %></h6>
             </div>
             <div class="list-group-item list-group-item-action py-1">
+                <h6>Image: &nbsp; <img src="/<%= blog.hero %>" alt="image" class="img-fluid img-thumbnail" width="300px"
+                        height="200px"></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
                 <h6>Blog Title: &nbsp; <%= blog.title %></h6>
             </div>
             <div class="list-group-item list-group-item-action py-1">
                 <h6>Blog Category: &nbsp; <%= blog.category %></h6>
+            </div>
+            <div class="list-group-item list-group-item-action py-1">
+                <h6>Author: &nbsp; <%= blog.author %></h6>
             </div>
             <div class="list-group-item list-group-item-action py-1">
                 <h6>Description: </h6>
