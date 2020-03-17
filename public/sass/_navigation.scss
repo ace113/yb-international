@@ -9,6 +9,10 @@
     position: -webkit-sticky;
     top: 0;
     .contain {
+        @media screen and (max-width: 550px) {
+            margin: 0;
+        padding: 0;
+        }
        
         flex: auto;     
         ul {
@@ -18,12 +22,14 @@
             // border: 1px solid red;
             align-items: center;
             justify-content: space-between;
+          
             @media screen and (max-width: 550px) {
                 flex-direction: column;
-                width: 100%;
-                display: none;               
+                width: 100%;              
+   
             }
         }
+        
         li {
             width: 100%;            
         }
@@ -52,6 +58,15 @@
     }
 }
 
+.main-nav-wrapper{
+    @media screen and (max-width: 550px) {
+        display: none;        
+    }   
+}
+.active{
+    display: block;
+}
+
 
 .toggle{
     width: 100%;
@@ -61,13 +76,14 @@
     text-align: right;
     display: none;
     margin-right: 4rem;
-    background-color: var(--color-secondary-green);
+    &:hover{
+        cursor: pointer;
+        transform: translateY(-2px)
+    }
+    // background-color: var(--color-secondary-green);
 
     @media screen and (max-width: 550px) {
-        display: block;
-        
+        display: block;        
         padding-right: 4rem;     
     }
 }
-
-

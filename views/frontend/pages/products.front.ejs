@@ -23,17 +23,21 @@
            <div class="productList">
             <h4 class="heading-primary">List of Products We Offer:</h4>
             <hr>
+            <% if(products == 'undefined' || products != null) { %>
+                <%= 'No products Found' %>
+            <%} else {%>
             <table id="myTable" class="table table-bordered table-striped table-responsive-sm">
                 <thead>
-                    <th>S.No.</th>
+                    <th width="40">S.No.</th>
                     <th>Avatar</th>
                     <th>Name</th>
-                    <th>Scientific Name</th>
-                    <th>Nepali Name</th>
-
+                    <!-- <th>Scientific Name</th>
+                    <th>Nepali Name</th> -->
                     <th>Availability</th>
                 </thead>
                 <tbody>
+                    
+
                     <% products.forEach((product, sn=1 )=> {%>
                     <tr>
                         <td class="align-middle">
@@ -45,12 +49,12 @@
                                 <%= product.localName %>
                             </a>
                         </td>
-                        <td class="align-middle">
+                        <!-- <td class="align-middle">
                             <%= product.scientificName %>
                         </td>
                         <td class="align-middle">
                             <%= product.nepaliName %>
-                        </td>
+                        </td> -->
                         <td class="align-middle">
                             <%if(product.available) { %>
                             <%= 'available' %>
@@ -59,7 +63,7 @@
                             <%}%>
                 </td>
             </tr>
-            <%})%>
+            <%})}%>
                 </tbody>
             </table>
            </div>

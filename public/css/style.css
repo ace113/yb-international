@@ -27,7 +27,7 @@
   box-sizing: inherit; }
 
 html {
-  font-size: 62.5%;
+  font-size: 65%;
   box-sizing: border-box; }
 
 body {
@@ -141,18 +141,24 @@ body {
 .contact {
   padding: 3rem; }
 
-.contact-info .fas {
-  color: var(--color-primary-green); }
-
-.contact-info li {
-  font-size: 1.2rem;
-  font-weight: normal;
-  list-style: none; }
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; }
+  .contact-info ul li {
+    font-size: 1.4rem;
+    font-weight: normal;
+    list-style: none; }
+    .contact-info ul li .fas {
+      color: var(--color-primary-green); }
 
 .about {
   padding: 3rem; }
 
 .quote {
+  padding: 3rem; }
+
+.wrapper {
   padding: 3rem; }
 
 .productList {
@@ -173,6 +179,10 @@ body {
     box-shadow: 0 0 6px 5px rgba(0, 0, 0, 0.2);
     transform: translatey(-3px); }
 
+.productImage {
+  height: 30rem;
+  width: 100%; }
+
 .map {
   height: 30rem;
   background-color: var(--color-grey-dark-3);
@@ -184,7 +194,7 @@ body {
     width: inherit; }
 
 .red-star {
-  color: red; }
+  color: #CC6D68; }
 
 .testimonials {
   padding: 2rem 4rem;
@@ -244,6 +254,16 @@ body {
   width: 100%;
   height: 25rem; }
 
+.error {
+  color: #CC6D68ed; }
+
+.table {
+  font-size: 1.4rem; }
+
+.general-info-table td {
+  padding: 2rem;
+  font-size: 1.2rem; }
+
 .main-nav {
   background-color: var(--color-primary-green);
   display: flex;
@@ -254,6 +274,10 @@ body {
   top: 0; }
   .main-nav .contain {
     flex: auto; }
+    @media screen and (max-width: 550px) {
+      .main-nav .contain {
+        margin: 0;
+        padding: 0; } }
     .main-nav .contain ul {
       list-style: none;
       display: flex;
@@ -263,8 +287,7 @@ body {
       @media screen and (max-width: 550px) {
         .main-nav .contain ul {
           flex-direction: column;
-          width: 100%;
-          display: none; } }
+          width: 100%; } }
     .main-nav .contain li {
       width: 100%; }
     .main-nav .contain a {
@@ -287,6 +310,13 @@ body {
       .main-nav .contain {
         flex-direction: column; } }
 
+@media screen and (max-width: 550px) {
+  .main-nav-wrapper {
+    display: none; } }
+
+.active {
+  display: block; }
+
 .toggle {
   width: 100%;
   font-size: 1.6rem;
@@ -294,8 +324,10 @@ body {
   color: #fff;
   text-align: right;
   display: none;
-  margin-right: 4rem;
-  background-color: var(--color-secondary-green); }
+  margin-right: 4rem; }
+  .toggle:hover {
+    cursor: pointer;
+    transform: translateY(-2px); }
   @media screen and (max-width: 550px) {
     .toggle {
       display: block;
