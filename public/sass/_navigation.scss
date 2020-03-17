@@ -1,0 +1,89 @@
+// main-nav 
+.main-nav {
+    // margin: 0 6rem;
+    background-color: var(--color-primary-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    .contain {
+        @media screen and (max-width: 550px) {
+            margin: 0;
+        padding: 0;
+        }
+       
+        flex: auto;     
+        ul {
+            list-style: none;
+            display: flex;
+            margin-bottom: 0;
+            // border: 1px solid red;
+            align-items: center;
+            justify-content: space-between;
+          
+            @media screen and (max-width: 550px) {
+                flex-direction: column;
+                width: 100%;              
+   
+            }
+        }
+        
+        li {
+            width: 100%;            
+        }
+        a {
+            font-size: 1.4rem;
+            font-weight: normal;
+            color: var(--color-grey-dark-1);
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            align-items: center; 
+            padding: 1.2rem 0;     
+            color: rgb(241, 241, 241);
+
+            &:hover {
+               background-color: var(--color-secondary-green);
+            }
+            @media screen and (max-width: 550px) {
+                flex-direction: column;
+            }
+        }
+        @media screen and (max-width: 550px) {
+            flex-direction: column;
+        }
+    }
+}
+
+.main-nav-wrapper{
+    @media screen and (max-width: 550px) {
+        display: none;        
+    }   
+}
+.active{
+    display: block;
+}
+
+
+.toggle{
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 1.2rem 0; 
+    color: #fff;
+    text-align: right;
+    display: none;
+    margin-right: 4rem;
+    &:hover{
+        cursor: pointer;
+        transform: translateY(-2px)
+    }
+    // background-color: var(--color-secondary-green);
+
+    @media screen and (max-width: 550px) {
+        display: block;        
+        padding-right: 4rem;     
+    }
+}

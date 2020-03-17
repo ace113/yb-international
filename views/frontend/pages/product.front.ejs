@@ -1,5 +1,100 @@
-<div class="row mt-4">
-    <div class="col-md-4 ml-auto p-3">
+<div class="contain">
+    <div class="row">
+        <div class="col-sm-3 sidebar padding-zero">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                    Cras justo odio
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum sint quam ea ut ipsum officiis
+                    dignissimos, quia alias sed fuga dolor est voluptatum. Ullam sint vel, rerum omnis voluptas
+                    maxime?
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-9 main-content">
+            <div class="wrapper">                
+               <div class="row">
+                   <div class="col-sm-12">
+                    <h5 class="heading-secondary">General Information</h5>
+                    <hr>
+                   </div>
+               
+               </div>
+                <div class="row">                
+                    <div class="col-sm-6">                        
+                        <img src="/<%= product.avatar %>" alt="Product Image" class="productImage">
+                    </div>
+                    <div class="col-sm-6">                      
+                        <table class="general-info-table table table-striped">                            
+                            <tr>
+                                <td class="heading-tertiary">LocalName</td>
+                                <td class="heading-tertiary"><%= product.localName %></td>
+                            </tr>
+                            <tr>
+                                <td class="heading-tertiary">Scientific Name</td>
+                                <td class="heading-tertiary"><%= product.scientificName %></td>
+                            </tr>
+                            <tr>
+                                <td class="heading-tertiary">Nepali Name</td>
+                                <td class="heading-tertiary"><%= product.nepaliName %></td>
+                            </tr>
+
+                            <tr>
+                                <td class="heading-tertiary">Product Code</td>
+                                <td class="heading-tertiary"><%= product.productCode %></td>
+                            </tr>
+                            <tr>
+                                <td class="heading-tertiary">Availability</td>
+                                <td class="heading-tertiary"><%if(product.available) { %><%= 'available' %> <%}else{%> <%= 'Out of Stock'%><%}%></td>
+                            </tr>    
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm-12 pricing mb-4 mt-4">
+                            <h4 class="heading-secondary">Pricing</h4>
+                            <hr>
+                            <% if(product.pricing == '') { %>
+                                    <p><a href="/contact">Contact Us</a> for pricing Details</p>
+                                    <% } else {%>
+                                    <p><%= product.pricing %></p>
+                                    <% } %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 offers mb-4">
+                        <h4 class="heading-secondary">Special Offers</h4>
+                        <hr>
+                        <% if(product.offers == ''){ %>
+                        <p>Currently there are no Offers for this item.</p>
+                        <% } else {%>
+                        <p><%= product.offers %></p>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 details">
+                        <h4 class="heading-secondary">Details</h4>
+                        <hr>
+                        <%- product.details %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="row mt-4">
+    <div class="col-md-6">
         <img src="/<%= product.avatar %>" alt="" width="300px" height="300px;">
     </div>
     <div class="col-md-6 ml-auto">
@@ -38,9 +133,9 @@
         <h4>Pricing</h4>
         <hr>
         <% if(product.pricing == '') { %>
-        <small><a href="/contact">Contact Us</a> for pricing Details</small>
+        <p><a href="/contact">Contact Us</a> for pricing Details</p>
         <% } else {%> 
-        <small><%= product.pricing %></small>    
+        <p><%= product.pricing %></p>    
         <% } %>
     
     </div>
@@ -48,9 +143,9 @@
         <h4>Special Offers</h4>
         <hr>
         <% if(product.offers == ''){ %>
-        <small>Currently there are no Offers for this item.</small>
+        <p>Currently there are no Offers for this item.</p>
         <% } else {%> 
-        <small><%= product.offers %></small>    
+        <p><%= product.offers %></p>    
         <% } %>
     </div>
     <div class="details mb-4">
@@ -59,4 +154,4 @@
        <%- product.details %>
 
     </div>
-</div>
+</div> -->
