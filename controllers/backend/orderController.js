@@ -6,7 +6,7 @@ module.exports = {
 
     //order list
     orderList: async(req, res, next) => {
-        const orders = await Order.find()
+        const orders = await Order.find({})
         res.render('backEnd/orders/orderList', {
             orders: orders
         })
@@ -27,6 +27,10 @@ module.exports = {
             productId,
             customerId
         } = req.body
+        if(quantity == ""){
+            req.flash('error_msg', "Please provide the quantity.")
+            return res.redirect('/admin/order/add')
+        }
 
         const newOrder = await new Order({
             quantity,
@@ -58,7 +62,10 @@ module.exports = {
     editOrder:async (req, res, next) => {
         const id = req.params.id
         let { quantity } = req.body
-        
+        if(quantity == ""){
+            req.flash('error_msg', "Please provide the quantity.")
+            return res.redirect(`/admin/order/edit/${id}`)
+        }
         const updateOrder = await Order.updateOne({
             _id: id
         }, {

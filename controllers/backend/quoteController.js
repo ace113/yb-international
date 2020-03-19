@@ -56,7 +56,6 @@ module.exports = {
     //edit product detail
     editQuoteForm: async (req, res, next) => {
         const id = req.params.id
-
         const quote = await Quote.findOne({ _id: id })
         if (!quote) {
             return res.status(400).json({ message: 'Quote not found' })
@@ -86,7 +85,6 @@ module.exports = {
             return res.redirect(`/admin/quote/edit/${id}`)
         }
 
-
         const updateQuote = await Quote.updateOne({
             _id: id
         }, {
@@ -105,6 +103,7 @@ module.exports = {
             req.flash('error_msg', 'failed to update quote.')
             return res.redirect(`/admin/quote/edit/${id}`)
         }
+        console.log(updateQuote)
         res.redirect('/admin/quotes')
     },
 

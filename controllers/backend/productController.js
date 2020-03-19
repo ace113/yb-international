@@ -36,8 +36,10 @@ module.exports = {
             req.flash('error_msg', 'fields cannot be empty.')
             return res.redirect('/admin/products/add')
         }
-        if(avatar == undefined){
-            req.flash('error_msg', 'Invalid format of Image.')
+
+        const findProduct = await Product.findOne({category})
+        if(findProduct.localName == localName){
+            req.flash('error_msg', 'Product already exists.')
             return res.redirect('/admin/products/add')
         }
 

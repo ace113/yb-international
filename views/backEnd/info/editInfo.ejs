@@ -13,13 +13,13 @@
         <form action="/admin/info/edit/<%= info._id %>?_method=PUT" method="post">
             <div class="form-group row con">
                 <label class="col-sm-2 col-form-label col-form-label-sm">Address</label>
-                <div class="col-sm-4 element" id="address_1">
+                <div class="col-sm-4 element1" id="address_1">
                     <% for(i=0; i< info.address.length; i++) { %>
                     <input type="text" name="address" id="txt_1" class="form-control form-control-sm"
                         value="<%= info.address[i] %>">
                     <% } %>
                 </div>
-                <button type="button" class="btn btn-info btn-sm add" id="add1"><i class="fas fa-plus"></i></button>
+                <button type="button" class="btn btn-info btn-sm add1" id="add1"><i class="fas fa-plus"></i></button>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label col-form-label-sm">Phone</label>
@@ -77,11 +77,11 @@
 <script>
     $(document).ready(function () {
         //Add new element
-        $('.add').click(function () {
+        $('.add1').click(function () {
             //finding total no. of elements added
-            var total_element = $('.element').length;
+            var total_element = $('.element1').length;
             //last <div> with element class id
-            var lastid = $('.element:last').attr('id');
+            var lastid = $('.element1:last').attr('id');
             var split_id = lastid.split('_');
             var nextindex = Number(split_id[1]) + 1;
 
@@ -89,14 +89,14 @@
             //check total no. elemnts
             if(total_element < max) {
                 //Adding new div container after last occurance of element class
-                $('.element:last').after('<div class="element" id="address_'+ nextindex +'"></div>')
+                $('.element1:last').after('<div class="element1" id="address_'+ nextindex +'"></div>')
                 //Adding element to <div>
-                    $('#address_'+ nextindex).append('<input type="text" name="address" id="txt_'+nextindex+'">&nbsp;<button type="button" class="btn btn-danger btn-sm remove"><i class="fas fa-times"></i>' )
+                    $('#address_'+ nextindex).append('<input type="text" name="address" id="txt_'+ nextindex +'" class="form-control form-control-sm"><button type="button" id="remove_'+ nextindex +'" class="btn btn-danger btn-sm remove1"><i class="fas fa-times"></i>' )
             }
         })
 
         //Removing element
-        $('.con').on('click', '.remove', function(){
+        $('.con').on('click', '.remove1', function(){
             var id = this.id
             console.log(id)
             var split_id = id.split('_')

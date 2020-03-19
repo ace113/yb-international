@@ -10,6 +10,7 @@
     </div>
 
     <div class="card-body bg-light text-dark">
+        <%- include('../../partials/errorMessage') %>
         <form action="/admin/customer/edit/<%= customer._id %>?_method=PUT" method="POST">
             <div class="form-group row">
                 <label for="fname" class="col-sm-2 col-form-label col-form-label-sm">First Name</label>

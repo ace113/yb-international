@@ -12,8 +12,8 @@ module.exports = {
 
         const PagesFound = await Pages.findOne({ _id: id })
 
-        res.render('backEnd/Page/editPages', {
-            Pages: PagesFound
+        res.render('backEnd/Pages/editPage', {
+            page: PagesFound
         })
 
         /* use this to render the values to the edit Pages form */
@@ -28,6 +28,10 @@ module.exports = {
             pageTitle,
             description
         } = req.body
+        if(pageType == '' || pageTitle == '' || description == ''){
+            req.flash('error_msg', "Please fill in all the fields.")
+            return res.redirect('/admin/page/add')
+        }
         const Page = await Pages.findOne({ pageType: pageType })
         if (Page) {
             req.flash('error_msg', 'Page already exists.')
@@ -61,6 +65,11 @@ module.exports = {
             show,
             submittedDate
         } = req.body
+        
+        if(pageType == '' || pageTitle == '' || description == ''){
+            req.flash('error_msg', "Please fill in all the fields.")
+            return res.redirect(`/admin/page/edit/${id}`)
+        }
 
         const editedPages = await Pages.updateOne({
             _id: id

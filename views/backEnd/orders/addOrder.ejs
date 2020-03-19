@@ -10,7 +10,8 @@
     </div>
 
     <div class="card-body bg-light text-dark">
-        <form action="" method="post">
+        <%- include('../../partials/errorMessage') %>
+        <form action="/admin/order/add" method="post">
             <div class="form-group row">
                 <label for="quantity" class="col-sm-2 col-form-label col-form-label-sm">Quantity</label>
                 <div class="col-sm-4">
@@ -28,11 +29,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="customerId" class="col-sm-2 col-form-label col-form-label-sm">Customerm Id</label>
+                <label for="customerId" class="col-sm-2 col-form-label col-form-label-sm">Customer Id</label>
                 <div class="col-sm-4">
                     <select name="customerId" class="form-control form-control-sm">
                         <% customers.forEach(customer => { %>
-                        <option value="<%= customer._id %>"><%= customer.fName %><%= customer.lname %></option>
+                        <option value="<%= customer._id %>"><%= customer.fname %> <%= customer.lname %></option>
                         <% }) %>
                     </select>
                 </div>

@@ -10,6 +10,7 @@
     </div>
 
     <div class="card-body bg-light text-dark">
+        <%- include('../../partials/errorMessage') %>
         <form action="/admin/customer/add" method="POST">
             <div class="form-group row">
                 <label for="fname" class="col-sm-2 col-form-label col-form-label-sm">First Name</label>
@@ -66,7 +67,7 @@
 
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label col-form-label-sm">Password</label>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <input type="password" name="password" class="form-control form-control-sm">
                 </div>
             </div>
