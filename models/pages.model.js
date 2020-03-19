@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const pageSchema = new mongoose.Schema({
     pageType: {
         type: String,
-        enum: ['Home', 'Contact', 'Payment'],
+        // enum: ['Home', 'Contact', 'Payment', ''],
         required: true
     },
     pageTitle: {

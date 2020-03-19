@@ -1,36 +1,30 @@
-<div class="contain">
-    <div class="row">
-        <div class="col-sm-12 main-content">
-            <div class="form-group row">
-                <div class="about col-sm-9">
-                    <% blogs.forEach(blog => { %>
-                    <div class="card mb-5">
-                        <div class="card-header">
-                            <h4 class="heading-secondary"><%= blog.title %></h4>
-                            <span><i class="fas fa-user"></i><%= blog.author %></span>&nbsp;&nbsp; <span><i
-                                    class="fas fa-calendar-alt"></i> 2020-03-15</span>
-                        </div>
-                        <img class="card-img-top" src="/<%= blog.hero %>" alt="Card image cap">
-                        <div class="card-body">
-                            <p>
-                                <%- blog.description %>
-                            </p>
-                            <div class="button-wrapper">
-                                <button class="button">Read More</button>
-                            </div>
-                        </div>
-                    </div>
-                    <% }) %>
-                </div>
-                <div class="col-sm-3 sidebar padding-zero p-4">
-                    <h5 class="class-secondary">Category</h5>
-                    <ul class="view-tree p-5">
-                        <% categorys.forEach(category => { %>
-                        <li><a href="#" class="view-tree__link"></a><%= category.category %></li>
-                        <% }) %>
-                    </ul>
+<div class="row">
+    <div class="about col-sm-9 p-0">
+        <% blogs.forEach(blog => { %>
+        <div class="card mb-5">
+            <div class="card-header">
+                <h4 class="heading-secondary"><%= blog.title %></h4>
+                <span><i class="fas fa-user"></i><%= blog.author %></span>&nbsp;&nbsp; <span><i
+                        class="fas fa-calendar-alt"></i> 2020-03-15</span>
+            </div>
+            <img class="card-img-top" src="/<%= blog.hero %>" alt="Card image cap">
+            <div class="card-body">
+                <p>
+                    <%- blog.description %>
+                </p>
+                <div class="button-wrapper">
+                    <button class="button">Read More</button>
                 </div>
             </div>
         </div>
+        <% }) %>
+    </div>
+    <div class="col-sm-3 sidebar padding-zero p-4">
+        <h5 class="class-secondary">Category</h5>
+        <ul class="view-tree p-5">
+            <% categorys.forEach(category => { %>
+            <li><a href="#" class="view-tree__link"></a><%= category.category %></li>
+            <% }) %>
+        </ul>
     </div>
 </div>

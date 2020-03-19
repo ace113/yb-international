@@ -1,51 +1,46 @@
-<div class="contain">
-    <div class=" main-content">
-        <div class="productList">
-            <h4 class="heading-primary">List of Products We Offer:</h4>
-            <hr>
-            <% if(products == 'undefined' || products == null) { %>
-            <%= 'No products Found' %>
-            <% } %>
-            <table id="myTable" class="table table-bordered table-striped table-responsive-sm">
-                <thead>
-                    <th width="40">S.No.</th>
-                    <th>Avatar</th>
-                    <th>Name</th>
-                    <!-- <th>Scientific Name</th>
-                    <th>Nepali Name</th> -->
-                    <th>Availability</th>
-                </thead>
-                <tbody>
+<div class="productList">
+    <h4 class="heading-primary">List of Products We Offer:</h4>
+    <hr>
+    <% if(products == 'undefined' || products == null) { %>
+        <%= 'No products Found' %>
+    <% } %>
+    <table id="myTable" class="table table-bordered table-striped table-responsive-sm">
+        <thead>
+            <th width="40">S.No.</th>
+            <th>Avatar</th>
+            <th>Name</th>          
+            <th>Availability</th>
+        </thead>
+        <tbody>
 
 
-                    <% products.forEach((product, sn=1 )=> {%>
-                    <tr>
-                        <td class="align-middle">
-                            <%= sn+1 %>
-                        </td>
-                        <td width="200px"><img src="/<%= product.avatar %>" alt="" height="200px" width="200px"></td>
-                        <td class="align-middle">
-                            <a href="/products/<%= product.category.cata %>/<%= product.productCode %>">
-                                <%= product.localName %>
-                            </a>
-                        </td>
-                        <!-- <td class="align-middle">
+            <% products.forEach((product, sn=1 )=> {%>
+            <tr>
+                <td class="align-middle">
+                    <%= sn+1 %>
+                </td>
+                <td width="200px"><img src="/<%= product.avatar %>" alt="" height="200px" width="200px"></td>
+                <td class="align-middle">
+                    <a href="/products/<%= product.category.cata %>/<%= product.productCode %>">
+                        <%= product.localName %>
+                    </a>
+                </td>
+                <!-- <td class="align-middle">
                             <%= product.scientificName %>
                         </td>
                         <td class="align-middle">
                             <%= product.nepaliName %>
                         </td> -->
-                        <td class="align-middle">
-                            <%if(product.available) { %>
-                            <%= 'available' %>
-                            <%}else{%>
-                            <%= 'Out of Stock'%>
-                            <%}%>
+                <td class="align-middle">
+                    <%if(product.available) { %>
+                    <%= 'available' %>
+                    <%}else{%>
+                    <%= 'Out of Stock'%>
+                    <%}%>
                 </td>
             </tr>
             <% }) %>
-                </tbody>
-            </table>
-        </div>
-    </div>
+         
+        </tbody>
+    </table>
 </div>
