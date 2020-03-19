@@ -175,6 +175,30 @@ module.exports = {
         res.redirect('/admin/products')
     },
 
+    //edit available
+    editAvailable: async(req, res, next) => {
+        const id = req.params.id
+        console.log(id)
+        const product = await Product.findOne({ _id: id })
+        if (product.available === true) {
+            const hideProduct = await Product.updateOne({
+                _id: id
+            }, {
+                $set: { available: false }
+            })
+            console.log(hideProduct)
+        }
+        if (product.available === false) {
+            const showProduct = await Product.updateOne({
+                _id: id
+            }, {
+                $set: { available: true }
+            })
+            console.log(showProduct)
+        }
+        res.redirect('/admin/products')
+    },
+
     // add images to gallery form
     getAddGalleryForm: async (req, res, next) => {
         res.render('backend/products/addGallery')

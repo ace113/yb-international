@@ -5,7 +5,9 @@ const Inquiry = require('../../models/inquiry.model')
 module.exports = {
     contactForm: async(req, res, next) => {
         const findCategory = await Category.find();
-        res.render('frontend/pages/contact.front.ejs', { layout: 'frontend_layout', category: findCategory })
+        const productCategory = await Category.find()
+
+        res.render('frontend/pages/contact.front.ejs', { layout: 'frontend_layout', category: findCategory, productCategorys: productCategory })
     },
 
     postContactMessage: async(req, res, next) => {

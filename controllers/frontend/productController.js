@@ -12,7 +12,13 @@ module.exports = {
     getProducts: async(req, res, next) => {
         const findProducts = await Product.find({}).populate('category')
         const findCategory = await Category.find();
-        res.render('frontend/pages/products.front.ejs', { layout: 'frontend_layout', products: findProducts, category: findCategory })
+        const productCategory = await Category.find()
+        res.render('frontend/pages/products.front.ejs', { 
+            layout: 'frontend_layout', 
+            products: findProducts, 
+            category: findCategory,
+            productCategorys: productCategory 
+        })
     },
 
     getCategoryProducts: async(req, res, next) => {
@@ -45,8 +51,14 @@ module.exports = {
         const code = req.params.code
         const findCategory = await Category.find();
         const productinfo = await Product.findOne({ productCode: code }).populate('category')
+        const productCategory = await Category.find()
         console.log(productinfo)
-        res.render('frontend/pages/product.front.ejs', { layout: 'frontend_layout', product: productinfo, category: findCategory })
+        res.render('frontend/pages/product.front.ejs', { 
+            layout: 'frontend_layout', 
+            product: productinfo, 
+            category: findCategory,
+            productCategorys: productCategory
+         })
     }
 
 }

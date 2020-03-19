@@ -3,6 +3,8 @@ const Product = require('../../models/product.model')
 const Quote = require('../../models/quote.model')
 const Inquiry = require('../../models/inquiry.model')
 const Blog = require('../../models/blog.model')
+const Customer = require('../../models/customer.model')
+const Order = require('../../models/order.model')
 const bcrypt = require('bcryptjs')
 
 module.exports = {
@@ -143,13 +145,17 @@ module.exports = {
         const countProducts = await Product.find().countDocuments()
         const countQuotes = await Quote.find().countDocuments()
         const countInquiries = await Inquiry.find().countDocuments()
-        const countBlog = await Blog.find().countDocuments()
+        const countBlogs = await Blog.find().countDocuments()
+        const countCustomers = await Customer.find().countDocuments()
+        const countOrders = await Order.find().countDocuments()
         
         res.render('backEnd/dashboard',{ 
             products: countProducts,
             quotes: countQuotes,
             inquiries: countInquiries,
-            blogs: countBlog
+            blogs: countBlogs,
+            customers: countCustomers,
+            orders: countOrders
         })
     },
 

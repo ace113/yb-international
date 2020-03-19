@@ -107,7 +107,6 @@ module.exports = {
             author,
             description
         } = req.body
-        console.log(req.file)
         const hero = req.file != null ? req.file.path : null
         console.log(hero)
         if (title == '') {
@@ -120,10 +119,6 @@ module.exports = {
         const blogs = await Blog.findOne({ title: title })
         if (blogs) {
             req.flash('error_msg', "Blog already exists.")
-            return res.redirect('/admin/blog/add')
-        }
-        if (req.file == undefined) {
-            req.flash('error_msg', "Image is not in valid format.")
             return res.redirect('/admin/blog/add')
         }
         const newBlog = new Blog({
@@ -163,11 +158,7 @@ module.exports = {
         const blog = await Blog.findOne({ _id: id })
         const hero = req.file != null ? req.file.path : blog.hero
         console.log(hero)
-        if( req.file == undefined){
-            req.flash('error_msg', 'Invalid image format.')
-            return res.redirect(`/admin/blog/edit/${id}`)
-        }
-        const updateBlog = await blog.updateOne({
+        const updateBlog = await Blog.updateOne({
             _id: id
         }, {
             title,

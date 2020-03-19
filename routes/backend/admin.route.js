@@ -12,6 +12,7 @@ const inquiryController = require('../../controllers/backend/inquiryController')
 const quoteController = require('../../controllers/backend/quoteController')
 const blogController = require('../../controllers/backend/blogController')
 const bannerController = require('../../controllers/backend/bannerController')
+const infoController = require('../../controllers/backend/infoController')
 // const testimonialController = require('../../controllers/backend/testimonialController')
 
 const passport = require('passport')
@@ -166,10 +167,10 @@ router.route('/products')
 router.route('/products/add')
     .get(checkAuthenticated, productController.addProductForm)
     .post(checkAuthenticated, upload.single('avatar'), productController.addProduct)
-    
+
 router.route('/product/gallery')
     .get(productController.getAddGalleryForm)
-    .post(upload.array('image'), productController.addGallery)
+    .post(checkAuthenticated, upload.array('image'), productController.addGallery)
 
 router.route('/product/:id')
     .get(checkAuthenticated, productController.getProduct)
@@ -179,15 +180,18 @@ router.route('/product/edit/:id')
     .put(checkAuthenticated, upload.single('avatar'), productController.editProduct)
     .delete(checkAuthenticated, productController.deleteProduct)
 
+router.route('/product/editAvailable/:id')
+    .put(checkAuthenticated, productController.editAvailable)
+
 router.route('/product/gallery/delete/:id/:gid')
-    .delete(productController.deleteImageGallery)
+    .delete(checkAuthenticated, productController.deleteImageGallery)
 
 router.route('/product/gallery/:id')
-    .get(productController.viewGallery)
-    .put(upload.array('image'), productController.uploadGallery)
+    .get(checkAuthenticated, productController.viewGallery)
+    .put(checkAuthenticated, upload.array('image'), productController.uploadGallery)
 
 router.route('/product/edit/removeAvatar/:id')
-    .put(productController.deleteAvatar)
+    .put(checkAuthenticated, productController.deleteAvatar)
 
 //product route ends
 
@@ -261,10 +265,23 @@ router.route('/banner/edit/:id')
     .delete(checkAuthenticated, bannerController.deleteBanner)
 
 router.route('/banner/edit/removeImage/:id')
-    .put(bannerController.deleteImage)
+    .put(checkAuthenticated, bannerController.deleteImage)
 
 //banner route ends
 
+//info route starts
+router.route('/info')
+    .get(infoController.info)
+
+router.route('/info/add')
+    .get(infoController.addInfoForm)
+    .post(infoController.addInfo)
+
+router.route('/info/edit/:id')
+    .get(infoController.editInfoForm)
+    .put(infoController.editInfo)
+
+//info route ends
 
 
 // pages routes start 

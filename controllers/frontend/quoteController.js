@@ -6,7 +6,12 @@ module.exports = {
 
     quoteForm: async(req, res, next) => {
         const findCategory = await Category.find();
-        res.render('frontend/pages/quote.front.ejs', { layout: 'frontend_layout', category: findCategory })
+        const productCategory = await Category.find()
+        res.render('frontend/pages/quote.front.ejs', {
+             layout: 'frontend_layout', 
+             category: findCategory,
+             productCategorys: productCategory 
+            })
     },
 
 

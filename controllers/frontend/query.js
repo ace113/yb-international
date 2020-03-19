@@ -2,7 +2,10 @@ const Product = require('../../models/product.model')
 const Category = require('../../models/category.model')
 module.exports = {
     getQueryForm: async(req, res, next) => {
-        res.render('frontend/pages/query')
+        const productCategory = await Category.find()
+        res.render('frontend/pages/query', {
+            productCategorys: productCategory
+        })
     },
     getQuery: async(req, res, next) => {
         let searchOptions = {}

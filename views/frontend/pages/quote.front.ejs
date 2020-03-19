@@ -1,102 +1,79 @@
 <div class="contain">
-    <div class="row">
-        <div class="col-sm-3 sidebar padding-zero">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">
-                    Cras justo odio
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum sint quam ea ut ipsum officiis
-                    dignissimos, quia alias sed fuga dolor est voluptatum. Ullam sint vel, rerum omnis voluptas
-                    maxime?
+    <div class="main-content">
+        <div class="quote">
+            <div class="heading-primary">Online Quote Request</div>
+            <hr class="mb-4">
+            <%- include('../partials/errorMessage.ejs') %>
+            <div class="row">
+                <div class="col-md-10">
+                    <form action="" method="POST" id="quote">
+                        <div class="form-group">
+                            <label>Name</label>
+
+                            <input type="text" name="name" id="name" class="form-control">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Email<span class="text-danger"> *</span></label>
+
+                            <input type="email" name="email" id="email" class="form-control" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Phone<span class="text-danger"> *</span></label>
+
+                            <input type="number" name="phone" id="phone" class="form-control" minlength="8" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Product<span class="text-danger"> *</span></label>
+
+                            <input type="text" name="product" id="product" class="form-control" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Product Code</label>
+
+                            <input type="text" name="code" id="code" class="form-control"><small>(Optional)</small>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Quantity<span class="text-danger"> *</span></label>
+
+                            <input type="text" name="quantity" id="quantity" class="form-control" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Requirements</label>
+
+                            <textarea name="requirements" id="requirements" class="form-control"></textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Packing Details</label>
+
+                            <textarea name="packingDetails" id="packingDetails" class="form-control"></textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="callMe">Call me regarding this
+                                quote.<span class="text-danger"> *</span></label>
+
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="callMe" class="form-check-input" value="true" checked>
+                                <label class="form-check-label">Call me</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="callMe" class="form-check-input" value="false">
+                                <label class="form-check-label">Email me</label>
+                            </div>
+                        </div>
+                        <div class="form-group button-wrapper">
+                            <input type="submit" value="Submit" class="button">
+                        </div>
                 </div>
-            </div>
-
-        </div>
-        <div class="col-sm-9 main-content">
-            <div class="quote">
-                <div class="heading-primary">Online Quote Request</div>
-                <hr class="mb-4">
-                <%- include('../partials/errorMessage.ejs') %>
-                <div class="row">
-                    <div class="col-md-8">
-                        <form action="" method="POST" id="quote">
-                            <div class="form-group">
-                                <label>Name</label>
-
-                                <input type="text" name="name" id="name" class="form-control">
-
-                            </div>
-                            <div class="form-group">
-                                <label>Email<span class="text-danger"> *</span></label>
-
-                                <input type="email" name="email" id="email" class="form-control" required>
-
-                            </div>
-                            <div class="form-group">
-                                <label>Phone<span class="text-danger"> *</span></label>
-
-                                <input type="number" name="phone" id="phone" class="form-control" minlength="8"
-                                    required>
-
-                            </div>
-                            <div class="form-group">
-                                <label>Product<span class="text-danger"> *</span></label>
-
-                                <input type="text" name="product" id="product" class="form-control" required>
-
-                            </div>
-                            <div class="form-group">
-                                <label>Product Code</label>
-
-                                <input type="text" name="code" id="code" class="form-control"><small>(Optional)</small>
-
-                            </div>
-                            <div class="form-group">
-                                <label>Quantity<span class="text-danger"> *</span></label>
-
-                                <input type="text" name="quantity" id="quantity" class="form-control" required>
-
-                            </div>
-                            <div class="form-group">
-                                <label>Requirements</label>
-
-                                <textarea name="requirements" id="requirements" class="form-control"></textarea>
-
-                            </div>
-                            <div class="form-group">
-                                <label>Packing Details</label>
-
-                                <textarea name="packingDetails" id="packingDetails" class="form-control"></textarea>
-
-                            </div>
-                            <div class="form-group">
-                                <label for="callMe">Call me regarding this
-                                    quote.<span class="text-danger"> *</span></label>
-
-                                <div class="form-check form-check-inline">
-                                    <input type="radio" name="callMe" class="form-check-input" value="true" checked>
-                                    <label class="form-check-label">Call me</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input type="radio" name="callMe" class="form-check-input" value="false">
-                                    <label class="form-check-label">Email me</label>
-                                </div>
-                            </div>
-                            <div class="form-group button-wrapper">
-                                <input type="submit" value="Submit" class="button">
-                            </div>
-                    </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
 </div>

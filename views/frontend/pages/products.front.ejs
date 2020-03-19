@@ -1,31 +1,11 @@
 <div class="contain">
-    <div class="row">
-        <div class="col-sm-3 sidebar padding-zero">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">
-                    Cras justo odio
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum sint quam ea ut ipsum officiis
-                    dignissimos, quia alias sed fuga dolor est voluptatum. Ullam sint vel, rerum omnis voluptas
-                    maxime?
-                </div>
-            </div>
-
-        </div>
-        <div class="col-sm-9 main-content">
-           <div class="productList">
+    <div class=" main-content">
+        <div class="productList">
             <h4 class="heading-primary">List of Products We Offer:</h4>
             <hr>
-            <% if(products == 'undefined' || products != null) { %>
-                <%= 'No products Found' %>
-            <%} else {%>
+            <% if(products == 'undefined' || products == null) { %>
+            <%= 'No products Found' %>
+            <% } %>
             <table id="myTable" class="table table-bordered table-striped table-responsive-sm">
                 <thead>
                     <th width="40">S.No.</th>
@@ -36,7 +16,7 @@
                     <th>Availability</th>
                 </thead>
                 <tbody>
-                    
+
 
                     <% products.forEach((product, sn=1 )=> {%>
                     <tr>
@@ -63,10 +43,9 @@
                             <%}%>
                 </td>
             </tr>
-            <%})}%>
+            <% }) %>
                 </tbody>
             </table>
-           </div>
         </div>
     </div>
 </div>

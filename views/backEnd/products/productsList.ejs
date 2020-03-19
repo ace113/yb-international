@@ -32,7 +32,15 @@
                     <td><a href="/admin/product/<%= product._id %>"><%= product.localName %></a></td>
                     <td><%= product.scientificName %></td>
                     <td><%= product.nepaliName %></td>
-                    <td><%= product.available %></td>
+                    <td><div class="form-inline">
+                        <div class="mr-4">
+                            <%= product.available %>
+                        </div>
+                        <form action="/admin/product/editAvailable/<%= product._id %>?_method=PUT" method="POST">
+                            <button class="btn btn-outline-primary btn-sm" type="submit"><i
+                                    class="fas fa-eye-slash"></i></button>
+                        </form>
+                    </div></td>
                     <td><%= product.productCode %></td>
                     <td><%= product.category.categoryName %></td>
                     <td>

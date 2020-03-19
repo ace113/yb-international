@@ -44,7 +44,7 @@ router.route('/esewa')
 // router.route('/query/form')
 //     .get(queryController.getQueryForm)
 router.route('/query')
-    .get(queryController.getQuery)
+    .get(queryController.getQueryForm)
 
 router.route('/blog')
     .get(blogController.getBlogs)

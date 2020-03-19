@@ -10,7 +10,7 @@
     </div>
     <div class="card-body bg-light text-dark">
         <%- include('../../partials/errorMessage.ejs') %>
-        <form action="/admin/blog/edit/<%= blog._id %>?_method=PUT" method="POST">
+        <form action="/admin/blog/edit/<%= blog._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
                 <label for="pageType" class="col-sm-2 col-form-label col-form-label-sm">Blog Title</label>
                 <div class="col-sm-4">
