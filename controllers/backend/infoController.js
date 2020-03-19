@@ -4,8 +4,8 @@ module.exports = {
 
     //show info
     info: async (req, res, next) => {
-        const info = await Info.find()
-        console.log(info)
+        const info = await Info.find({})
+        console.log(info.length)
         res.render('backEnd/info/info', {
             info: info
         })
@@ -67,6 +67,16 @@ module.exports = {
             email
         })
         console.log(editedInfo)
+        res.redirect('/admin/info')
+    },
+
+    //delete info
+    deleteInfo: async (req, res, next) => {
+        const id = req.params.id
+        const deletedInfo = await Info.deleteOne({
+            _id: id
+        })
+        console.log(deletedInfo)
         res.redirect('/admin/info')
     }
 

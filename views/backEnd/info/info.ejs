@@ -13,7 +13,7 @@
         <div class="form-group row">
             <label class="col-sm-2">Address:</label>
             <% for(i=0; i< info.address.length; i++) { %>
-            <% if(info.address[i] != null) { %>
+            <% if(info.address[i] != '') { %>
             <%= info.address[i] %> <br>
             <% } %>
             <% } %>
@@ -21,20 +21,29 @@
         <div class="form-group row">
             <label class="col-sm-2">Phone:</label>
             <% for(j=0; j< info.phone.length; j++) { %>
+            <% if(info.phone[i] != '') { %>
             <%= info.phone[j] %> <br>
+            <% } %>
             <% } %>
         </div>
         <div class="form-group row">
             <label class="col-sm-2">Email:</label>
             <% for(k=0; k< info.email.length; k++) { %>
+            <% if(info.email[i] != '') { %>
             <%= info.email[k] %> <br>
+            <% } %>
             <% } %>
         </div>
         <div class="form-group mr-4" style="float: right;">
-            <a href="/admin/info/edit/<%= info._id %>" class="btn btn-primary btn-sm">
-                <i class="fas fa-edit"> Edit</i></a>
+            <form action="/admin/info/edit/<%= info._id %>?_method=DELETE" method="post">
+                <a href="/admin/info/edit/<%= info._id %>" class="btn btn-primary btn-sm">
+                    <i class="fas fa-edit"> Edit</i></a>
+                    <% if(info.length > 1) { %>
+                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"> Delete</i></button>
+                <% } %>
+            </form>
         </div>
-<br><br>
+        <br><br>
         <% }) %>
     </div>
 </div>

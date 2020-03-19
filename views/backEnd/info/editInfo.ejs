@@ -11,7 +11,7 @@
     <div class="card-body bg-light text-dark">
         <%- include('../../partials/errorMessage') %>
         <form action="/admin/info/edit/<%= info._id %>?_method=PUT" method="post">
-            <div class="form-group row con">
+            <div class="form-group row con1">
                 <label class="col-sm-2 col-form-label col-form-label-sm">Address</label>
                 <div class="col-sm-4 element1" id="address_1">
                     <% for(i=0; i< info.address.length; i++) { %>
@@ -21,30 +21,33 @@
                 </div>
                 <button type="button" class="btn btn-info btn-sm add1" id="add1"><i class="fas fa-plus"></i></button>
             </div>
-            <div class="form-group row">
+            <div class="form-group row con2">
                 <label class="col-sm-2 col-form-label col-form-label-sm">Phone</label>
-                <div class="col-sm-4" id="phone">
+                <div class="col-sm-4 element2" id="phone_1">
                     <% for(j=0; j< info.phone.length; j++) { %>
-                    <input type="tel" name="phone" class="form-control form-control-sm" value="<%= info.phone[j] %>">
+                    <input type="tel" name="phone" id="tel_1" class="form-control form-control-sm" value="<%= info.phone[j] %>">
                     <% } %>
                 </div>
-                <button type="button" class="btn btn-info btn-sm" id="add2"><i class="fas fa-plus"></i></button>
+                <button type="button" class="btn btn-info btn-sm add2" id="add2"><i class="fas fa-plus"></i></button>
             </div>
-            <div class="form-group row">
+            <div class="form-group row con3">
                 <label class="col-sm-2 col-form-label col-form-label-sm">Email</label>
-                <div class="col-sm-4" id="email">
+                <div class="col-sm-4 element3" id="email_1">
                     <% for(k=0; k< info.email.length; k++) { %>
-                    <input type="email" name="email" class="form-control form-control-sm" value="<%= info.email[k] %>">
+                    <input type="email" name="email" id="eml_1" class="form-control form-control-sm" value="<%= info.email[k] %>">
                     <% } %>
                 </div>
-                <button type="button" class="btn btn-info btn-sm" id="add3"><i class="fas fa-plus"></i></button>
+                <button type="button" class="btn btn-info btn-sm add3" id="add3"><i class="fas fa-plus"></i></button>
             </div>
             <div class="form-group row">
                 <div class="col-sm-2">
 
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <input type="submit" value="Submit" class="btn btn-success btn-sm btn-block">
+                </div>
+                <div class="col-sm-2">
+                    <a href="/admin/info" class="btn btn-sm btn-danger btn-block">Cancel</a>
                 </div>
             </div>
         </form>
@@ -61,7 +64,7 @@
         })
     })
 </script> -->
-<script>
+<!-- <script>
     $('#add2').on('click', function (e) {
         e.preventDefault()
         $('div#phone').append('<input type="tel" name="phone" class="form-control form-control-sm">')
@@ -72,8 +75,9 @@
         e.preventDefault()
         $('div#email').append('<input type="email" name="email" class="form-control form-control-sm">')
     })
-</script>
+</script> -->
 
+<!-- for address -->
 <script>
     $(document).ready(function () {
         //Add new element
@@ -96,7 +100,7 @@
         })
 
         //Removing element
-        $('.con').on('click', '.remove1', function(){
+        $('.con1').on('click', '.remove1', function(){
             var id = this.id
             console.log(id)
             var split_id = id.split('_')
@@ -104,6 +108,74 @@
 
             //Removing <div> with id
                 $('#address_'+ deleteindex).remove()
+        })
+    })
+</script>
+<!-- for phone -->
+<script>
+    $(document).ready(function () {
+        //Add new element
+        $('.add2').click(function () {
+            //finding total no. of elements added
+            var total_element = $('.element2').length;
+            //last <div> with element class id
+            var lastid = $('.element2:last').attr('id');
+            var split_id = lastid.split('_');
+            var nextindex = Number(split_id[1]) + 1;
+
+            var max = 5;
+            //check total no. elemnts
+            if(total_element < max) {
+                //Adding new div container after last occurance of element class
+                $('.element2:last').after('<div class="element2" id="phone_'+ nextindex +'"></div>')
+                //Adding element to <div>
+                    $('#phone_'+ nextindex).append('<input type="tel" name="phone" id="tel_'+ nextindex +'" class="form-control form-control-sm"><button type="button" id="remove_'+ nextindex +'" class="btn btn-danger btn-sm remove2"><i class="fas fa-times"></i>' )
+            }
+        })
+
+        //Removing element
+        $('.con2').on('click', '.remove2', function(){
+            var id = this.id
+            console.log(id)
+            var split_id = id.split('_')
+            var deleteindex = split_id[1]
+
+            //Removing <div> with id
+                $('#phone_'+ deleteindex).remove()
+        })
+    })
+</script>
+<!-- for email -->
+<script>
+    $(document).ready(function () {
+        //Add new element
+        $('.add3').click(function () {
+            //finding total no. of elements added
+            var total_element = $('.element3').length;
+            //last <div> with element class id
+            var lastid = $('.element3:last').attr('id');
+            var split_id = lastid.split('_');
+            var nextindex = Number(split_id[1]) + 1;
+
+            var max = 5;
+            //check total no. elemnts
+            if(total_element < max) {
+                //Adding new div container after last occurance of element class
+                $('.element3:last').after('<div class="element3" id="email_'+ nextindex +'"></div>')
+                //Adding element to <div>
+                    $('#email_'+ nextindex).append('<input type="email" name="email" id="eml_'+ nextindex +'" class="form-control form-control-sm"><button type="button" id="remove_'+ nextindex +'" class="btn btn-danger btn-sm remove3"><i class="fas fa-times"></i>' )
+            }
+        })
+
+        //Removing element
+        $('.con3').on('click', '.remove3', function(){
+            var id = this.id
+            console.log(id)
+            var split_id = id.split('_')
+            var deleteindex = split_id[1]
+
+            //Removing <div> with id
+                $('#email_'+ deleteindex).remove()
         })
     })
 </script>

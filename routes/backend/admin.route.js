@@ -280,6 +280,7 @@ router.route('/info/add')
 router.route('/info/edit/:id')
     .get(infoController.editInfoForm)
     .put(infoController.editInfo)
+    .delete(infoController.deleteInfo)
 
 //info route ends
 
