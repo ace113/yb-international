@@ -13,9 +13,7 @@
             aria-haspopup="true" aria-expanded="false" name="notifications">
             <i class="fas fa-users"></i></a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <% allCustomers.forEach(customer => { %>
-            <a class="dropdown-item" href="/admin/customers"><%= customer._id %></a>
-            <% }) %>
+            <a class="dropdown-item" href="/admin/customers">customers</a>
           </div>
         </div>
       </li>

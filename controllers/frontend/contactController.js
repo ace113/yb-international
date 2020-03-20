@@ -2,6 +2,7 @@ const Category = require('../../models/category.model')
 const Product = require('../../models/product.model')
 const Inquiry = require('../../models/inquiry.model')
 const Info = require('../../models/info.model')
+const pusher = require('../../helpers/pusher')
 
 module.exports = {
     contactForm: async (req, res, next) => {
@@ -29,6 +30,7 @@ module.exports = {
             req.flash('error_msg', 'All fields are Required')
             return res.redirect('/contact')
         }
+        const inquiry = await Inquiry.find({})
 
         const newMessage = new Inquiry({
             name,
@@ -41,6 +43,9 @@ module.exports = {
             req.flash('error_msg', "Your message has not been submitted")
             return res.redirect('/contact')
         }
+
+        pusher.trigger('notifications', 'inquiry_updated', inquiry, req.headers['x-socket-id'])
+
         req.flash('success_msg', "Your message has been submitted")
         res.redirect('/contact')
     }

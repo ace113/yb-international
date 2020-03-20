@@ -46,8 +46,15 @@ router.route('/esewa')
 router.route('/query')
     .get(queryController.getQueryForm)
 
+//blogs
 router.route('/blog')
     .get(blogController.getBlogs)
+
+router.route('/blog/groups/:id')
+    .get(blogController.getGroups)
+
+router.route('/blog/singleBlog/:id')
+.get(blogController.getSingleBlog)
 
 
 module.exports = router;

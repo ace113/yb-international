@@ -5,11 +5,10 @@ var pusher = new Pusher({
   key: 'f95fb0a7e350014c8ea1',
   secret: 'ffe31d165e6939b1f62e',
   cluster: 'ap2',
-  encrypted: true
+  useTLS: true,
+  timeout: 10000
 });
 
-pusher.trigger('my-channel', 'my-event', {
-  "message": "hello world"
-});
+// pusher.trigger('my-channel', 'my-event', {"message": "hello world"});
 
 module.exports = pusher

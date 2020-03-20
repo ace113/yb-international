@@ -10,23 +10,25 @@
     <link rel="stylesheet" href="/public/css/style.css">
     <script src="https://kit.fontawesome.com/3f25a0abc0.js" crossorigin="anonymous"></script>
     <script src="https://khalti.com/static/khalti-checkout.js"></script>
+    <link rel="stylesheet" href="/public/css/owlCarousel/owl.carousel.css">
+<link rel="stylesheet" href="/public/css/owlCarousel/owl.carousel.min.css">
+<link rel="stylesheet" href="/public/css/owlCarousel/owl.theme.default.css">
     <title>YnB Internationals</title>
 </head>
 
 <body>
     <%- include('./frontend/partials/header') %>
 
-
-    <div class="container-fluid">
-        <div class="form-group row">
-            <div class="col-md-2">
-                <%-include('./frontend/partials/sidebar.ejs') %>
-            </div>
-            <div class="col-md-10 mt-2 mb-2">
-                <%- body %>
+    <div class="main">
+        <div class="contain">
+            <div class="row">
+                <div class="col-sm-3 sidebar padding-zero"><%-include('./frontend/partials/sidebar.ejs') %></div>
+                <div class="col-sm-9 main-content"><%- body %></div>
             </div>
         </div>
     </div>
+    
+
 
     <%- include('./frontend/partials/footer') %>
 
@@ -40,6 +42,23 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
         </script>
     <script defer src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <script src="/public/js/owlcarousel/owl.carousel.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+            items: 1,
+            loop: true,
+            autoplay: true,
+            autoplayHoverPause: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 5000/true,
+            nav: false,
+            dotsEach: true,
+            // dotsData: true,         
+        });
+    });
+
+</script>
     <script>
         $(function () {
             $('.menu').click(function () {

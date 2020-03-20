@@ -1,22 +1,23 @@
 const Category = require('../../models/category.model')
 const Product = require('../../models/product.model')
 const Quote = require('../../models/quote.model')
+const pusher = require('../../helpers/pusher')
 
 module.exports = {
 
-    quoteForm: async(req, res, next) => {
+    quoteForm: async (req, res, next) => {
         const findCategory = await Category.find();
         const productCategory = await Category.find()
         res.render('frontend/pages/quote.front.ejs', {
-             layout: 'frontend_layout', 
-             category: findCategory,
-             productCategorys: productCategory 
-            })
+            layout: 'frontend_layout',
+            category: findCategory,
+            productCategorys: productCategory
+        })
     },
 
 
 
-    postQuote: async(req, res, next) => {
+    postQuote: async (req, res, next) => {
         let {
             name,
             email,
@@ -34,6 +35,8 @@ module.exports = {
             return res.redirect('/quote')
         }
 
+        const quote = await Quote.find({})
+
         const newQuote = new Quote({
             name,
             email,
@@ -45,11 +48,15 @@ module.exports = {
             packingDetails,
             callMe
         })
+
         const quoteSaved = await newQuote.save()
         if (!quoteSaved) {
             req.flash('error', "Something went wrong")
             return res.redirect('/quote')
         }
+
+        pusher.trigger('notifications', 'quote_updated', quote, req.headers['x-socket-id'])
+        
         req.flash('success_msg', "Your quote request has been submitted")
         res.redirect('/quote')
     }

@@ -148,6 +148,7 @@
     </script>
     <!-- pusher -->
     <script>
+        Pusher.logToConsole = true;
         var pusher = new Pusher('f95fb0a7e350014c8ea1', { cluster: 'ap2' });
 
         // retrieve the socket ID once we're connected
@@ -162,7 +163,31 @@
         // for customers
 
         // for quotes
-
+        pusher.subscribe('notifications')
+            .bind('quote_updated', function (quote) {
+                // if we're on the home page, show an "Updated" badge
+                if (window.location.pathname === "/admin/dashboard") {
+                    $('a[href="/admin/quotes"]').append('<span class="badge badge-primary badge-pill"> Updated</span>');
+                }
+                var notification = new Notification(quote.title + " was just updated. Check it out.");
+                notification.onclick = function (event) {
+                    window.location.href = '/admin/quote/' + quote._id;
+                    event.preventDefault();
+                    notification.close();
+                }
+            })
+            .bind('inquiry_updated', function (inquiry) {
+                // if we're on the home page, show an "Updated" badge
+                if (window.location.pathname === "/admin/dashboard") {
+                    $('a[href="/admin/inquiries"]').append('<span class="badge badge-primary badge-pill"> Updated</span>');
+                }
+                var notification = new Notification(inquiry.title + " was just updated. Check it out.");
+                notification.onclick = function (event) {
+                    window.location.href = '/admin/inquiry/' + inquiry._id;
+                    event.preventDefault();
+                    notification.close();
+                }
+            });
     </script>
 </body>
 

@@ -21,41 +21,19 @@
     </div>
     <div class="col-sm-3 sidebar padding-zero p-4">
         <h4 class="class-secondary"><a href="/blog" style="color: seagreen;"><i class="fas fa-blog"><u> Blogs</u></i> </a></h4>
-        <!-- <ul class="view-tree p-5">
-            <% categorys.forEach(category => { %>
-            <li>
-                <ul><a href="/blog/groups/<%= category._id %>" class="view-tree__link"></a><%= category.category %>
-                    <li><a href=""></a></li>
-                </ul>
-            </li>
-            <% }) %>
-        </ul> -->
-        <!-- <ul class="nav flex-column">
-            <% categorys.forEach(category => { %>
-            <li class="nav-bar">
-                <a class="nav-link" href="/blog/groups/<%= category._id %>"><%= category.category %></a>
-                <ul>
-                    <% blogs.forEach(blog => { %>
-                    <li class="nav-item"><a href="/blog/singleBlog/<%= blog._id %>"><%= blog.title %></a></li>
-                    <% }) %>
-                </ul>
-            </li>
-            <% }) %>
-        </ul> -->
         <nav class="nav flex-column">
             <% categorys.forEach(category => { %>
             <ul class="nav flex-column">
-                <a href="/blog/groups/<%= category._id %>" class="nav-list"><i class="fas fa-circle">
-                        <%= category.category %></i></a>
-                <% blogs.forEach(blog => { %>
-                <li class="nav-items ml-4">
-                    <a href="/blog/singleBlog/<%= blog._id %>" class="nav-link" style="color: mediumblue">
+                <a class="nav-list" href="/blog/groups/<%= category._id %>">
+                    <i class="fas fa-circle"> <%= category.category %></i></a>
+                <% allBlogs.forEach(blog => { %>
+                <li class="nav-item ml-4">
+                    <a href="/blog/singleBlog/<%= blog._id %>" class="nav-link" style="color:mediumblue">
                         <i class="fas fa-book-open"> <%= blog.title %></i></a>
                 </li>
                 <% }) %>
             </ul>
             <% }) %>
-
         </nav>
     </div>
 </div>

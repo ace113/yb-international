@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="about col-sm-9 p-0 mt-4">
+        <div>
+            <img class="card-img-top" src="/<%= blog.hero %>" alt="Card image cap">
+        </div>
+        <div>
+            <h4 class="heading-secondary"><%= blog.title %></h4>
+        </div>
+        <div>
+            <span><i class="fas fa-user"></i><%= blog.author %></span>&nbsp;&nbsp; <span><i
+                    class="fas fa-calendar-alt"></i>
+                2020-03-15</span>
+        </div>
+        <div>
+            <p>
+                <%- blog.description %>
+            </p>
+        </div>
+    </div>
+
+    <div class="col-sm-3 sidebar padding-zero p-4">
+        <h4 class="class-secondary"><a href="/blog" style="color: seagreen;"><i class="fas fa-blog"><u> Blogs</u></i> </a></h4>
+        <nav class="nav flex-column">
+            <% categorys.forEach(category => { %>
+            <ul class="nav flex-column">
+                <a href="/blog/groups/<%= category._id %>" class="nav-list">
+                    <i class="fas fa-circle"> <%= category.category %></i></a>
+                <% blogs.forEach(blog => { %>
+                <li class="nav-items ml-4">
+                    <a href="/blog/singleBlog/<%= blog._id %>" class="nav-link" style="color:mediumblue">
+                        <i class="fas fa-book-open"> <%= blog.title %></i></a>
+                </li>
+                <% }) %>
+            </ul>
+            <% }) %>
+
+        </nav>
+    </div>
+</div>

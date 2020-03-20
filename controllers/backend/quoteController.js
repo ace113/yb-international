@@ -1,6 +1,5 @@
 const Quote = require('../../models/quote.model')
 
-
 module.exports = {
 
     // Quote list 
@@ -33,6 +32,7 @@ module.exports = {
             req.flash('error_msg', 'Please fill in the fields.')
             return res.redirect('/admin/quote/add')
         }
+        const quote = await Quote.find({})
 
         const newQuote = new Quote({
             name,
@@ -45,8 +45,9 @@ module.exports = {
             packingDetails,
             callMe
         })       
-        const quote = await newQuote.save()
-        if (!quote) {
+
+        const savedQuote = await newQuote.save()
+        if (!savedQuote) {
             req.flash('error_msg', 'fail to save quote.')
             res.redirect('/admin/quote/add')
         }

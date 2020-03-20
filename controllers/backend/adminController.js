@@ -7,7 +7,6 @@ const Customer = require('../../models/customer.model')
 const Order = require('../../models/order.model')
 const bcrypt = require('bcryptjs')
 
-const allCustomers = Customer.find()
 
 module.exports = {
     adminList: async (req, res, next) => {
@@ -15,10 +14,8 @@ module.exports = {
         if (!admin) {
             return res.status(400)
         }
-        const allCustomers = Customer.find()
         res.render('backEnd/admin/adminList', {
             admin: admin,
-            allCustomers: allCustomers
         })
     },
 
@@ -41,8 +38,7 @@ module.exports = {
             console.log(admin)
         }
         res.render('backEnd/login', {
-            layout: 'authlayout',
-            customers: allCustomers
+            layout: 'authlayout'
         })
     },
 
@@ -58,9 +54,7 @@ module.exports = {
     },
 
     adminRegisterForm: async (req, res, next) => {
-        res.render('backEnd/admin/admin', {
-            customers: allCustomers
-        })
+        res.render('backEnd/admin/admin')
     },
 
     adminRegister: async (req, res, next) => {
@@ -139,8 +133,7 @@ module.exports = {
             _id: id
         })
         res.render('backEnd/admin/editAdmin', {
-            admin: findAdmin,
-            customers: allCustomers
+            admin: findAdmin
         })
     },
 
@@ -158,7 +151,6 @@ module.exports = {
         const countBlogs = await Blog.find().countDocuments()
         const countCustomers = await Customer.find().countDocuments()
         const countOrders = await Order.find().countDocuments()
-        const allCustomers = Customer.find({})
 
         res.render('backEnd/dashboard', {
             products: countProducts,
@@ -166,8 +158,7 @@ module.exports = {
             inquiries: countInquiries,
             blogs: countBlogs,
             customersCount: countCustomers,
-            orders: countOrders,
-            allCustomers: allCustomers
+            orders: countOrders
         })
     },
 
