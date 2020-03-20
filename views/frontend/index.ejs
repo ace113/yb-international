@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: -8px;">
+<!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: -8px;">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -35,7 +35,19 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</div> -->
+    <!-- ### BANNER STARTS HERE -->
+    <% if(banners == null && banners == 'undefined'){ %>
+        <span></span>
+    <% } else{ %>
+    <div class="banner">
+        <div class="owl-carousel">
+            <% banners.forEach(banner => {%>
+            <div class="article"><img src="/<%= banner.image %>" alt=""></div>      
+            <%})}%>      
+        </div>
+    </div>
+    <!-- ### BANNER ENDS HERE -->
 <h4 class="heading-primary"><%= page.pageTitle %></h4>
 <br>
 <p><%- page.description %></p>

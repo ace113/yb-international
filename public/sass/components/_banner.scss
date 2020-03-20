@@ -1,0 +1,42 @@
+.owl-carousel {  
+    border: none;
+    // position: relative;
+    img{
+        width: 100%;
+        height: 30rem;   
+        position: relative;   
+        border: none; 
+    } 
+    .owl-dots{
+        z-index: 1;
+        // color: red;
+        display: flex;
+        justify-content: space-between;
+        // background-color: blue;     
+        position: absolute;
+        bottom: 2rem;
+        right: 48%;
+        @media screen and (max-width: 550px) {
+            right: 43%;
+        }
+        
+     
+        .owl-dot{     
+            width: 1.2rem;
+            height: 1.2rem;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-color: var(--color-grey-light-2);
+            opacity: .4;
+            outline: none;
+           
+            &:not(:first-child){               
+                margin-left: 2rem;
+            }
+        }
+    }
+}
+.banner{
+    margin-bottom: 2rem;
+    border: none;
+}

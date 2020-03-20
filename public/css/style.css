@@ -343,3 +343,35 @@ body {
 
 .heading-tertiary {
   font-size: 1rem; }
+
+.owl-carousel {
+  border: none; }
+  .owl-carousel img {
+    width: 100%;
+    height: 30rem;
+    position: relative;
+    border: none; }
+  .owl-carousel .owl-dots {
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 2rem;
+    right: 48%; }
+    @media screen and (max-width: 550px) {
+      .owl-carousel .owl-dots {
+        right: 43%; } }
+    .owl-carousel .owl-dots .owl-dot {
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 50%;
+      margin: 0 auto;
+      background-color: var(--color-grey-light-2);
+      opacity: .4;
+      outline: none; }
+      .owl-carousel .owl-dots .owl-dot:not(:first-child) {
+        margin-left: 2rem; }
+
+.banner {
+  margin-bottom: 2rem;
+  border: none; }

@@ -8,7 +8,12 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <img src="/<%= product.avatar %>" alt="Product Image" class="productImage">
+         
+            <% if(product.avatar) {%>
+                <img src="/<%= product.avatar %>" alt="<%= product.localName %>" class="productImage">          
+            <%} else {%>
+                <img src="/public/images/assets/no-image.png" alt="<%= product.localName %>" class="productImage">                
+            <%}%>
         </div>
         <div class="col-sm-6">
             <table class="general-info-table table table-striped">
