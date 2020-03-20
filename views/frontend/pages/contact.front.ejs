@@ -35,11 +35,31 @@
                 <div class="col-md-6 contact-info">
                     <div class="heading-secondary mb-4">YnB Internationals Jadibuti Suppliers</div>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Nepalgunj-20, Banke, Nepal</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <%= info.address %></li>
                         <li><i class="fas fa-phone"></i> +977-9858084583</li>
-                        <li><i class="fas fa-envelope"></i> info@ynbinternationals.com</li>
+                        <li><i class="fas fa-envelope"></i> info@ynbinternations.com</li>
                         <li><i class="fas fa-envelope"></i> sales@ynbinternationals.com</li>
                     </ul>
+                    <!-- <ul>
+                        //address
+                    <%# for(i=0; i< info.address.length; i++) { %>
+                    <%# if(info.address[i] != '') { %>
+                    <li><i class="fas fa-map-marker-alt"></i> <%= info.address[i] %></li>
+                    <%# } %>
+                    <%# } %>
+                        //phone
+                    <%# for(j=0; j< info.phone.length; j++) { %>
+                    <%# if(info.phone[j] != null) { %>
+                    <li><i class="fas fa-phone"></i> <%= info.phone[i] %></li>
+                    <%# } %>
+                    <%# } %>
+                        //email
+                    <%# for(k=0; k< info.email.length; k++) { %>
+                    <%# if(info.email[k] != '') { %>
+                    <li><i class="fas fa-envelope"></i> <%= info.email[0] %></li>
+                    <%# } %>
+                    <%# } %>
+                    </ul> -->
                 </div>
             </div>
         </div>

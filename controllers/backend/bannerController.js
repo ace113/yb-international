@@ -22,8 +22,8 @@ module.exports = {
             subTitle
         } = req.body
         const image = req.file != null ? req.file.path : null
-        if (title == '' || subTitle == '' || title == null || subTitle == null || image == null) {
-            req.flash('error_msg', 'Fill in the fields.')
+        if (image == null) {
+            req.flash('error_msg', 'Image is required.')
             return res.redirect('/admin/banner/add')
         }
         const banner = await Banner.findOne({ title })

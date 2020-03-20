@@ -13,6 +13,7 @@
         <table class="table table-sm table-hover table-bordered table-responsive-sm">
             <thead>
                 <th>S. No.</th>
+                <th>Order Id</th>
                 <th>Customer</th>
                 <th>Product</th>
                 <th>Quantity</th>
@@ -22,6 +23,7 @@
                 <% orders.forEach((order, sn=1 )=> { %>
                 <tr>
                     <td><%= sn+1 %></td>
+                    <td><a href="/admin/order/<%= order._id %>"><%= order._id %></a></td>
                     <td><%= order.customerId %></td>
                     <td><%= order.productId %></td>
                     <td><%= order.quantity %></td>

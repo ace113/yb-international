@@ -1,9 +1,13 @@
 const Customer = require('../../models/customer.model')
 
+const allCoustomers = Customer.find({})
+
 module.exports = {
     //add customer form 
     addCustomerForm: (req, res, next) => {
-        res.render('backEnd/customers/addCustomer')
+        res.render('backEnd/customers/addCustomer',{
+            customers: allCoustomers
+        })
     },
 
     // edit customer form 
@@ -13,7 +17,8 @@ module.exports = {
         const customerFound = await Customer.findOne({ _id: id })
 
         res.render('backEnd/customers/editCustomer', {
-            customer: customerFound
+            customer: customerFound,
+            customers: allCoustomers
         })
 
         /* use this to render the values to the edit customer form */
@@ -141,7 +146,7 @@ module.exports = {
         }
 
         res.render('backEnd/customers/customerList', {
-            customers: customerlist
+            customers: customerlist,
         })
 
     },
@@ -153,7 +158,8 @@ module.exports = {
         const customerFound = await Customer.findOne({ _id: id })
 
         res.render('backEnd/customers/customerInfo', {
-            customer: customerFound
+            customer: customerFound,
+            customers: allCoustomers
         })
 
         // render found customer to the customer info page

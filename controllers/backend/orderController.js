@@ -5,15 +5,24 @@ const Customer = require('../../models/customer.model')
 module.exports = {
 
     //order list
-    orderList: async(req, res, next) => {
+    orderList: async (req, res, next) => {
         const orders = await Order.find({})
         res.render('backEnd/orders/orderList', {
             orders: orders
         })
     },
 
+    //order info
+    orderInfo: async (req, res, next) => {
+        const id = req.params.id
+        const order = await Order.findOne({_id: id})
+        res.render('backEnd/orders/orderInfo', {
+            order: order
+        })
+    },
+
     //add order
-    addOrderForm: async(req, res, next) => {
+    addOrderForm: async (req, res, next) => {
         const products = await Product.find()
         const customers = await Customer.find()
         res.render('backEnd/orders/addOrder', {
@@ -21,13 +30,13 @@ module.exports = {
         })
     },
 
-    addOrder: async(req, res, next) => {
-        let{
+    addOrder: async (req, res, next) => {
+        let {
             quantity,
             productId,
             customerId
         } = req.body
-        if(quantity == ""){
+        if (quantity == "") {
             req.flash('error_msg', "Please provide the quantity.")
             return res.redirect('/admin/order/add')
         }
@@ -39,30 +48,30 @@ module.exports = {
         })
 
         const order = await newOrder.save()
-        if(!order){
+        if (!order) {
             res.json('message: "Failed to order"')
         }
         res.redirect('/admin/orders')
     },
 
     //edit order
-    editOrderForm: async(req, res, next) => {
+    editOrderForm: async (req, res, next) => {
         const id = req.params.id
 
-        const order = await Order.findOne({_id: id})
-        if(!order){
-            return res.status(400).json({message: 'order not found'})
+        const order = await Order.findOne({ _id: id })
+        if (!order) {
+            return res.status(400).json({ message: 'order not found' })
         }
         // render the found category values to the edit form 
-        res.render('backEnd/orders/editOrder',{
+        res.render('backEnd/orders/editOrder', {
             order: order
         })
     },
 
-    editOrder:async (req, res, next) => {
+    editOrder: async (req, res, next) => {
         const id = req.params.id
         let { quantity } = req.body
-        if(quantity == ""){
+        if (quantity == "") {
             req.flash('error_msg', "Please provide the quantity.")
             return res.redirect(`/admin/order/edit/${id}`)
         }
@@ -72,21 +81,21 @@ module.exports = {
             quantity
         })
 
-        if(!updateOrder) {
-            return res.status(400).json({message: 'order edit failed'})
+        if (!updateOrder) {
+            return res.status(400).json({ message: 'order edit failed' })
         }
         res.redirect('/admin/orders')
     },
 
     //delete order
-    deleteOrder: async(req, res, next) => {
+    deleteOrder: async (req, res, next) => {
         const id = req.params.id
-        
+
         const deleteOrder = await Order.deleteOne({
             _id: id
         })
-        if(!deleteOrder){
-            return res.status(400).json({message: 'delete order failed'})            
+        if (!deleteOrder) {
+            return res.status(400).json({ message: 'delete order failed' })
         }
         res.redirect('/admin/orders')
     }

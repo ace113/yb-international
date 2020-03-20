@@ -7,14 +7,18 @@ const Customer = require('../../models/customer.model')
 const Order = require('../../models/order.model')
 const bcrypt = require('bcryptjs')
 
+const allCustomers = Customer.find()
+
 module.exports = {
     adminList: async (req, res, next) => {
         const admin = await Admin.find()
         if (!admin) {
             return res.status(400)
         }
+        const allCustomers = Customer.find()
         res.render('backEnd/admin/adminList', {
-            admin: admin
+            admin: admin,
+            allCustomers: allCustomers
         })
     },
 
@@ -36,7 +40,10 @@ module.exports = {
             const admin = await newAdmin.save()
             console.log(admin)
         }
-        res.render('backEnd/login', { layout: 'authlayout' })
+        res.render('backEnd/login', {
+            layout: 'authlayout',
+            customers: allCustomers
+        })
     },
 
     adminLogin: async (req, res, next) => {
@@ -51,18 +58,20 @@ module.exports = {
     },
 
     adminRegisterForm: async (req, res, next) => {
-        res.render('backEnd/admin/admin')
+        res.render('backEnd/admin/admin', {
+            customers: allCustomers
+        })
     },
 
     adminRegister: async (req, res, next) => {
         let { username, password, password2 } = req.body;
 
-        if(username == "" || password == "" || password2 == "") {
+        if (username == "" || password == "" || password2 == "") {
             req.flash('error_msg', 'fields cannot be empty.')
             return res.redirect('/admin/register')
         }
 
-        if(password.length < 6){
+        if (password.length < 6) {
             req.flash('error_msg', "password should be atleast of 6 characters.")
             return res.redirect('/admin/register')
         }
@@ -94,21 +103,21 @@ module.exports = {
     editAdmin: async (req, res, next) => {
         const id = req.params.id
         let { username, password, password2 } = req.body;
-        if(username == "" || password == "" || password2 == "") {
+        if (username == "" || password == "" || password2 == "") {
             req.flash('error_msg', 'fields cannot be empty.')
             return res.redirect(`/admin/edit/${id}`)
         }
 
-        if(password.length < 6){
+        if (password.length < 6) {
             req.flash('error_msg', "password should be atleast of 6 characters.")
             return res.redirect(`/admin/edit/${id}`)
         }
-        if(password != password2){
+        if (password != password2) {
             req.flash('error_msg', 'passwords donot match.')
             return res.redirect(`/admin/edit/${id}`)
         }
         const salt = await bcrypt.genSalt(10)
-        const hashpassword = await bcrypt.hash(password , salt)
+        const hashpassword = await bcrypt.hash(password, salt)
 
 
         const updateAdmin = await Admin.updateOne({
@@ -130,7 +139,8 @@ module.exports = {
             _id: id
         })
         res.render('backEnd/admin/editAdmin', {
-            admin: findAdmin
+            admin: findAdmin,
+            customers: allCustomers
         })
     },
 
@@ -148,20 +158,21 @@ module.exports = {
         const countBlogs = await Blog.find().countDocuments()
         const countCustomers = await Customer.find().countDocuments()
         const countOrders = await Order.find().countDocuments()
-        
-        res.render('backEnd/dashboard',{ 
+        const allCustomers = Customer.find({})
+
+        res.render('backEnd/dashboard', {
             products: countProducts,
             quotes: countQuotes,
             inquiries: countInquiries,
             blogs: countBlogs,
-            customers: countCustomers,
-            orders: countOrders
+            customersCount: countCustomers,
+            orders: countOrders,
+            allCustomers: allCustomers
         })
     },
 
     deleteAdmin: async (req, res, next) => {
         const id = req.params.id
-
         const adminDeleted = await Admin.deleteOne({
             _id: id
         })

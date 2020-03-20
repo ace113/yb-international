@@ -44,6 +44,9 @@ router.route('/signout')
 
 // admin auth routes end
 
+router.route('/dashboard')
+    .get(checkAuthenticated, adminController.admin)
+
 
 // inquiry routes start 
 router.route('/inquiries')
@@ -98,9 +101,6 @@ router.route('/page/edit/:id')
 
 // pages routes end
 
-router.route('/dashboard')
-    .get(checkAuthenticated, adminController.admin)
-
 
 // Customer Routes starts 
 router.route('/customers')
@@ -111,7 +111,7 @@ router.route('/customer/add')
     .post(checkAuthenticated, customerController.addCustomer)
 
 router.route('/customer/:id')
-    .get(customerController.getCustomer)
+    .get(checkAuthenticated, customerController.getCustomer)
 
 router.route('/customer/edit/:id')
     .get(checkAuthenticated, customerController.editCustomerForm)
@@ -205,6 +205,7 @@ router.route('/order/add')
     .post(checkAuthenticated, orderController.addOrder)
 
 router.route('/order/:id')
+    .get(checkAuthenticated, orderController.orderInfo)
 
 router.route('/order/edit/:id')
     .get(checkAuthenticated, orderController.editOrderForm)
@@ -271,16 +272,16 @@ router.route('/banner/edit/removeImage/:id')
 
 //info route starts
 router.route('/info')
-    .get(infoController.info)
+    .get(checkAuthenticated, infoController.info)
 
 router.route('/info/add')
-    .get(infoController.addInfoForm)
-    .post(infoController.addInfo)
+    .get(checkAuthenticated, infoController.addInfoForm)
+    .post(checkAuthenticated, infoController.addInfo)
 
 router.route('/info/edit/:id')
-    .get(infoController.editInfoForm)
-    .put(infoController.editInfo)
-    .delete(infoController.deleteInfo)
+    .get(checkAuthenticated, infoController.editInfoForm)
+    .put(checkAuthenticated, infoController.editInfo)
+    .delete(checkAuthenticated, infoController.deleteInfo)
 
 //info route ends
 

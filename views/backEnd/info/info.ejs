@@ -21,7 +21,7 @@
         <div class="form-group row">
             <label class="col-sm-2">Phone:</label>
             <% for(j=0; j< info.phone.length; j++) { %>
-            <% if(info.phone[i] != '') { %>
+            <% if(info.phone[j] != null) { %>
             <%= info.phone[j] %> <br>
             <% } %>
             <% } %>
@@ -29,7 +29,7 @@
         <div class="form-group row">
             <label class="col-sm-2">Email:</label>
             <% for(k=0; k< info.email.length; k++) { %>
-            <% if(info.email[i] != '') { %>
+            <% if(info.email[k] != '') { %>
             <%= info.email[k] %> <br>
             <% } %>
             <% } %>

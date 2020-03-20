@@ -1,13 +1,43 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
   <a class="navbar-brand" href="/admin/dashboard">Welcome Admin</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav ml-auto"> 
+    <ul class="navbar-nav ml-auto">
+      <!-- new customers -->
+      <li class="nav-item mr-2">
+        <div class="dropdown">
+          <a class="nav-link ui-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" name="notifications">
+            <i class="fas fa-users"></i></a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <% allCustomers.forEach(customer => { %>
+            <a class="dropdown-item" href="/admin/customers"><%= customer._id %></a>
+            <% }) %>
+          </div>
+        </div>
+      </li>
+      <!-- new notifications -->
+      <li class="nav-item mr-2">
+        <div class="dropdown">
+          <a class="nav-link ui-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" name="notifications">
+            <i class="fas fa-bell"></i></a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="/admin/orders">Orders</a>
+            <%# for(k=0; k< quotes.length; k++) { %>
+            <a class="dropdown-item" href="/admin/quotes">Quotes</a>
+            <%# } %>
+            <a class="dropdown-item" href="/admin/inquiries">Inquiries</a>
+          </div>
+        </div>
+      </li>
+      <!-- signOut -->
       <li class="nav-item">
         <a class="nav-link" href="/admin/signout"><i class="fas fa-sign-out-alt"> Log Out</i></a>
-      </li>   
+      </li>
     </ul>
   </div>
 </nav>

@@ -1,16 +1,23 @@
 const Category = require('../../models/category.model')
 const Product = require('../../models/product.model')
 const Inquiry = require('../../models/inquiry.model')
+const Info = require('../../models/info.model')
 
 module.exports = {
-    contactForm: async(req, res, next) => {
+    contactForm: async (req, res, next) => {
         const findCategory = await Category.find();
         const productCategory = await Category.find()
+        const info = await Info.findOne({})
 
-        res.render('frontend/pages/contact.front.ejs', { layout: 'frontend_layout', category: findCategory, productCategorys: productCategory })
+        res.render('frontend/pages/contact.front.ejs', {
+            layout: 'frontend_layout',
+            category: findCategory,
+            productCategorys: productCategory,
+            info: info
+        })
     },
 
-    postContactMessage: async(req, res, next) => {
+    postContactMessage: async (req, res, next) => {
         let {
             name,
             email,
